@@ -5,12 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="entity.UserEntity" alias="userinfo" />
-<!-- 		<typeAlias type="entity.BoardInfo" alias="boardinfo" /> -->
+		<typeAlias type="entity.CampInfo" alias="campinfo" />
 	</typeAliases>
 
 	<!-- 쿼리문 -->
 	<mappers>
 		<mapper resource="mybatis/user-mapping.xml" />
-<!-- 		<mapper resource="mybatis/board-mapping.xml" /> -->
+		<mapper resource="mybatis/camp-mapping.xml" />
 	</mappers>
 </configuration>
