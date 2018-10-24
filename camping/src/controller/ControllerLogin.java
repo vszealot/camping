@@ -37,7 +37,7 @@ public class ControllerLogin {
 		
 		if(userDao.joinUser(userEntity)) {
 //			System.out.println("ok");
-			return "../main";
+			return "../../index";
 		}else {
 			return "login/join";
 		}
