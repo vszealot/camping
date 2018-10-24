@@ -13,7 +13,7 @@
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn=DriverManager.getConnection(
-				"jdbc:oracle:thin:@127.0.0.1:1521:xe",
+				"jdbc:oracle:thin:@192.168.1.137:1521:xe",
 				"dc", "1234");
 		System.out.println("접속 성공!!!");
 	}catch(Exception e){
