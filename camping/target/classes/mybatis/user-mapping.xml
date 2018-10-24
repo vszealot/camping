@@ -3,15 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="usernamespace">
-	<insert id="insertLogInfo" parameterType="userinfo">
-		<![CDATA[INSERT INTO LOGINFO VALUES(#{userId}, #{userPassword})]]>
+
+	<insert id="insertUserEntity" parameterType="userinfo">
+		<![CDATA[INSERT INTO USERINFO VALUES(#{userId}, #{userEmail}, #{nickName}, #{password})]]>
 	</insert>
 
-	<insert id="insertUserInfo" parameterType="userinfo">
-		<![CDATA[INSERT INTO USERINFO VALUES(#{nickname}, #{userId}, #{userEmail}, #{userAddress}, #{userPhone})]]>
-	</insert>
-
-	<select id="listUserInfo" resultType="userinfo">
-		<![CDATA[SELECT * FROM USERINFO]]>
+	<select id="loginUserEntity" parameterType="userinfo" resultType="userinfo">
+		<![CDATA[SELECT * FROM USERINFO WHERE USERID=#{userId} AND PASSWORD=#{password}]]>
 	</select>
+	
+	
 </mapper>
