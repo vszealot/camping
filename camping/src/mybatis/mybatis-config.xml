@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="entity.UserEntity" alias="userinfo" />
 		<typeAlias type="entity.CampInfo" alias="campinfo" />
+		<typeAlias type="entity.Page" alias="page" />
 	</typeAliases>
 
 	<!-- 쿼리문 -->

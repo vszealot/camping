@@ -11,8 +11,8 @@
 		<![CDATA[SELECT * FROM CAMPING_TEST]]>
 	</select>
 	
-<!-- 	<select id="createSequence" parameterType="map">
-		<![CDATA[${sql2}]]>
-	</select> -->
+	<select id="campList" resultType="campinfo" parameterType="page">
+		<![CDATA[SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST)AA)WHERE RN>=#{rowStart} AND RN<=#{rowEnd}]]>
+	</select>
 
 </mapper>
