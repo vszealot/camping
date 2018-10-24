@@ -56,7 +56,7 @@ public class ControllerLogin {
 			System.out.println(entity.getNickName());
 			HttpSession session= request.getSession();
 			session.setAttribute("logOK", entity);
-			return "../main";
+			return "../../index";
 		}else {
 			return "login/login";
 		}
