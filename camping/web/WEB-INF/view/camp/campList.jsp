@@ -21,7 +21,7 @@
 </style>
 </head>
 <body>
-	이름 거리 주소 전화번호	<br>
+	<br>
 	<div class='left-box'>
 		<table border="1">
 			<tr>
@@ -43,6 +43,21 @@
 				</c:forEach>
 			</c:if>
 		</table>
+		<div>	<!-- 페이정 처리 시작 -->
+			<ul>
+				<c:if test="${page.prev}">
+					<li><a href="campList.do${page.makeQuery(page.startPage - 1)}">이전</a></li>
+				</c:if>
+
+				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
+					<li><a href="campList.do${page.makeQuery(idx)}">${idx}</a></li>
+				</c:forEach>
+
+				<c:if test="${page.next && page.endPage > 0}">
+					<li><a href="campList.do${page.makeQuery(page.endPage + 1)}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>	<!-- 페이징 처리 끝 -->
 	</div>
 	<div class='right-box'>오른쪽</div>
 </body>

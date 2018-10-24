@@ -3,16 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="campspace">
-<!-- 	<insert id="createBoard" parameterType="boardinfo">
-		<![CDATA[INSERT INTO boardInfo VALUES(#{boardName}, #{nickname}, #{userId}, #{boardTag1}, #{boardTag2}, #{boardTag3}, #{boardTag4}, #{boardTag5})]]>
-	</insert> -->
 
 	<select id="campList" resultType="campinfo">
 		<![CDATA[SELECT * FROM CAMPING_TEST]]>
 	</select>
-	
-	<select id="campList" resultType="campinfo" parameterType="page">
+
+	<select id="campListPage" resultType="campinfo"
+		parameterType="page">
 		<![CDATA[SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST)AA)WHERE RN>=#{rowStart} AND RN<=#{rowEnd}]]>
+	</select>
+
+	<select id="campListCount" resultType="int">
+		<![CDATA[select count(campname) from CAMPING_TEST]]>
 	</select>
 
 </mapper>
