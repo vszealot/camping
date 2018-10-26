@@ -6,13 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<!-- 로그인 유효성 검사 -->
+<script src="<c:url value="/js/loginValidata.js" />"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 <body>
 
 <!-- 로그인/회원가입 탭 -->
 <div id="loginjoin">
-	<a href="./?mod=login&amp;iframe=Y" class="active">로그인</a>
-	<a href="./?mod=join&amp;iframe=Y">회원가입</a>
+	<a href="login.do">로그인</a>
+	<a href="join.do" class="active">회원가입</a>
 </div>
 
 <!-- 로그인 페이지 -->
@@ -27,15 +32,19 @@
 			<td>패스워드</td>
 			<td><input type="password" name="password"/></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td>
 				<input type="checkbox"  name="useCookie">로그인 유지  
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td colspan="2">
-				<input type="submit"  value="로그인">  
+				<input type="submit" value="로그인"/>  
 			</td>
+		</tr>
+		<!-- 로그인 일치 확인 -->
+		<tr>
+			<td><div id="checkText"></div></td>
 		</tr>
 		</table>
 	</form>
