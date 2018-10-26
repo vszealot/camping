@@ -31,7 +31,12 @@
 				<a href="">글램핑/카라반</a>
 			</li>
 			<li>
-				<a href="">등록</a>
+				<!-- //캠핑장소 검색------------------------------------------------------------ -->
+			<form method="post"  action="searchProc.do">
+				<input type="text" name="searchWord" id="searchWord">
+				<input type="submit" value="검색" />
+				</form>
+			
 			</li>
 			<li>
 				<input type="text">

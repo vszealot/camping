@@ -16,5 +16,17 @@
 	<select id="campListCount" resultType="int">
 		<![CDATA[select count(campname) from CAMPING_TEST]]>
 	</select>
+	
+	<select id="searchListCount" parameterType="Map" resultType="int">
+		<![CDATA[${sql}]]>
+	</select> 
+	
+	<select id="searchListPage" resultType="campinfo" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="searchListMap" resultType="campinfo" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
 
 </mapper>

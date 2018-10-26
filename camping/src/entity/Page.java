@@ -17,6 +17,17 @@ public class Page {
 	private int displayPageNum = 10;
 
 	// =========================================================
+	private String searchWord;
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+	
+	//=============================================================
 	public void setPage(int page) {
 		if (page <= 0) {
 			this.page = 1;
