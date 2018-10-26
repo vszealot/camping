@@ -12,5 +12,16 @@
 		<![CDATA[SELECT * FROM USERINFO WHERE USERID=#{userId} AND PASSWORD=#{password}]]>
 	</select>
 	
+	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+	 	 SELECT COUNT(*) FROM USERINFO WHERE USERID=#{userId}
+	    ]]>
+	</select>
+	
+	<select id="checkNickname" parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+	  	SELECT COUNT(*) FROM USERINFO WHERE NICKNAME=#{nickName}
+	    ]]>
+	</select>
 	
 </mapper>

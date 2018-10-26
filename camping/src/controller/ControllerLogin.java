@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import entity.UserEntity;
 import model.UserDao;
@@ -49,15 +55,17 @@ public class ControllerLogin {
 	}
 	@RequestMapping(value="/loginProc.do",method=RequestMethod.POST)
 	public String logProc(@ModelAttribute UserEntity userEntity, HttpServletRequest request) throws IOException {
-		//로그인 세션 관리
+
 		UserEntity entity=userDao.loginUser(userEntity);
 		
+		//로그인 세션 관리
 		if(entity!=null) {
-			System.out.println(entity.getNickName());
+//			System.out.println(entity.getNickName());
 			HttpSession session= request.getSession();
 			session.setAttribute("logOK", entity);
 			return "../../index";
 		}else {
+			
 			return "login/login";
 		}
 	}
@@ -77,4 +85,28 @@ public class ControllerLogin {
 		return "../main";
 	}
 	
+	//ID중복 확인을 위한 sql문
+    @RequestMapping(value="/checkId.do", method= RequestMethod.GET)
+    @ResponseBody 
+    public int idCheck(@RequestParam("userId") String userId, Model model) {
+//    	System.out.println("유저아디" + userId);
+//    	UserEntity entity=userDao.checkId(userId);
+    	int count = 0;
+//        Map<String, Integer> map = new HashMap<>();
+        count = userDao.checkId(userId);
+        //데이터 넘어옴
+        
+    	return count;
+    }
+    
+    //닉네임 중복확인
+    @RequestMapping(value="/checkNickname.do", method= RequestMethod.GET)
+    @ResponseBody 
+    public int NicknameCheck(@RequestParam("nickName") String nickName, Model model) {
+    	int count = 0;
+        count = userDao.checkNickname(nickName);
+    	return count;
+    }
+    
+    
 }

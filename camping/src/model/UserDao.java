@@ -21,5 +21,15 @@ public class UserDao {
 		return factory.openSession().selectOne("usernamespace.loginUserEntity", userEntity);
 	}
 
+	public int checkId(String userId) {
+		
+		return factory.openSession().selectOne("usernamespace.checkId", userId);
+	}
+
+	public int checkNickname(String nickName) {
+		return factory.openSession().selectOne("usernamespace.checkNickname", nickName);
+	}
+
+
 	
 }
