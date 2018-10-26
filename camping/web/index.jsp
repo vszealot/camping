@@ -10,5 +10,6 @@
 </head>
 <body>
 <c:redirect url="campList.do"/>
+
 </body>
 </html>
