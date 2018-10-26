@@ -39,9 +39,6 @@
 			
 			</li>
 			<li>
-				<input type="text">
-			</li>
-			<li>
 			<c:if test="${empty logOK }">
 				<a href="/camping/login.do">로그인</a>
 				<a href="/camping/join.do">회원가입</a>

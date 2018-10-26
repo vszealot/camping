@@ -34,7 +34,6 @@ public class CampDao {
 
 	// 검색리스트 총 갯수 ==========================================================
 	public int searchListCount(Page page) {
-		System.out.println(page.getSearchWord());
 		String sql = "select count(campname) from CAMPING_TEST where campname like '%" + page.getSearchWord()
 				+ "%' or addr1 like '%" + page.getSearchWord() + "%' or addr2 like '%" + page.getSearchWord() + "%'";
 
@@ -46,8 +45,6 @@ public class CampDao {
 
 	// 검색리스트 + 페이징 ==========================================================
 	public List<CampInfo> searchListPage(Page page) {
-		System.out.println("!!!!!!!" + page.getRowEnd() + " " + page.getSearchWord() + "  " + page.getRowStart()
-				+ page.getStartPage() + "  " + page.getEndPage());
 
 		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST WHERE CAMPNAME like '%"
 				+ page.getSearchWord() + "%' OR ADDR1 like '%" + page.getSearchWord() + "%' OR ADDR2 like '%"

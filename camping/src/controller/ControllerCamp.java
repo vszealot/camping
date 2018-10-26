@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import entity.CampInfo;
 import entity.Page;
 import model.CampDao;
 
@@ -41,7 +45,6 @@ public class ControllerCamp {
 		
 		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
 		page.setTotalCount(campDao.searchListCount(page));
-		System.out.println(page.getRowEnd() +" " + page.getSearchWord() + "  " + page.getRowStart() + page.getStartPage());
 		model.addAttribute("page",page);
 		model.addAttribute("campListMap",campDao.searchListMap(page));
 		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
@@ -53,4 +56,18 @@ public class ControllerCamp {
 	public String getSinglePage(@PathVariable("pageName")String pageName) {
 		return "camp/" + pageName;
 	}
+	
+	//		ajax ¸®ÅÏ ºÎºÐ		=======================================================================
+	@RequestMapping(value = "/campListAjax.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CampInfo> campListAjax(Page page,Model model) {
+		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
+		page.setTotalCount(campDao.campListCount());
+		model.addAttribute("campList",campDao.campListPage(page));	
+		model.addAttribute("page",page);
+		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
+		
+		return campDao.campListPage(page);
+	}
+	
 }

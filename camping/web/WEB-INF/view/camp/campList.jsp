@@ -58,7 +58,28 @@ text-align:center;};
 <body>
 	<br>
 	<div class='left-box'>
-		<table border="1">
+	<input type="button" value="거리순"><input type="button" value="조회순"><input type="button" value="추천순">
+	<select name="loc">
+	    <option value="">지역별</option>
+	    <option value="서울">서울</option>
+	    <option value="경기">경기</option>
+	    <option value="인천">인천</option>
+	    <option value="강원">강원</option>
+	    <option value="충청남도">충남</option>
+	    <option value="대전">대전</option>
+	    <option value="충청북도">충북</option>
+	    <option value="세종">세종</option>
+	    <option value="부산">부산</option>
+	    <option value="울산">울산</option>
+	    <option value="대구">대구</option>
+	    <option value="경상북도">경북</option>
+	    <option value="경상남도">경남</option>
+	    <option value="전라남도">전남</option>
+	    <option value="광주">광주</option>
+	    <option value="전라북도">전북</option>
+	    <option value="제주">제주</option>
+	</select>
+		<table id="listTable" border="1">
 			<tr>
 				<th>이름</th>
 				<th>거리x</th>
@@ -85,15 +106,15 @@ text-align:center;};
 			<!-- 페이정 처리 시작 -->
 			<ul>
 				<c:if test="${page.prev}">
-					<li><a href="campList.do${page.makeQuery(page.startPage - 1)}">이전</a></li>
+					<li><a href="campList.do?page=${page.startPage - 1}">이전</a></li>
 				</c:if>
 
 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
-					<li><a href="campList.do${page.makeQuery(idx)}">${idx}</a></li>
+					<li><a href="javascript:pageList('${idx}')">${idx}</a></li>
 				</c:forEach>
 
 				<c:if test="${page.next && page.endPage > 0}">
-					<li><a href="campList.do${page.makeQuery(page.endPage + 1)}">다음</a></li>
+					<li><a href="campList.do?page=${page.endPage + 1}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -245,7 +266,6 @@ function
 	result.push(json);
 	</c:forEach>
 
-	alert(JSON.stringify(result));
 	var url = "http://localhost:8088/camping/JSONServerList.jsp"
 	//$.getJSON(url, function(data) {
 	//	alert(JSON.stringify(data));
@@ -262,5 +282,35 @@ function
 		clusterer.addMarkers(markers);
 
 	//});
+	
+function pageList(idx){
+	var url = "campListAjax.do?page="+idx+"&perPageNum=10";
+	$.ajax({
+		type:"GET",
+		url:url,
+		success:function(data){
+			var txt = "<tr>\r\n" + 
+					"<th>이름</th>\r\n" + 
+					"<th>거리x</th>\r\n" + 
+					"<th>거리y</th>\r\n" + 
+					"<th>주소</th>\r\n" + 
+					"<th>전번</th>\r\n" + 
+					"</tr>\r\n" + 
+					"\r\n";
+			$.each(data, function(idx, val) {
+				txt += "<tr>\r\n" + 
+					"<td>"+val.campName+"</td>\r\n" + 
+					"<td id=\"lat\">"+val.x+"</td>\r\n" + 
+					"<td id=\"lng\">"+val.y+"</td>\r\n" + 
+					"<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"')\">"+val.addr1+"</a></td>\r\n" + 
+					"<td>"+val.phone+"</td>\r\n" + 
+					"</tr>\r\n";
+			});
+
+			$("#listTable").html(txt);
+		}
+	
+	});
+}
 </script>
 </html>
