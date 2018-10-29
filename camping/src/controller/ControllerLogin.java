@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -113,8 +114,14 @@ public class ControllerLogin {
 		return "login/searchIdPassword";
 	}
     
-    
-    
+    @RequestMapping(value="/findingId.do", method=RequestMethod.POST)
+    @ResponseBody
+    public String findingId(@ModelAttribute UserEntity entity, Model model , HttpServletResponse response) {
+    	String userId = userDao.findId(entity);
+//    	System.out.println(userId);
+    	String findId = "{\"userId\":\""+userId+"\"}";
+    	return findId;
+    }
     
     
     

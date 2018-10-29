@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,6 +30,11 @@ public class UserDao {
 
 	public int checkNickname(String nickName) {
 		return factory.openSession().selectOne("usernamespace.checkNickname", nickName);
+	}
+
+	public String findId(UserEntity entity) {
+		
+		return factory.openSession().selectOne("usernamespace.findingId",entity);
 	}
 
 

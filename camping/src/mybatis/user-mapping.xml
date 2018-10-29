@@ -24,4 +24,9 @@
 	    ]]>
 	</select>
 	
+	<select id="findingId" parameterType="userinfo" resultType="java.lang.String">
+		<![CDATA[
+	  	SELECT USERID FROM USERINFO WHERE USEREMAIL=#{userEmail} AND NICKNAME=#{nickName}
+	    ]]>
+	</select>
 </mapper>
