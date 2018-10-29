@@ -21,8 +21,11 @@ $(document).on('click','#findId',function(){
 	    dataType : "json",
 	    success: function(data){
 		    var idfind=data.userId;
-	    	 
-	    	$("#idList").append("<p>"+"회원님의 정보로 등록된 아이디는 : "+idfind+"입니다.</p>")
+	    	if(idfind=='null'){
+	    		alert('정보를 다시 입력해주세요');
+	    	}else{
+		    	$("#idList").html("<p>"+"회원님의 정보로 등록된 아이디는 : "+idfind+"입니다.</p>")
+	    	} 
 	    },
 	    error: function(XMLHttpRequset,textStatus,errorThrown){
 	   		alert('정보를 다시 입력해주세요');
@@ -41,7 +44,7 @@ $(document).on('click','#findId',function(){
 <h1>아이디 비밀번호 찾기</h1>
 
 	<form>
-		이메일 <input type="text" name="userEmail" id="userEmail"><br>
+		이메일 <input type="text" name="userEmail" id="userEmail" placeholder="abc@abc.com"><br>
 		닉네임 <input type="text" name="nickName" id="nickName"><br>
 	</form>
 	<button id="findId">아이디 찾기</button>
