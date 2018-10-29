@@ -69,5 +69,16 @@ public class ControllerCamp {
 		
 		return campDao.campListPage(page);
 	}
+	@RequestMapping(value = "/campListAjax2.do", method = RequestMethod.GET)
+	@ResponseBody
+	public Page campListAjax2(Page page,Model model) {
+		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
+		page.setTotalCount(campDao.campListCount());
+		model.addAttribute("campList",campDao.campListPage(page));	
+		model.addAttribute("page",page);
+		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
+		
+		return page;
+	}
 	
 }

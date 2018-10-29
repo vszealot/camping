@@ -102,11 +102,11 @@ text-align:center;};
 				</c:forEach>
 			</c:if>
 		</table>
-		<div>
+		<div id="paging">
 			<!-- 페이정 처리 시작 -->
 			<ul>
 				<c:if test="${page.prev}">
-					<li><a href="campList.do?page=${page.startPage - 1}">이전</a></li>
+					<li><a href="javascript:pageList('${page.startPage - 1}')">이전</a></li>
 				</c:if>
 
 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
@@ -114,7 +114,7 @@ text-align:center;};
 				</c:forEach>
 
 				<c:if test="${page.next && page.endPage > 0}">
-					<li><a href="campList.do?page=${page.endPage + 1}">다음</a></li>
+					<li><a href="javascript:pageList('${page.endPage + 1}')">다음</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -283,34 +283,59 @@ function
 
 	//});
 	
-function pageList(idx){
-	var url = "campListAjax.do?page="+idx+"&perPageNum=10";
-	$.ajax({
-		type:"GET",
-		url:url,
-		success:function(data){
-			var txt = "<tr>\r\n" + 
-					"<th>이름</th>\r\n" + 
-					"<th>거리x</th>\r\n" + 
-					"<th>거리y</th>\r\n" + 
-					"<th>주소</th>\r\n" + 
-					"<th>전번</th>\r\n" + 
-					"</tr>\r\n" + 
-					"\r\n";
-			$.each(data, function(idx, val) {
-				txt += "<tr>\r\n" + 
-					"<td>"+val.campName+"</td>\r\n" + 
-					"<td id=\"lat\">"+val.x+"</td>\r\n" + 
-					"<td id=\"lng\">"+val.y+"</td>\r\n" + 
-					"<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"')\">"+val.addr1+"</a></td>\r\n" + 
-					"<td>"+val.phone+"</td>\r\n" + 
-					"</tr>\r\n";
-			});
+		function pageList(idx){
+			var url = "campListAjax.do?page="+idx+"&perPageNum=10";
+			$.ajax({
+				type:"GET",
+				url:url,
+				success:function(data){
+					var txt = "<tr>\r\n" + 
+							"<th>이름</th>\r\n" + 
+							"<th>거리x</th>\r\n" + 
+							"<th>거리y</th>\r\n" + 
+							"<th>주소</th>\r\n" + 
+							"<th>전번</th>\r\n" + 
+							"</tr>\r\n" + 
+							"\r\n";
+					$.each(data, function(idx, val) {
+						txt += "<tr>\r\n" + 
+							"<td>"+val.campName+"</td>\r\n" + 
+							"<td id=\"lat\">"+val.x+"</td>\r\n" + 
+							"<td id=\"lng\">"+val.y+"</td>\r\n" + 
+							"<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"')\">"+val.addr1+"</a></td>\r\n" + 
+							"<td>"+val.phone+"</td>\r\n" + 
+							"</tr>\r\n";
+					});
 
-			$("#listTable").html(txt);
+					$("#listTable").html(txt);
+					
+				}
+			
+			});
+			pageList2(idx);
 		}
-	
-	});
-}
+		function pageList2(idx){
+
+			var url2 = "campListAjax2.do?page="+idx+"&perPageNum=10";
+			$.ajax({
+				type:"GET",
+				url:url2,
+				success:function(data){
+					var txt = "<ul>\r\n";
+					if(data.prev){
+						txt += "<li><a href=\"javascript:pageList('"+(data.startPage-1)+"')\">이전</a></li>\r\n";
+					}
+					for (var idx = data.startPage; idx <= data.endPage; idx++) {
+						txt += "<li><a href=\"javascript:pageList('"+idx+"')\">"+idx+"</a></li>\r\n";
+					}
+					if(data.next && data.endPage > 0){
+						txt += "<li><a href=\"javascript:pageList('"+(data.endPage+1)+"')\">다음</a></li>\r\n";
+					}
+					txt += "</ul>";
+					
+					$("#paging").html(txt);
+				}
+			});
+		}
 </script>
 </html>
