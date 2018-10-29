@@ -49,6 +49,10 @@ public class ControllerLogin {
 	public String login(Model model) {
 		return "login/login";
 	}
+	@RequestMapping("/loginNew.do")
+	public String loginNew(Model model) {
+		return "login/loginNew";
+	}
 	@RequestMapping(value="/loginProc.do",method=RequestMethod.POST)
 	public String logProc(@ModelAttribute UserEntity userEntity, HttpServletRequest request) throws IOException {
 
@@ -62,7 +66,7 @@ public class ControllerLogin {
 			return "../../index";
 		}else {
 			
-			return "login/login";
+			return "login/loginNew";
 		}
 	}
 	
