@@ -108,7 +108,8 @@ public class ControllerLogin {
         count = userDao.checkNickname(nickName);
     	return count;
     }
-    //아이디 비밀번호 찾기---------------------
+    //아이디 비밀번호 찾기--------------------------------------------
+    
     @RequestMapping("/searchIdPassword.do")
 	public String searchIdPassword(Model model) {
 		return "login/searchIdPassword";
@@ -116,11 +117,25 @@ public class ControllerLogin {
     
     @RequestMapping(value="/findingId.do", method=RequestMethod.POST)
     @ResponseBody
-    public String findingId(@ModelAttribute UserEntity entity, Model model , HttpServletResponse response) {
+    public String findingId(@ModelAttribute UserEntity entity, Model model) {
     	String userId = userDao.findId(entity);
 //    	System.out.println(userId);
     	String findId = "{\"userId\":\""+userId+"\"}";
     	return findId;
+    }
+    
+    //이메일로 비밀번호 찾기
+    @RequestMapping(value="/findPassword.do", method=RequestMethod.POST)
+    public String findingPassword(@ModelAttribute UserEntity entity, HttpServletResponse response) {
+//    	System.out.println(entity.getUserEmail());
+//    	System.out.println(entity.getUserId());
+    	String password = userDao.findingPassword(entity);
+    	if(password!=null) {
+//    		System.out.println(password);
+    		
+    	}
+    	
+    	return "";
     }
     
     

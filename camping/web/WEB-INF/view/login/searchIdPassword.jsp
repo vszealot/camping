@@ -50,11 +50,11 @@ $(document).on('click','#findId',function(){
 
 	<span id="idList"></span>
 
-	<form>
+	<form action="findPassword.do" method="post">
 		아이디 <input type="text" name="userId" id="userId"><br>
-		이메일<input type="text" name="userEmail" id="userEmail"><br>
+		이메일 <input type="text" name="userEmail" id="userEmail"><br>
+		<input type="submit" id="findPassword" value="비밀번호 찾기">
 	</form>
-	<button id="findPassword">비밀번호 찾기</button>
 	
 </body>
 </html>

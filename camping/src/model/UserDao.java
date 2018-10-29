@@ -37,6 +37,11 @@ public class UserDao {
 		return factory.openSession().selectOne("usernamespace.findingId",entity);
 	}
 
+	public String findingPassword(UserEntity entity) {
+
+		return factory.openSession().selectOne("usernamespace.findingPassword",entity);
+	}
+
 
 	
 }

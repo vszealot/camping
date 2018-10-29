@@ -29,4 +29,10 @@
 	  	SELECT USERID FROM USERINFO WHERE USEREMAIL=#{userEmail} AND NICKNAME=#{nickName}
 	    ]]>
 	</select>
+	
+	<select id="findingPassword" parameterType="userinfo" resultType="java.lang.String">
+		<![CDATA[
+	  	SELECT PASSWORD FROM USERINFO WHERE USEREMAIL=#{userEmail} and USERID=#{userId}
+	    ]]>
+	</select>
 </mapper>
