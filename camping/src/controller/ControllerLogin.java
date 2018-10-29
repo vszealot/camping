@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import email.Email;
+import email.EmailSender;
 import entity.UserEntity;
 import model.UserDao;
 
@@ -124,18 +126,30 @@ public class ControllerLogin {
     	return findId;
     }
     
+    @Autowired
+    private EmailSender emailSender;
+    @Autowired
+    private Email email;
     //이메일로 비밀번호 찾기
     @RequestMapping(value="/findPassword.do", method=RequestMethod.POST)
-    public String findingPassword(@ModelAttribute UserEntity entity, HttpServletResponse response) {
+    public ModelAndView findingPassword(@ModelAttribute UserEntity entity, HttpServletResponse response) throws Exception {
+    	ModelAndView mav;
 //    	System.out.println(entity.getUserEmail());
 //    	System.out.println(entity.getUserId());
-    	String password = userDao.findingPassword(entity);
-    	if(password!=null) {
-//    		System.out.println(password);
-    		
-    	}
     	
-    	return "";
+    	String password = userDao.findingPassword(entity);
+    	
+    	if(password!=null) {
+//    		System.out.println("성공");
+    		email.setContent("비밀번호는 "+password+" 입니다.");
+    		email.setReceiver(entity.getUserEmail());
+    		email.setSubject(entity.getUserId()+"님 비밀번호 찾기 메일입니다.");
+    		emailSender.SendEmail(email);
+    		mav=new ModelAndView("login/login");
+    		return mav;
+    	}
+    	mav=new ModelAndView("login/login");
+		return mav;
     }
     
     

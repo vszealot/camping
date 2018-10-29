@@ -121,8 +121,22 @@
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.6.4</version>
+		</dependency>
+	
+		<dependency>
+             <groupId>javax.mail</groupId>
+             <artifactId>mail</artifactId>
+             <version>1.4.7</version>
+         </dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>4.3.20.RELEASE</version>
 	</dependency>
-
+	
+	
 	</dependencies>
 	
 </project>

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

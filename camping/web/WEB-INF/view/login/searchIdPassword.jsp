@@ -52,7 +52,7 @@ $(document).on('click','#findId',function(){
 
 	<form action="findPassword.do" method="post">
 		아이디 <input type="text" name="userId" id="userId"><br>
-		이메일 <input type="text" name="userEmail" id="userEmail"><br>
+		이메일 <input type="text" name="userEmail" id="userEmail" placeholder="abc@abc.com"><br>
 		<input type="submit" id="findPassword" value="비밀번호 찾기">
 	</form>
 	
