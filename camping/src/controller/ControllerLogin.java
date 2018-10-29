@@ -107,6 +107,15 @@ public class ControllerLogin {
         count = userDao.checkNickname(nickName);
     	return count;
     }
+    //아이디 비밀번호 찾기---------------------
+    @RequestMapping("/searchIdPassword.do")
+	public String searchIdPassword(Model model) {
+		return "login/searchIdPassword";
+	}
+    
+    
+    
+    
     
     
 }

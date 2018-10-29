@@ -37,14 +37,15 @@
 				<input type="checkbox"  name="useCookie">로그인 유지  
 			</td>
 		</tr> -->
+		<!-- 로그인 일치 확인 -->
+		<tr>
+			<td colspan="2"><div id="checkText"></div></td>
+		</tr>
 		<tr>
 			<td colspan="2">
 				<input type="submit" value="로그인"/>  
+				<a href="searchIdPassword.do">아이디/비밀번호 찾기</a>
 			</td>
-		</tr>
-		<!-- 로그인 일치 확인 -->
-		<tr>
-			<td><div id="checkText"></div></td>
 		</tr>
 		</table>
 	</form>
