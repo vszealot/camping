@@ -51,6 +51,12 @@ public class UserDao {
 		return factory.openSession().selectOne("usernamespace.checkpassword", password);
 	}
 
+	//È¸¿ø Å»Åğ
+	public boolean deleteUser(UserEntity entity) {
+		int n=factory.openSession().delete("usernamespace.deleteUserEntity", entity);
+		return (n>0)?true:false;
+	}
+
 
 	
 }

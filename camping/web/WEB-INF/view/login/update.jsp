@@ -98,6 +98,45 @@
 			}
 		});
 	});
+	//현재 비밀번호 동일한지 체크
+	function checkpassword2(){
+		var inputed = $('#Password2').val();
+
+		 $.ajax({
+			 type:"GET",
+			 data : {"password":inputed},
+			 dataType:"text",
+	        url : "checkPassword.do",
+	        error : function(){
+	       	 console.log("실패");
+	        },
+	        success : function(data) {
+	        	if(inputed==""){
+	        		$('#checkText4').html('<p style="color:red">비밀번호를 입력하세요</p>');
+	        	}else{
+	        		if(data>0) {
+	        			$('#checkText4').html('<p style="color:green">비밀번호가 일치합니다</p>');
+	       		 	}else{
+	       		 		$('#checkText4').html('<p style="color:red">비밀번호가 일치하지 않습니다</p>');
+	       		 	}
+	        	}
+	        }
+		 });
+	}
+	//새 비밀번호 동일한지 체크
+	//비밀번호 일치 검사
+	function checkpwd2(){
+		var pwd = document.getElementById("Password2").value;
+	    var pwdCheck = document.getElementById("PasswordCheck2").value;
+
+	    if (pwd != pwdCheck) {
+	    	$('#checkText5').html('<p style="color:red">비밀번호가 일치하지 않습니다</p>');
+	        return false;
+	    }else if(pwd == pwdCheck){
+	    	$('#checkText5').html('<p style="color:green">비밀번호가 일치합니다</p>');
+	    	  return true;
+	    }
+	}
 </script> 
  
 </head>
@@ -134,6 +173,19 @@
 			</tr>
 		</table>
 		<input type="button" value="회원정보 수정" id="update_btn" />
+		<h1>회원 탈퇴</h1>
+		<table>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" id="Password2" name="Password" placeholder="새 비밀번호를 입력하세요" oninput="checkpassword2()"></td>
+				<td><div id="checkText4"></div></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" id="PasswordCheck2" name="PasswordCheck" placeholder="비밀번호를 다시 입력하세요" oninput="checkpwd2()"></td>
+				<td><div id="checkText5"></div></td>
+			</tr>
+		</table>
 		<input type="button" value="회원 탈퇴" id="delete_btn" />
 	</form>
 </body>

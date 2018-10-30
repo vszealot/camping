@@ -51,4 +51,11 @@
 	  	SELECT COUNT(*) FROM USERINFO WHERE PASSWORD=#{password}
 	    ]]>
 	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUserEntity" parameterType="userinfo">
+		<![CDATA[
+	  	DELETE FROM USERINFO WHERE USERID=#{userId}
+	    ]]>
+	</delete>
 </mapper>

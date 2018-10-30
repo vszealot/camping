@@ -193,8 +193,11 @@ public class ControllerLogin {
     @RequestMapping("/deleteProc.do")
     public String deleteProc(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) {
     	
-    	
-    	return "";
+    	if(userDao.deleteUser(entity)) {
+			return "login/login";
+		}else {
+			return "login/update";
+		}
     }
     
 }
