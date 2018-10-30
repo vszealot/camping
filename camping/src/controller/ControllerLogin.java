@@ -189,6 +189,12 @@ public class ControllerLogin {
     	return count;
     }
     
-    
+    //È¸¿ø Å»Åð
+    @RequestMapping("/deleteProc.do")
+    public String deleteProc(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) {
+    	
+    	
+    	return "";
+    }
     
 }

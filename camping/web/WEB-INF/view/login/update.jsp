@@ -78,11 +78,24 @@
 	    	  return true;
 	    }
 	}
-	//회원가입 수정버튼 클릭----------------------------------------
+	//회원정보 수정버튼 클릭----------------------------------------
 	$(document).ready(function(){
 		$("#update_btn").click(function(){
-			document.regForm.action="${path}/camping/updateProc.do";
-			document.regForm.submit();
+			var retVal = confirm("정보를 수정하시겠습니까?");
+			if(retVal==true){
+				document.regForm.action="${path}/camping/updateProc.do";
+				document.regForm.submit();
+			}
+		});
+	});
+	//회원 탈퇴 버튼 클릭----------------------------------------
+	$(document).ready(function(){
+		$("#delete_btn").click(function(){
+			var retVal = confirm("탈퇴하시겠습니까?");
+			if(retVal==true){
+				document.regForm.action="${path}/camping/deleteProc.do";
+				document.regForm.submit();
+			}
 		});
 	});
 </script> 
