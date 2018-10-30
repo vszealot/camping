@@ -152,6 +152,43 @@ public class ControllerLogin {
 		return mav;
     }
     
+    //회원정보 수정/탈퇴 ----------------------------------------------------------------
+    @RequestMapping("/update.do")
+	public String update(Model model) {
+		return "login/update";
+	}
+    
+    @RequestMapping("/updateProc.do")
+    public String updateProc(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) {
+//    	System.out.println(request.getParameter("userEmail"));
+//    	System.out.println(request.getParameter("nickName"));
+    	
+    	String password=request.getParameter("password");
+    	String newPassword=request.getParameter("newPassword");
+    	
+    	// 새 비밀번호로 수정
+    	if(newPassword!=null && password!=null) {
+    		if(password!=newPassword) {
+    			entity.setPassword(newPassword);
+    		}
+    	}
+    	
+    	if(userDao.updateUser(entity)) {
+			return "login/login";
+		}else {
+			return "login/update";
+		}
+    }
+    
+    //비밀번호 동일한지 유효성 체크
+    @RequestMapping(value="/checkPassword.do", method= RequestMethod.GET)
+    @ResponseBody 
+    public int checkPassword(@RequestParam("password") String password, Model model) {
+    	int count = 0;
+        count = userDao.checkPassword(password);
+    	return count;
+    }
+    
     
     
 }

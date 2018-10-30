@@ -40,6 +40,17 @@ public class UserDao {
 		return factory.openSession().selectOne("usernamespace.findingPassword",entity);
 	}
 
+	public boolean updateUser(UserEntity entity) {
+		int n=factory.openSession().update("usernamespace.updateUserEntity", entity);
+		return (n>0)?true:false;
+	}
+
+	// 비밀번호 일치하는지 체크
+	public int checkPassword(String password) {
+
+		return factory.openSession().selectOne("usernamespace.checkpassword", password);
+	}
+
 
 	
 }

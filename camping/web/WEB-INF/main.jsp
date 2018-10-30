@@ -48,7 +48,7 @@
 			<c:if test="${!empty logOK }">
 				<b>${logOK.nickName}</b>님이 환영합니다.
 				<a href="/camping/logout.do">로그아웃</a>
-				<a href="">회원정보수정</a>
+				<a href="/camping/update.do">회원정보수정</a>
 			</c:if>
 			</li>
 		</ul>

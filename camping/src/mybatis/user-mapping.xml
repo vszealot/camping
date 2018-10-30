@@ -35,4 +35,20 @@
 	  	SELECT PASSWORD FROM USERINFO WHERE USEREMAIL=#{userEmail} and USERID=#{userId}
 	    ]]>
 	</select>
+	
+	<!-- 회원정보수정 -->
+	<update id="updateUserEntity" parameterType="userinfo">
+		<![CDATA[
+			UPDATE USERINFO 
+			SET USEREMAIL=#{userEmail}, NICKNAME=#{nickName}, PASSWORD=#{password}
+			WHERE USERID=#{userId}
+		]]>
+	</update>
+	
+	<!-- 비밀번호 동일 체크 -->
+	<select id="checkpassword" parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+	  	SELECT COUNT(*) FROM USERINFO WHERE PASSWORD=#{password}
+	    ]]>
+	</select>
 </mapper>
