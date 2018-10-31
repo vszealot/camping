@@ -181,6 +181,7 @@ function realTimeWeather(x, y) {
 						day = '0' + day;
 					}
 					var yymmddtomorrow = year +""+ month +""+ day;
+					
 				}else{
 				day = day+1;
 				if (month < 10) {
@@ -211,7 +212,7 @@ function realTimeWeather(x, y) {
 					}
 					var yymmddtomorrow2 = year1 +""+ month1 +""+ day1;
 				}else if(day1==31){
-					day=2;
+					day1=2;
 					month1=month1+1;
 					if(month1==13){
 						month1=1;
@@ -234,8 +235,11 @@ function realTimeWeather(x, y) {
 				var yymmddtomorrow2 = year1 +""+ month1 +""+ day1;
 			}
 			}
-			
-			if(month==04||month==06||month==09||month==11){
+			var today = new Date();
+			var year = today1.getFullYear();
+			var month = today1.getMonth() + 1;
+			var day = today1.getDate();
+			if(month==4||month==6||month==9||month==11){
 				if(day==30){
 					day=1;
 					month=month+1;
@@ -278,7 +282,7 @@ function realTimeWeather(x, y) {
 					}
 					var yymmddtomorrow2 = year1 +""+ month1 +""+ day1;
 				}else if(day1==30){
-					day=2;
+					day1=2;
 					month1=month1+1;
 					if(month1==13){
 						month1=1;
@@ -301,8 +305,11 @@ function realTimeWeather(x, y) {
 				var yymmddtomorrow2 = year1 +""+ month1 +""+ day1;
 			}
 			}
-			
-			if(month==02){
+			var today = new Date();
+			var year = today1.getFullYear();
+			var month = today1.getMonth() + 1;
+			var day = today1.getDate();
+			if(month==2){
 				if(day==28){
 					day=1;
 					month=month+1;
@@ -374,8 +381,12 @@ function realTimeWeather(x, y) {
 			var sky;
 			var rain = "비소식 없음";
 			var today;
-			var time;
+			var time1;
 			var table = "<table style='text-align:center;'><tr>";
+			
+			console.log(yymmddtoday);
+			console.log(yymmddtomorrow);
+			console.log(yymmddtomorrow2);
 					for(var i = 0; i<num;i++){
 						if(date[i]==yymmddtoday){
 							today = "오늘";
@@ -386,68 +397,73 @@ function realTimeWeather(x, y) {
 						if(date[i]==yymmddtomorrow2){
 							today = "모레";
 						}
+						if(typeof(time[i])=="string"){
+							time[i]=parseInt(time[i]);
+						};
+						console.log(time[i]);
+						//console.log(time[i]);
 						switch(time[i]){
-						case 0000 :
-							time = "오전 0시";
+						case 0 :
+							time1 = "오전 0시";
 							break;
 						
-						case 0300 :
-							time = "오전 3시";
+						case 300 :
+							time1 = "오전 3시";
 							break;
 							
-						case 0600 :
-							time = "오전 6시";
+						case 600 :
+							time1 = "오전 6시";
 							break;
 							
-						case 0900 :
-							time = "오전 9시";
+						case 900 :
+							time1 = "오전 9시";
 							break;
 							
 						case 1200 :
-							time = "오후 12시";
+							time1 = "오후 12시";
 							break;
 							
 						case 1500 :
-							time = "오후 3시";
+							time1 = "오후 3시";
 							break;
 							
 						case 1800 :
-							time = "오후 6시";
+							time1 = "오후 6시";
 							break;
 							
 						case 2100 :
-							time = "오후 9시";
+							time1 = "오후 9시";
 							break;
 						}
-						table +="<th>"+today+"<br>"+time+"</th>";
+						table +="<th>"+today+"<br>"+time1+"</th>";
 					}
 				table += "</tr><tr>";
 					for(var i = 0; i<num;i++){
 						if(ptyValue[i] != 0){
 							switch(ptyValue[i]){
 							case 1:
-								sky="<img src='/camping/image/비많음.png' width='100px'/>";
+								sky="<img src='/camping/image/비많음.png' width='110px'/>";
 								break;
 							case 2:
-								sky="<img src='/camping/image/눈.png' width='100px'/>";
+								sky="<img src='/camping/image/눈.png' width='110px'/>";
 								break;
 							case 3:
-								sky="<img src='/camping/image/눈.png' width='100px'/>";
+								sky="<img src='/camping/image/눈.png' width='110px'/>";
 								break;
 							}
 						}else if(ptyValue[i] == 0){
 							switch (skyValue[i]){
 							case 1:
-								sky="<img src='/camping/image/맑음.png' width='100px'/>";
+								sky="<img src='/camping/image/맑음.png' width='110px'/>";
 								break;
 							case 2:
-								sky="<img src='/camping/image/구름조금, 구름많음.png' width='100px'/>";
+								sky="<img src='/camping/image/구름조금, 구름많음.png' width='110px'/>";
 								break;
 							case 3:
-								sky="<img src='/camping/image/구름조금, 구름많음.png' width='100px'/>";
+								sky="<img src='/camping/image/구름조금, 구름많음.png' width='110px'/>";
 								break;
 							case 4:
-								sky="<img src='/camping/image/흐림.png' width='100px'/>";
+								sky="<img src='/camping/image/흐림.png' width='110px'/>";
 								break;
 							}
 	 					}
