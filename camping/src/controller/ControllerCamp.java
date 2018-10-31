@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import entity.CampInfo;
 import entity.Page;
+import entity.tour;
+import entity.weather;
 import model.CampDao;
 
 @Controller
@@ -79,6 +81,25 @@ public class ControllerCamp {
 		//		Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
 		
 		return page;
+	}
+	
+
+	@RequestMapping(value = "/weather.do", method = RequestMethod.GET)
+	@ResponseBody
+	public weather weatherCheck(weather weather,Model model) {
+		//System.out.println(weather.getAddr1());
+		api.weather we = new api.weather();
+		
+		model.addAttribute("campWeather", campDao.campWeather(we.weatherAddr(weather.getAddr1(), weather.getAddr2())));
+		return campDao.campWeather(we.weatherAddr(weather.getAddr1(), weather.getAddr2()));
+	}
+	
+	@RequestMapping(value = "/tour.do", method = RequestMethod.GET)
+	@ResponseBody
+	public tour tourCategory(tour tour,Model model) {
+		
+		model.addAttribute("campTour", campDao.tourCategory(tour));
+		return campDao.tourCategory(tour);
 	}
 	
 }

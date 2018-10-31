@@ -32,7 +32,7 @@ width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-spac
 
 }
 
-.w3-dark-grey{color:#fff!important;background-color:#F6F6F6!important};
+.w3-dark-grey{color:black!important;background-color:#F6F6F6!important};
 .w3-animate-right{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:600px;opacity:0} to{right:0;opacity:1}}
 
 
@@ -53,6 +53,9 @@ text-align:center;};
 
 .w3-container:after,.w3-container:before{content:"";display:table;clear:both};
 </style>
+<script src="<c:url value="/js/weather.js" />"></script>
+<script src="<c:url value="/js/tour.js" />"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -130,8 +133,15 @@ text-align:center;};
   <button class="w3-bar-item w3-button w3-large"
   onclick="w3_close()">Close &times;</button>
 
+	<div class="vis-weather">
+        <h2 class="vh_hide">날씨정보</h2>
+        <p class="weather-date"></p>
+        <ul>
+            <li class="weather-temp"></li>
+            <li class="tour-info"></li>
+        </ul>
+    </div>
 </div>
-
 
 <div>
   <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776;</button>
@@ -143,7 +153,7 @@ text-align:center;};
 
 <script>
 //스크롤바를 따라 움직이는 반응형----------------------------------------------------
-$(function() {
+//$(function() {
 
 	  $(document).ready(function() {
 
@@ -159,7 +169,7 @@ $(function() {
 	    });
 	  } );
 
-	});
+//	});
 
 // 사이드 메뉴 여는 기능----------------------------------------------------------	
 function 
@@ -182,7 +192,21 @@ function
 		lat = x;
 		lng = y;
 		
+		tour(x,y);
+		//날씨 그리드_x,y구하기
+		var url = "weather.do?addr1="+addr+"&addr2="+addr2;
+		$.ajax({
+			
+			type:"GET",
+			url:url,
+			error:function(){
+				console.log("통신실패");
+			},
+			success:function(data){
+				realTimeWeather(data.grid_x,data.grid_y);
+			}
 		
+		});
 
 		//마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 		var infowindow = new daum.maps.InfoWindow({
@@ -266,7 +290,7 @@ function
 	result.push(json);
 	</c:forEach>
 
-	var url = "http://localhost:8088/camping/JSONServerList.jsp"
+	//var url = "http://localhost:8088/camping/JSONServerList.jsp"
 	//$.getJSON(url, function(data) {
 	//	alert(JSON.stringify(data));
 		// 데이터에서 좌표 값을 가지고 마커를 표시합니다
@@ -302,7 +326,7 @@ function
 							"<td>"+val.campName+"</td>\r\n" + 
 							"<td id=\"lat\">"+val.x+"</td>\r\n" + 
 							"<td id=\"lng\">"+val.y+"</td>\r\n" + 
-							"<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"')\">"+val.addr1+"</a></td>\r\n" + 
+							"<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"','"+val.addr2+"')\" onclick=\"w3_open()\">"+val.addr1+"</a></td>\r\n" + 
 							"<td>"+val.phone+"</td>\r\n" + 
 							"</tr>\r\n";
 					});

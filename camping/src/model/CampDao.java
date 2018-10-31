@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import entity.CampInfo;
 import entity.Page;
+import entity.tour;
+import entity.weather;
 
 @Repository
 public class CampDao {
@@ -63,6 +65,29 @@ public class CampDao {
 
 		map.put("sql", sql);
 		return factory.openSession().selectList("campspace.searchListMap", map);
+	}
+	
+
+	public weather campWeather(List weatherAddr) {
+		
+		//System.out.println(weatherAddr.get(0).toString());
+		String sql = "select grid_x, grid_y from weather where stage_1='"+weatherAddr.get(0).toString()+
+				"' and stage_2='"+weatherAddr.get(1).toString()+"' and stage_3= '"+weatherAddr.get(2).toString()+"'";
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("sql", sql);
+		return factory.openSession().selectOne("campspace.weatherMap", map);
+	}
+
+	public tour tourCategory(tour tour) {
+		String sql = "select cat1, cat2, cat3 from tourDB where catcode1='"+tour.getCatcode1()+"'and catcode2='"+tour.getCatcode2()+"'and catcode3='"+tour.getCatcode3()+"'";
+		
+		Map<String,String> map = new HashMap<>();
+		
+		map.put("sql", sql);
+		
+		return factory.openSession().selectOne("campspace.tourMap", map);
+		
 	}
 
 }

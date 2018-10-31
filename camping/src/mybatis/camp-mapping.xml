@@ -28,5 +28,14 @@
 	<select id="searchListMap" resultType="campinfo" parameterType="Map">
 		<![CDATA[${sql}]]>
 	</select>
+	
+	<select id="weatherMap" resultType="entity.weather" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="tourMap" resultType="entity.tour" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
 
 </mapper>
