@@ -57,6 +57,12 @@ public class UserDao {
 		return (n>0)?true:false;
 	}
 
+	//페이스북 로그인
+	public int findFacebook(UserEntity entity) {
+		
+		return factory.openSession().selectOne("usernamespace.facebookEntity", entity);
+	}
+
 
 	
 }

@@ -58,4 +58,11 @@
 	  	DELETE FROM USERINFO WHERE USERID=#{userId}
 	    ]]>
 	</delete>
+	
+	<!-- 페이스북 -->
+	<select id="facebookEntity" parameterType="userinfo" resultType="java.lang.Integer">
+		<![CDATA[
+	  	SELECT COUNT(*) FROM USERINFO WHERE USERID=#{userId}
+	    ]]>
+	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -199,5 +200,53 @@ public class ControllerLogin {
 			return "login/update";
 		}
     }
+    
+    // 로그인 API--------------------------------------------------------------------
+    /*@RequestMapping("/callback.do")
+	public String callback(Model model) {
+		return "login/callback";
+	}*/
+    
+    @RequestMapping(value="/facebook.do", method= RequestMethod.POST)
+    public ModelAndView facebook(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) throws Exception {
+    	// id,email,nickname,password => DB에 저장
+    	// if 이미 저장되어있으면 그냥 로그인 (select id로 다녀옴 )
+    	// else 최초 로그인 -> DB저장 && 비밀번호 임의 8자리 생성 후 메일 전송
+    	ModelAndView mav;
+    	
+    	int cnt=userDao.findFacebook(entity);
+    	System.out.println(cnt);
+    	if(cnt>0) {
+    		//이미 회원가입되어있는 경우
+    		HttpSession session= request.getSession();
+    		session.setAttribute("logOK", entity);
+    	}else {
+    		//비밀번호 생성(10자리)
+//    		System.out.println("ok");
+    		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+    		uuid = uuid.substring(0, 10);
+    		entity.setPassword(uuid);
+//    		System.out.println(entity.getPassword());
+    		
+    		//DB에 회원 정보 추가
+    		userDao.joinUser(entity);
+    		
+    		//회원에게 비밀번호 이메일 발송 
+    		email.setContent("비밀번호는 "+entity.getPassword()+" 입니다.");
+    		email.setReceiver(entity.getUserEmail());
+    		email.setSubject(entity.getUserId()+"님의 새로운 계정입니다.");
+    		emailSender.SendEmail(email);
+    		
+    		//DB에 insert되고 로그인 세션처리
+    		HttpSession session= request.getSession();
+    		session.setAttribute("logOK", entity);
+    	}
+    	
+    	mav=new ModelAndView("../main");
+		return mav;
+    }
+   
+    
+    
     
 }

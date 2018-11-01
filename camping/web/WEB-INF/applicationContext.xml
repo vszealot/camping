@@ -55,4 +55,31 @@
     <bean id="emailSender" class="email.EmailSender">
     </bean>
 
+	<!-- 로그인 API -->
+	<bean id="connectionFactory"
+	class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+	<constructor-arg value="999388243577972" />
+	<constructor-arg value="03230923aa61537dd4257cf2c3bba003" />
+	</bean>
+
+	<bean id="oAuth2Parameters"
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<property name="scope" value="email" />
+		<property name="redirectUri" value="http://localhost:8088" />
+	</bean>
+
+	<!-- <bean id="connectionFactory"
+		class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+		<constructor-arg value="Client ID" />
+		<constructor-arg value="Secret Code" />
+	</bean>
+
+	<bean id="oAuth2Parameters"
+		class="org.springframework.social.oauth2.OAuth2Parameters">
+		<property name="scope" value="email" />
+		<property name="redirectUri"
+			value="https://localhost:8088/camping/callback.do" />
+	</bean> -->
+	
+
 </beans>

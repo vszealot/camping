@@ -11,9 +11,11 @@
 <script src="<c:url value="/js/loginValidata.js" />"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
+<!-- 로그인 API -->
+<script src="<c:url value="/js/loginAPI.js" />"></script>
+
 </head>
 <body>
-
 <!-- 로그인/회원가입 탭 -->
 <div id="loginjoin">
 	<a href="login.do">로그인</a>
@@ -49,8 +51,19 @@
 		</tr>
 		</table>
 	</form>
-	
-</div>
 
+	<!-- 로그인 API -->
+	<!-- 페이스북 버튼 추가-->
+	<fb:login-button scope="public_profile, email" onlogin="checkLoginState();"></fb:login-button>
+	
+
+
+
+
+
+
+
+
+	</div>
 </body>
 </html>
