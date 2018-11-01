@@ -69,7 +69,7 @@
 	function checkpwd(){
 		var pwd = document.getElementById("newPassword").value;
 	    var pwdCheck = document.getElementById("newPasswordCheck").value;
-
+	    
 	    if (pwd != pwdCheck) {
 	    	$('#checkText3').html('<p style="color:red">비밀번호가 일치하지 않습니다</p>');
 	        return false;
@@ -79,12 +79,33 @@
 	    }
 	}
 	//회원정보 수정버튼 클릭----------------------------------------
+	function check(re, what, message) {
+	    if(re.test(what.value)) {
+	        return true;
+	    }
+	    alert(message);
+	    what.value = "";
+	    what.focus();
+	    //return false;
+	}
+	
 	$(document).ready(function(){
 		$("#update_btn").click(function(){
-			var retVal = confirm("정보를 수정하시겠습니까?");
-			if(retVal==true){
-				document.regForm.action="${path}/camping/updateProc.do";
-				document.regForm.submit();
+		    if (document.getElementById("newPassword").value.length<8){
+		    	alert("패스워드는 비밀번호는 영문 숫자 특수문자의 조합으로 8자리 이상을 입력");
+		    	document.getElementById("newPassword").value="";
+		    	document.getElementById("newPassword").value.focus();
+		    	return false;
+			}else{
+				var retVal = confirm("정보를 수정하시겠습니까?");
+				
+				var re1 = /^[a-zA-Z0-9!@#$%^&*()?_~]{8,15}$/ 
+				    
+			
+				if(retVal==true){
+					document.regForm.action="${path}/camping/updateProc.do";
+					document.regForm.submit();
+				}
 			}
 		});
 	});
@@ -137,6 +158,7 @@
 	    	  return true;
 	    }
 	}
+	
 </script> 
  
 </head>
