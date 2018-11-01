@@ -13,6 +13,8 @@
 
 <!-- 로그인 API -->
 <script src="<c:url value="/js/loginAPI.js" />"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="http://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"></script>
 
 </head>
 <body>
@@ -56,8 +58,59 @@
 	<!-- 페이스북 버튼 추가-->
 	<fb:login-button scope="public_profile, email" onlogin="checkLoginState();"></fb:login-button>
 	
+	<!-- 카카오 버튼 추가 -->
+	<a id="kakao-login-btn"></a>
 
+	<!-- 네이버 버튼 추가 -->
+	<div id="naverIdLogin"></div>
+		<script type="text/javascript">
+			var naverLogin = new naver.LoginWithNaverId({
+				clientId : "jdmecvH11xnoP5rU67xq",
+				callbackUrl : "http://localhost:8088/camping/callback.do",
+				isPopup : false,
+				loginButton : {
+					color : "green",
+					type : 2,
+					height : 30
+				},
+				callbackHandle: true
+			});
 
+			naverLogin.init();
+		</script>
+	<!-- ************************************************************************** -->
+		<script type="text/javascript">
+// 		Kakao.init('6ba4bb8eff3e395e059315260d154426');
+
+// 		"required_scopes": [
+// 		    "talk_message"
+// 		 ]
+		
+		// 카카오 로그인 버튼을 생성합니다.
+		 /* Kakao.Auth.createLoginButton({
+			container : '#kakao-login-btn',
+			success : function(authObj) {
+				console.log(JSON.stringify(authObj));
+				Kakao.API.request({
+					url:'/v2/user/me',
+					"allowed_scopes":[
+						"account_email"
+					],
+					success:function(data){
+						console.log(data.properties);
+						console.log(data.kakao_account.has_email);
+						console.log(data.kakao_account.email);
+					},
+					fail:function(error){
+						
+					}
+				});//end Kakap.API.request
+			},
+			fail : function(err) {
+				console.log(JSON.stringify(err));
+			}
+		});  */
+	</script>
 
 
 

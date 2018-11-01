@@ -1,5 +1,5 @@
-// ** 페이스북 로그인 **----------------------------------------
 
+// ** 페이스북 로그인 **----------------------------------------
 window.fbAsyncInit = function() {
 	FB.init({
 		appId : '999388243577972',
@@ -60,7 +60,6 @@ function API() {
 			 data : {"userId":userId,
 				 	 "userEmail":userEmail,
 				 	 "nickName":userId},
-//			 dataType:"JSON",
 	         url : "facebook.do",
 	         error : function(){
 	        	 console.log("실패");
@@ -77,3 +76,24 @@ function API() {
 /*FB.logout(function(response) {
 
 });*/
+
+// ** 카카오톡 로그인 API **--------------------------------------------------------
+
+
+
+
+
+// ** 네이버 로그인 API **--------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

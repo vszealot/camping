@@ -202,10 +202,10 @@ public class ControllerLogin {
     }
     
     // ·Î±×ÀÎ API--------------------------------------------------------------------
-    /*@RequestMapping("/callback.do")
+    @RequestMapping("/callback.do")
 	public String callback(Model model) {
 		return "login/callback";
-	}*/
+	}
     
     @RequestMapping(value="/facebook.do", method= RequestMethod.POST)
     public ModelAndView facebook(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) throws Exception {
