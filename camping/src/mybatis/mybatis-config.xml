@@ -7,11 +7,15 @@
 		<typeAlias type="entity.UserEntity" alias="userinfo" />
 		<typeAlias type="entity.CampInfo" alias="campinfo" />
 		<typeAlias type="entity.Page" alias="page" />
+		<typeAlias type="entity.Board" alias="board" />
+		<typeAlias type="entity.Reply" alias="reply" />
 	</typeAliases>
 
 	<!-- 쿼리문 -->
 	<mappers>
 		<mapper resource="mybatis/user-mapping.xml" />
 		<mapper resource="mybatis/camp-mapping.xml" />
+		<mapper resource="mybatis/board-mapping.xml" />
+		<mapper resource="mybatis/reply-mapping.xml" />
 	</mappers>
 </configuration>

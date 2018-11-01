@@ -1,5 +1,8 @@
 package entity;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -18,6 +21,24 @@ public class Page {
 
 	// =========================================================
 	private String searchWord;
+	private String searchType = "";
+	private String keyword = "";
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
 	public String getSearchWord() {
 		return searchWord;
@@ -26,8 +47,8 @@ public class Page {
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
-	
-	//=============================================================
+
+	// =============================================================
 	public void setPage(int page) {
 		if (page <= 0) {
 			this.page = 1;
@@ -115,9 +136,30 @@ public class Page {
 	}
 
 	public String makeQuery(int page) {
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("perPageNum", perPageNum).build();
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", perPageNum).build();
 
 		return uriComponents.toUriString();
+	}
+	
+	public String makeSearch(int page) {
+
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", perPageNum).queryParam("searchType", searchType)
+				.queryParam("keyword", encoding(keyword)).build();
+		return uriComponents.toUriString();
+	}
+
+	private String encoding(String keyword) {
+		if (keyword == null || keyword.trim().length() == 0) {
+			return "";
+		}
+
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
 	}
 
 }

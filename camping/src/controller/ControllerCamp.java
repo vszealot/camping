@@ -53,11 +53,6 @@ public class ControllerCamp {
 		
 		return new ModelAndView("camp/campList", "campList", campDao.searchListPage(page));
 	}
-	//		게시판 페이지 이동(공통)	===================================================================
-	@RequestMapping(value = "/{pageName}.do")
-	public String getSinglePage(@PathVariable("pageName")String pageName) {
-		return "camp/" + pageName;
-	}
 	
 	//		ajax 리턴 부분		=======================================================================
 	@RequestMapping(value = "/campListAjax.do", method = RequestMethod.GET)

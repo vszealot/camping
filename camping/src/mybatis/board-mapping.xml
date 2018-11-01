@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardspace">
+	<!-- private int postNo; private String nickName; private String title; 
+		private String content; private Date regDate; private int click; private 
+		int recommend; private String image; private String boardName; -->
+	<!-- 작성 -->
+	<insert id="write">
+		<![CDATA[${sql}]]>
+	</insert>
+
+	<!-- 조회 -->
+	<select id="read" resultType="board">
+		<![CDATA[${sql}]]>
+	</select>
+
+	<!-- 수정 -->
+	<update id="update">
+		<![CDATA[${sql}]]>
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="delete">
+		<![CDATA[${sql}]]>
+	</delete>
+
+	<!-- 목록 -->
+	<select id="list" resultType="board">
+		<![CDATA[${sql}]]>
+	</select>
+
+	<!-- 리스트 개수만큼 목록 -->
+	<select id="listPage" resultType="board">
+		<![CDATA[${sql}]]>
+	</select>
+
+	<!-- 게시물의 총 갯수 -->
+	<select id="listCount" resultType="int">
+		<![CDATA[${sql}]]>
+	</select>
+
+	<!-- 검색 -->
+	<select id="listSearch" resultType="board">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<!-- 검색 게시물의 총 갯수-->
+	<select id="countSearch" resultType="int">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<!-- 조회수-->
+	<update id="updateClick">
+		<![CDATA[${sql}]]>
+	</update>
+
+</mapper>
