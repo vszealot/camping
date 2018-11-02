@@ -78,8 +78,29 @@ function API() {
 });*/
 
 // ** 카카오톡 로그인 API **--------------------------------------------------------
-
-
+/*function kakaoAPI(nickname) {
+	console.log("callback")
+//	console.log(nickname);
+	
+	var userId=nickname;
+	var nickName=nickname;
+	
+	$.ajax({
+		type:"POST",
+		 data : {"userId":userId,
+			 	 "userEmail":null,
+			 	 "nickName":userId},
+         url : "facebook.do",
+         error : function(){
+        	 console.log("실패");
+         },
+         success : function(data) {
+        	 console.log("성공");
+        	 location.href="http://localhost:8088/camping/campList.do";
+         }//end success
+	});//end ajax
+}
+*/
 
 
 

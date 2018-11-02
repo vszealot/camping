@@ -83,10 +83,10 @@ public class ControllerLogin {
 		
 		if(entity != null) {
 			session.removeAttribute("logOK");
-			return "../main";
+			return "../../index";
 		}
 		// ?
-		return "../main";
+		return "../../index";
 	}
 	
 	//ID중복 확인을 위한 sql문
