@@ -5,7 +5,8 @@
 <mapper namespace="usernamespace">
 
 	<insert id="insertUserEntity" parameterType="userinfo">
-		<![CDATA[INSERT INTO USERINFO VALUES(#{userId}, #{userEmail}, #{nickName}, #{password})]]>
+		<![CDATA[INSERT INTO USERINFO(USERID,USEREMAIL,NICKNAME,PASSWORD,GRADE) 
+				VALUES(#{userId}, #{userEmail}, #{nickName}, #{password})]]>
 	</insert>
 
 	<select id="loginUserEntity" parameterType="userinfo" resultType="userinfo">

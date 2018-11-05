@@ -17,5 +17,6 @@
 		<mapper resource="mybatis/camp-mapping.xml" />
 		<mapper resource="mybatis/board-mapping.xml" />
 		<mapper resource="mybatis/reply-mapping.xml" />
+		<mapper resource="mybatis/master-mapping.xml" />
 	</mappers>
 </configuration>

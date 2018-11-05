@@ -63,8 +63,8 @@
 		<div class="form-group">
 			<label for="newPasswordCheck">비밀번호 확인</label><br><br>
 			<input type="password" id="newPasswordCheck" name="newPasswordCheck" placeholder="비밀번호를 다시 입력하세요" oninput="checkpwd()" class="form-control" required>
-			<div id="checkText3"></div><
-		</div>	
+			<div id="checkText3"></div>
+		</div><br><br>	
 		
 		<input type="button" value="회원정보 수정" id="update_btn" class="btn btn-primary"/>
 		

@@ -17,60 +17,72 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
-	div#header{
-		background-color: #151515;
-		height: 120px;
-		weight: 100%;
-		position: relative;
-	}
-	.logo{
-		float:left;
-	}
-	.login{
-		float:right;
-	}
-	.login ul{
-		padding: 20px;
-	}
-	li{
-		list-style: none;
-	}
-	.login li a{
-		padding-right: 20px;
-	}
-	.topmenu{
-		padding-left: 200px;
-		position: absolute;
-		bottom: 10px;
-		font-size: 20px;
-		font-family: "나눔고딕";
-		font-weight: bold;
-		color: black;
-	}
-	.topmenu li{
-		float:left;
-		padding-left: 50px;
-	}
-	.hello{
-		color: white;
-		display: inline-block;
-		padding-right: 20px;
-	}
-	.topmenu a:link{
-		color: white;
-		text-decoration: none;
-	}
-	.topmenu a:visited{
-		color: white;
-		text-decoration: none;
-	}
-	.topmenu a:hover{
-		color: blue;
-		text-decoration: none;
-	}
-	th{
-		text-align: center;
-	}
+div#header {
+	background-color: #151515;
+	height: 120px;
+	weight: 100%;
+	position: relative;
+}
+
+.logo {
+	float: left;
+}
+
+.login {
+	float: right;
+}
+
+.login ul {
+	padding: 20px;
+}
+
+li {
+	list-style: none;
+}
+
+.login li a {
+	padding-right: 20px;
+}
+
+.topmenu {
+	padding-left: 200px;
+	position: absolute;
+	bottom: 10px;
+	font-size: 20px;
+	font-family: "나눔고딕";
+	font-weight: bold;
+	color: black;
+}
+
+.topmenu li {
+	float: left;
+	padding-left: 50px;
+}
+
+.hello {
+	color: white;
+	display: inline-block;
+	padding-right: 20px;
+}
+
+.topmenu a:link {
+	color: white;
+	text-decoration: none;
+}
+
+.topmenu a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.topmenu a:hover {
+	color: blue;
+	text-decoration: none;
+}
+th{
+	text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -94,10 +106,10 @@
 				<a href="/camping/logout.do">로그아웃</a>
 				<a href="/camping/update.do">회원정보수정</a>
 				<!-- 마스터 계정 로그인 -->
-				<c:if test="${logOK.userId eq 'master'}">
-					<a href="">공지사항 등록</a>
-					<a href="">캠핑장 등록 대기</a>
-					<a href="/camping/userInfo.do">회원목록조회</a>
+				<c:if test="${logOK.grade eq '운영자'}">
+					<a href="/camping/notice.do">공지사항 등록</a>
+					<a href="/camping/campEnrollWait.do">캠핑장 등록 대기</a>
+					<a href="/camping/userInfoView.do">회원목록조회</a>
 				</c:if>
 			</c:if>
 			</li>
@@ -109,8 +121,8 @@
 			<li>
 			<!-- //캠핑장소 검색------------------------------------------------------------ -->
 				<form method="post"  action="searchProc.do">
-					<input type="text" name="searchWord" id="searchWord">
-					<input type="submit" value="검색" />
+			      <input type="search" name="searchWord" id="searchWord" placeholder="Search..." />
+				  <input type="submit" value="검색" />
 				</form>
 			</li>
 			<li>

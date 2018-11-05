@@ -5,6 +5,7 @@ public class UserEntity {
 	private String userEmail;
 	private String nickName;
 	private String password;
+	private String grade;
 
 	public String getUserId() {
 		return userId;
@@ -38,4 +39,12 @@ public class UserEntity {
 		this.password = password;
 	}
 
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	
 }

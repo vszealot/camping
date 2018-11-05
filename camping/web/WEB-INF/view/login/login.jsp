@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/main.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,7 +32,7 @@
     .loginjoin a{
     	padding: 20px;
     }
-    .login{
+    .login_page{
     	margin: 550px;
     	margin-bottom: 350px;
     	margin-top: 60px; 
@@ -68,7 +69,7 @@
 </div>
 
 <!-- 로그인 페이지 -->
-<div class="login">
+<div class="login_page">
 	<form action="loginProc.do" method="post">
 		 <div class="form-group">
 		 	 <label for="userId">아이디</label>
