@@ -115,11 +115,12 @@
 	var formObj = $("form[role='form']");
 
 	// 목록 버튼 클릭
-	$("#list_btn")
-			.click(
-					function() {
-						self.location = "marketListSearch.do?page=${page.page}&perPageNum=${page.perPageNum}"
-										+ "&searchType=${page.searchType}&keyword=${page.keyword}";
+	$("#list_btn").click(function() {
+		formObj.attr("action", "marketListSearch.do");
+		formObj.attr("method", "post");
+		formObj.submit();
+/* 						self.location = "marketListSearch.do?page=${page.page}&perPageNum=${page.perPageNum}"
+										+ "&searchType=${page.searchType}&keyword=${page.keyword}"; */
 					});
 
 	// 수정 버튼 클릭
