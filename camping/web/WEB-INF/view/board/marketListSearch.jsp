@@ -27,7 +27,7 @@
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td style="text-align: center;">${list.postNo}</td>
-					<td><a href="javascript:updateClick('${list.click}','${list.postNo}')">${list.title} </a></td>
+					<td><a href="javascript:updateClick('${list.click}','${list.postNo}')">${list.title} <span style="font-size: 0.85em">[${list.repCnt}]</span></a></td>
 					<td>${list.nickName}</td>
 					<td style="text-align: center;"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
 					<td style="text-align: center;">${list.click}</td>
@@ -55,7 +55,12 @@
 					</span>
 				</div>
 			</div>
-			<a role="button" href="marketWrite.do" class="btn btn-default">글쓰기</a>&nbsp;
+			<c:if test="${!empty logOK}">
+				<a role="button" href="marketWrite.do" class="btn btn-default">글쓰기</a>
+			</c:if>
+			<c:if test="${empty logOK}">
+				<button class="btn btn-default" disabled="disabled">글쓰기</button>
+			</c:if>&nbsp;
 			<a role="button" href="marketListSearch.do" class="btn btn-default">글목록</a>
 		</div>
 		<div class="col-md-offset-3">

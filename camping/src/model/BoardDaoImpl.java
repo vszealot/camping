@@ -87,11 +87,13 @@ public class BoardDaoImpl implements BoardDao {
 	// 목록 + 페이징 + 검색
 	@Override
 	public List<Board> listSearch(Board board, Page page) throws Exception {
-		String sql = "select * from (select postno, nickname, title, content, regdate, click, recommend, image, row_number() over(order by postno desc) "
-				+ "as rNum from " + board.getBoardName() + "BOARD ";
+		String sql = "select * from (select postno, nickname, title, content, regdate, click, recommend, image, "
+				+ "(select count(*) from "+board.getBoardName()+"REPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) "
+				+ "as rNum from " + board.getBoardName() + "BOARD a ";
 		sql += check(page);
 		sql += ") mb where rNum between " + page.getRowStart() + " and " + page.getRowEnd()
 				+ " order by postno desc";
+		System.out.println(sql);
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		return factory.openSession().selectList("boardspace.listSearch", map);
@@ -107,6 +109,7 @@ public class BoardDaoImpl implements BoardDao {
 		} else {
 			sql += " and postno > 0";
 		}
+		System.out.println(sql);
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		return factory.openSession().selectOne("boardspace.countSearch", map);

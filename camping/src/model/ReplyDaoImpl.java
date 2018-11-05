@@ -19,7 +19,7 @@ public class ReplyDaoImpl implements ReplyDao {
 	// ´ñ±Û Á¶È¸
 	@Override
 	public List<Reply> readReply(Board board) throws Exception {
-		String sql = "select * from " + board.getBoardName() + "Reply where postNo = " + board.getPostNo();
+		String sql = "select * from " + board.getBoardName() + "Reply where postNo = " + board.getPostNo() + " ORDER BY rno";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		return factory.openSession().selectList("replyspace.readReply", map);

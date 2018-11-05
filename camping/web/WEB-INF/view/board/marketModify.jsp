@@ -34,7 +34,7 @@
 			<div class="form-group">
 				<!-- <label for="nickName" class="col-sm-2 control-label">작성자</label> -->
 				<div class="col-sm-12">
-					<input type="text" id="nickName" name="nickName" class="form-control" value="${modify.nickName}"/>
+					<input type="text" id="nickName" name="nickName" class="form-control" value="${modify.nickName}" readonly="readonly"/>
 				</div>
 			</div>
 			<div class="form-group">

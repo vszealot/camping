@@ -28,7 +28,7 @@
 			<div class="form-group">
 				<!-- <label for="nickName" class="col-sm-2 control-label">작성자</label> -->
 				<div class="col-sm-12">
-					<input placeholder="닉네임입력 세션받으면 없앨거임" type="text" id="nickName" name="nickName" class="form-control" />
+					<input value="${logOK.nickName}" readonly="readonly" type="text" id="nickName" name="nickName" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group">

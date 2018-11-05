@@ -17,6 +17,15 @@ public class Board {
 	private int recommend;
 	private String image;
 	private String boardName;
+	private int repCnt;
+
+	public int getRepCnt() {
+		return repCnt;
+	}
+
+	public void setRepCnt(int repCnt) {
+		this.repCnt = repCnt;
+	}
 
 	public String getBoardName() {
 		return boardName;

@@ -49,12 +49,6 @@ public class ControllerBoard {
 	public ModelAndView marketRead(Board board, @ModelAttribute("page") Page page, Model model) throws Exception {
 		board.setBoardName("market");
 		model.addAttribute("page", page);
-		
-/*		// 조회 수 증가
-		Board board2 = boardDao.read(board);
-		board2.setBoardName("market");
-		board2.setClick(board2.getClick()+1);
-		boardDao.updateClick(board2);*/
 
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
@@ -144,32 +138,28 @@ public class ControllerBoard {
 	// 마켓 댓글 작성
 	@RequestMapping(value = "/marketReplyWrite.do", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Reply> marketReplyWrite(Board board, Reply reply, Page page, Model model) throws Exception {
-		board.setBoardName("market");
-		replyDao.writeReply(board, reply);
-
-		return replyDao.readReply(board);
-	}
-
-/*	// 마켓 댓글 작성
-	@RequestMapping(value = "/marketReplyWrite.do", method = RequestMethod.POST)
 	public ModelAndView marketReplyWrite(Board board, Reply reply, Page page, Model model) throws Exception {
 		board.setBoardName("market");
 		replyDao.writeReply(board, reply);
 
+		model.addAttribute("page", page);
+
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
-	}*/
+	}
 	
 	// 마켓 댓글 삭제
 	@RequestMapping(value="/marketReplyDelete.do", method = RequestMethod.POST)
 	public ModelAndView marketReplyDelete(Board board, Reply reply, Page page, Model model) throws Exception{
 		board.setBoardName("market");
 		replyDao.deleteReply(board, reply);
-		
+
+		model.addAttribute("page", page);
+
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
+	
 }

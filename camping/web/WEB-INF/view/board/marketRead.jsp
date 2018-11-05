@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body id="body1">
 	<section class="container">
 	<h2>유저 장터</h2>
 	<table role="form"></table>
@@ -48,8 +48,14 @@
 			</div>
 			<div class="text-right">
 				<button class="btn btn-default" id="list_btn">목록</button>&nbsp;
-				<button class="btn btn-default" id="modify_btn">수정</button>&nbsp;
-				<button class="btn btn-default" id="delete_btn">삭제</button>
+				<c:if test="${logOK.nickName eq read.nickName}">
+					<button class="btn btn-default" id="modify_btn">수정</button>&nbsp;
+					<button class="btn btn-default" id="delete_btn">삭제</button>
+				</c:if>
+				<c:if test="${logOK.nickName ne read.nickName}">
+					<button class="btn btn-default" disabled="disabled" id="modify_btn">수정</button>&nbsp;
+					<button class="btn btn-default" disabled="disabled" id="delete_btn">삭제</button>
+				</c:if>
 			</div>
 
 		</form>
@@ -58,31 +64,25 @@
 		<br><br>
 		<!-- 댓글시작 -->
 		<div id="reply">
-			<table class="table">
+			<table id="replytable" class="table">
 				<c:forEach items="${repList}" var="repList">
 					<tr>
 						<td style="width: 5em;">${repList.nickName}</td>
 						<td style="width: 30em;">${repList.content}</td>
-						<td style="width: 6em;"><fmt:formatDate value="${repList.regDate}" pattern="MM.dd HH:mm:ss" />
-							&nbsp;<button type="button" class="replyDelete" value="${repList.rNo}">삭제</button></td>
+						<td style="width: 6em;"><fmt:formatDate value="${repList.regDate}" pattern="MM.dd HH:mm:ss" />&nbsp;
+							<c:if test="${logOK.nickName eq read.nickName}">
+								<input type="image" src="image/delete_btn.jpg" class="replyDelete" value="${repList.rNo}" alt="삭제">
+							</c:if>
+							<c:if test="${logOK.nickName ne read.nickName}">
+							<input type="image" src="image/delete_btn.jpg" class="replyDelete" style="opacity:0.2" disabled="disabled" value="${repList.rNo}" alt="삭제">
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 				
 			</table>
 			<hr>
-<%-- 			<ol class="replyList">
-				<c:forEach items="${repList}" var="repList">
-					<li>
-						<p>
-							작성자 : ${repList.nickName}<br /> 작성 날짜 :
-							<fmt:formatDate value="${repList.regDate}" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" />
-						</p>
-	
-						<p>${repList.content}</p>
-						<p><button type="button" class="replyDelete" value="${repList.rNo}">삭제</button></p>
-					</li>
-				</c:forEach>
-			</ol> --%>
+
 			<!-- 댓글끝 -->
 			<!-- 댓글입력 -->
 			<section class="replyForm">
@@ -94,16 +94,12 @@
 					<input type="hidden" id="keyword" name="keyword" value="${page.keyword}" readonly="readonly" />
 					
 					<div class="form-group">
-						<input type="text" id="nickName2" name="nickName" class="col-sm-1 control-label" placeholder="로그인세션">
+						<input type="text" id="nickName2" name="nickName" class="col-sm-1 control-label" value="${logOK.nickName}" readonly="readonly">
 						<div class="col-sm-10">
 							<textarea placeholder="내용을 입력하세요." id="content2" name="content" class="form-control"></textarea>
 						</div>
 					</div>
 					<button type="button" class="repSubmit">작성</button>
-<!-- 					<p><label for="nickName">작성자</label><input type="text" id="nickName" name="nickName" /></p>
-					<p><label for="content">댓글 내용</label><textarea id="content" name="content"></textarea></p> -->
-					
-
 				</form>
 			</section><br><br><br>
 			<!-- 댓글입력끝 -->
@@ -119,9 +115,7 @@
 		formObj.attr("action", "marketListSearch.do");
 		formObj.attr("method", "post");
 		formObj.submit();
-/* 						self.location = "marketListSearch.do?page=${page.page}&perPageNum=${page.perPageNum}"
-										+ "&searchType=${page.searchType}&keyword=${page.keyword}"; */
-					});
+	});
 
 	// 수정 버튼 클릭
 	$("#modify_btn").click(function() {
@@ -143,15 +137,32 @@
 	
 	// 폼을 변수에 저장
 	var formObj2 = $(".replyForm form[role='form']");
-    
- 	// 댓글 작성 클릭
-	$(".repSubmit").click(function(){
-		formObj2.attr("action", "marketReplyWrite.do");
-		formObj2.submit();
-	}); 
+	
+	// 댓글 삭제 버튼 클릭
+	$(".replyDelete").click(function() {
+		if (confirm("삭제하시겠습니까?")) {
+			$.ajax({
+				type:"post",
+				url:"marketReplyDelete.do",
+				data:{
+					postNo:"${read.postNo}",
+					page:"${page.page}",
+					perPageNum:"${page.perPageNum}",
+					searchType:"${page.searchType}",
+					keyword:"${page.keyword}",
+					nickName:$("#nickName2").val(),
+					content:$("#content2").val(),
+					rNo:$(this).val()
+				},
+				success:function(data){
+					$("#body1").html(data);
+				}
+			});
+		}
+	});
 	
 	// 댓글 작성 클릭
-/* 	$(".repSubmit").click(function(){
+	$(".repSubmit").click(function(){
 		$.ajax({
 			type:"post",
 			url:"marketReplyWrite.do",
@@ -165,21 +176,10 @@
 				content:$("#content2").val()
 			},
 			success:function(data){
-				alert("성공");
-				console.log(data);
+				$("#body1").html(data);
 			}
 		});
-	}) */
-	
-	// 댓글 삭제 버튼 클릭
-	$(".replyDelete").click(function() {
-		if (confirm("삭제하시겠습니까?")) {
-			formObj.attr("action", "marketReplyDelete.do?rNo=" + $(this).val());
-			formObj.attr("method", "post");
-			formObj.submit();
-		}
-
-	});
+	})
 	
 /* 	// 추천 버튼 클릭
 	function updateRecommend(idx){

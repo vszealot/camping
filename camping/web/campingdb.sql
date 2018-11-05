@@ -23,3 +23,27 @@ userEmail varchar2(50),
 nickName varchar2(30),
 password varchar2(20));
 
+select * from marketboard;
+select * from QNABOARD;
+select * from tab;
+
+create table marketRecommend(
+postNo number,
+nickName varchar2(30),
+
+)
+select * from marketboard;
+select * from marketrecommend
+
+SELECT a.postno, nickname, title, content,regdate,click,recommend,image,(select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt 
+from marketboard a;
+
+select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a) mb 
+where rNum between 1 and 10 order by postno desc
+
+select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a where title like '%' || '±Û' || '%') mb 
+where rNum between 1 and 10 order by postno desc
+
+
+
+
