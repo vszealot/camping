@@ -70,10 +70,10 @@
 						<td style="width: 5em;">${repList.nickName}</td>
 						<td style="width: 30em;">${repList.content}</td>
 						<td style="width: 6em;"><fmt:formatDate value="${repList.regDate}" pattern="MM.dd HH:mm:ss" />&nbsp;
-							<c:if test="${logOK.nickName eq read.nickName}">
+							<c:if test="${logOK.nickName eq repList.nickName}">
 								<input type="image" src="image/delete_btn.jpg" class="replyDelete" value="${repList.rNo}" alt="삭제">
 							</c:if>
-							<c:if test="${logOK.nickName ne read.nickName}">
+							<c:if test="${logOK.nickName ne repList.nickName}">
 							<input type="image" src="image/delete_btn.jpg" class="replyDelete" style="opacity:0.2" disabled="disabled" value="${repList.rNo}" alt="삭제">
 							</c:if>
 						</td>
