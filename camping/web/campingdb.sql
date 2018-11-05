@@ -33,6 +33,7 @@ nickName varchar2(30),
 
 )
 select * from marketboard;
+select * from MARKETREPLY;
 select * from marketrecommend
 
 SELECT a.postno, nickname, title, content,regdate,click,recommend,image,(select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt 
@@ -44,6 +45,23 @@ where rNum between 1 and 10 order by postno desc
 select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a where title like '%' || '±Û' || '%') mb 
 where rNum between 1 and 10 order by postno desc
 
+create table marketReply (
+postNo       number            not null,
+rNo       number            not null,
+content   varchar2(2000)    not null,
+nickName    varchar2(30)      not null,
+regDate   date              default sysdate,
+primary key(bno, rno)
+CONSTRAINT mbmrpn FOREIGN KEY(postNo) references marketBoard ON DELETE CASCADE
+CONSTRAINT uimrnn FOREIGN KEY(nickName) references userInfo ON DELETE CASCADE
+);
 
+create table marketRecommend(
+postNo number not null;
+nickName varchar2(30) not null;
+primary key(postNo, nickName)
+CONSTRAINT mbmcpn FOREIGN KEY(postNo) references marketBoard ON DELETE CASCADE
+CONSTRAINT uimcnn FOREIGN KEY(nickName) references userInfo ON DELETE CASCADE
+)
 
 
