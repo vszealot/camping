@@ -146,7 +146,7 @@ public class ControllerLogin {
     		email.setReceiver(entity.getUserEmail());
     		email.setSubject(entity.getUserId()+"님 비밀번호 찾기 메일입니다.");
     		emailSender.SendEmail(email);
-    		mav=new ModelAndView("login/login");
+    		mav=new ModelAndView("login/searchCallback");
     		return mav;
     	}
     	mav=new ModelAndView("login/login");

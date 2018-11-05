@@ -5,8 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<!-- css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-<script>
+<script src="<c:url value="/js/searchIdPassword.js" />"></script>
+<script type="text/javascript">
 $(document).on('click','#findId',function(){
 	var userEmail=$('#userEmail').val();
 	var nickName=$('#nickName').val();
@@ -34,30 +41,57 @@ $(document).on('click','#findId',function(){
 });
 </script>
 
+<style type="text/css">
+	.serachTop{
+    	text-align: center;
+    	font-size: 40px;
+    	margin-top: 50px;
+    }
+    .search{
+    	margin: 550px;
+    	margin-bottom: 350px;
+    	margin-top: 60px; 
+    }
+    .btn btn-primary{
+    	width: 150px;
+    }
+    
+</style>
+
 </head>
 <body>
 <!-- 로그인/회원가입 탭 -->
-<div id="loginjoin">
-	<a href="login.do">로그인</a>
-	<a href="join.do" class="active">회원가입</a>
+<div class="serachTop">
+	<h1>아이디 비밀번호 찾기</h1>
 </div>
-<h1>아이디 비밀번호 찾기</h1>
-
+<div class="search">
 	<form>
-		이메일 <input type="text" name="userEmail" id="userEmail" placeholder="abc@abc.com"><br>
-		닉네임 <input type="text" name="nickName" id="nickName"><br>
+		<div class="form-group">
+			<label for="userEmail">이메일</label><br><br>
+			<input type="text" name="userEmail" id="userEmail" placeholder="abc@abc.com" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="nickName">닉네임</label><br><br>
+			<input type="text" name="nickName" id="nickName" class="form-control" required><br>
+		</div>
 	</form>
-	<button id="findId">아이디 찾기</button>
+	<button id="findId" class="btn btn-primary">아이디 찾기</button>
 	<br>
 	<br>
 
 	<span id="idList"></span>
 
 	<form action="findPassword.do" method="post">
-		아이디 <input type="text" name="userId" id="userId"><br>
-		이메일 <input type="text" name="userEmail" id="userEmail" placeholder="abc@abc.com"><br>
-		<input type="submit" id="findPassword" value="비밀번호 찾기">
+		<div class="form-group">
+			<label for="userId">아이디</label><br><br>
+			<input type="text" name="userId" id="userId" class="form-control" required><br>
+		</div>
+		<div class="form-group">
+			<label for="userEmail">이메일</label><br><br>
+			<input type="text" name="userEmail" id="userEmail" placeholder="abc@abc.com" class="form-control" required><br>
+		</div>
+		<input type="submit" id="findPassword" value="비밀번호 찾기" class="btn btn-primary">
 	</form>
-	
+</div>	
 </body>
 </html>

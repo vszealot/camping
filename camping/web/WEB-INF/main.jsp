@@ -51,6 +51,23 @@
 		float:left;
 		padding-left: 50px;
 	}
+	.hello{
+		color: white;
+		display: inline-block;
+		padding-right: 20px;
+	}
+	.topmenu a:link{
+		color: white;
+		text-decoration: none;
+	}
+	.topmenu a:visited{
+		color: white;
+		text-decoration: none;
+	}
+	.topmenu a:hover{
+		color: blue;
+		text-decoration: none;
+	}
 </style>
 </head>
 <body>
@@ -70,7 +87,7 @@
 				
 			</c:if>
 			<c:if test="${!empty logOK}">
-				<b>${logOK.nickName}</b>님이 환영합니다.
+				<div class="hello"><b>${logOK.nickName}</b>님이 환영합니다</div>
 				<a href="/camping/logout.do">로그아웃</a>
 				<a href="/camping/update.do">회원정보수정</a>
 				<!-- 마스터 계정 로그인 -->
