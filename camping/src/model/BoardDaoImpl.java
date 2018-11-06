@@ -93,7 +93,6 @@ public class BoardDaoImpl implements BoardDao {
 		sql += check(page);
 		sql += ") mb where rNum between " + page.getRowStart() + " and " + page.getRowEnd()
 				+ " order by postno desc";
-		System.out.println(sql);
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		return factory.openSession().selectList("boardspace.listSearch", map);
@@ -109,7 +108,6 @@ public class BoardDaoImpl implements BoardDao {
 		} else {
 			sql += " and postno > 0";
 		}
-		System.out.println(sql);
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		return factory.openSession().selectOne("boardspace.countSearch", map);
