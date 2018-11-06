@@ -12,7 +12,8 @@
 
 	<update id="userGradeUpdate" parameterType="userinfo">
 		<![CDATA[
-			UPDATE USERINFO SET GRADE=${grade} WHERE USERID=${userId}
+			UPDATE USERINFO SET GRADE=#{grade}
+			WHERE USERID=#{userId}
 		]]>
 	</update>
 

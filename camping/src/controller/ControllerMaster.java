@@ -39,8 +39,14 @@ public class ControllerMaster {
 	// 회원 등급 조정
 	@RequestMapping(value = "/userGradeUpdate.do")
 	public ModelAndView userGradeUpdate(@ModelAttribute UserEntity userEntity){
+		
+		System.out.println(userEntity.getUserId());
+		System.out.println(userEntity.getGrade());
+		
 		if(userInfoDao.userGradeUpdate(userEntity)) {
 			System.out.println("회원 등급 변경 성공");
+		}else {
+			System.out.println("일치하는 회원이 없습니다");
 		}
 		return new ModelAndView("master/userInfo");
 	}
