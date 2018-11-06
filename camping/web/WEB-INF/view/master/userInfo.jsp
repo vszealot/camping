@@ -10,37 +10,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	
-	/* function changeSelect(){
-		var changeSelect=document.getElementById("gradeSelect");
-		var selectValue = changeSelect.options[changeSelect.selectedIndex].value;
-// 		alert(selectValue);
-		
-		var inputed=0;
-		
-		inputed = $('#user').text();
-		console.log(inputed);
-		
-		var retVal = confirm("변경하시겠습니까?");
-		if(retVal==true){
-			alert(selectValue);
-			
-			$.ajax({
-				type:"POST",
-				 data : {"userId":inputed,
-					 	"grade":selectValue},
-		         url : "userGradeUpdate.do",
-		         error : function(){
-		        	 console.log("실패");
-		         },
-		         success : function(data) {
-		        	 console.log("성공");
-		        	 location.href="http://localhost:8088/camping/userInfoView.do";
-		         }//end success
-			});//end ajax
-		}
-
-	}   */
- 
+	// 회원 등급 변경
 	function btnclick(i,str){
 		var inputed= gradeSelect[i].options[gradeSelect[i].selectedIndex].value;
 		
@@ -51,6 +21,25 @@
 				 data : {"userId":str,
 					 	"grade":inputed},
 		         url : "userGradeUpdate.do",
+		         error : function(){
+		        	 console.log("실패");
+		         },
+		         success : function(data) {
+		        	 console.log("성공");
+		        	 location.href="http://localhost:8088/camping/userInfoView.do";
+		         }//end success
+			});//end ajax
+		}
+	}
+	
+	//회원 탈퇴
+	function btnclick2(str){
+		var retVal = confirm("탈퇴 시키시겠습니까?");
+		if(retVal==true){
+			$.ajax({
+				type:"POST",
+				 data : {"userId":str},
+		         url : "userDelete.do",
 		         error : function(){
 		        	 console.log("실패");
 		         },
@@ -102,7 +91,9 @@
  							<button id="gradeBtn" class="btn btn-default" onclick="btnclick(${i.count-1},'${list.userId}')">변경</button>
 						</div>
 					</td>
-					<td>탈퇴</td>
+					<td>
+						<button id="deleteBtn" class="btn btn-default" onclick="btnclick2('${list.userId}')">탈퇴</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</c:if>

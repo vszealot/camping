@@ -51,6 +51,19 @@ public class ControllerMaster {
 		return new ModelAndView("master/userInfo");
 	}
 	
+	// 회원 탈퇴
+	@RequestMapping(value = "/userDelete.do")
+	public ModelAndView userDelete(@ModelAttribute UserEntity userEntity){
+		
+		System.out.println(userEntity.getUserId());
+		
+		if(userInfoDao.userDelete(userEntity)) {
+			System.out.println("회원 탈퇴 성공");
+		}else {
+			System.out.println("일치하는 회원이 없습니다");
+		}
+		return new ModelAndView("master/userInfo");
+	}
 	
 	//------------------------------------------------------------------------------------	
 	//캠핑장 대기 목록 페이지

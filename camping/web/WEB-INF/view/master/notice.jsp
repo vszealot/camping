@@ -8,7 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>공지사항등록</h1>
-
+<section class="container">
+	<h2>공지사항 등록</h2><br>
+	
+	<table class="table table-bordered">
+		<tr>
+			<th style="width: 4em;">번호</th>
+			<th style="width: 16em;">제목</th>
+			<th style="width: 8em;" >작성자</th>
+			<th style="width: 4em;" >삭제</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>%%공지사항%%</td>
+			<td>관리자</td>
+			<td>삭제버튼</td>
+		</tr>
+	</table>
+</section>
 </body>
 </html>

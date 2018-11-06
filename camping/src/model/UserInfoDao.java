@@ -23,6 +23,11 @@ public class UserInfoDao {
 		return (factory.openSession().update("usernamespace.userGradeUpdate",userEntity) > 0) ? true:false;
 	}
 
+	public boolean userDelete(UserEntity userEntity) {
+	
+		return (factory.openSession().delete("usernamespace.userDelete",userEntity) > 0) ? true:false;
+	}
+
 	
 	
 	

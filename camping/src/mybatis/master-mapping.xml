@@ -17,7 +17,11 @@
 		]]>
 	</update>
 
-
+	<delete id="userDelete" parameterType="userinfo">
+		<![CDATA[
+			DELETE FROM USERINFO WHERE USERID=#{userId}
+		]]>
+	</delete>
 
 
 
