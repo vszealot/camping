@@ -18,5 +18,8 @@ public interface ReplyDao {
 	
 	// 게시물 별 댓글 수
 	public int replyCount(Board board) throws Exception;
+
+	// 추천 수 갱신
+	public void updateRecommend(Board board) throws Exception;
 	
 }

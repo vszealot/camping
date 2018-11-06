@@ -23,5 +23,16 @@
 	<select id="replyCount" resultType="int" >
 		<![CDATA[${sql}]]>
 	</select>
+	
+	<!-- 추천 수 증가 -->
+	<insert id="updateRecommend">
+		<![CDATA[${sql}]]>
+	</insert>
+	
+	<!-- 추천 수 삭제 -->
+	<delete id="deleteRecommend">
+		<![CDATA[${sql}]]>
+	</delete>
+	
 
 </mapper>

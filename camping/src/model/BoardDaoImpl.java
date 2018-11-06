@@ -25,15 +25,20 @@ public class BoardDaoImpl implements BoardDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		factory.openSession().insert("boardspace.write", map);
+		factory.openSession().close();
 	}
 
 	// 조회
 	@Override
 	public Board read(Board board) throws Exception {
-		String sql = "select * from " + board.getBoardName() + "board where postno=" + board.getPostNo();
+		String sql = "select * from (select postno, nickname, title, content, regdate, click, image, "
+				+ "(select count(*) from "+board.getBoardName()+"recommend c where c.postno=a.postno) reccnt from " + board.getBoardName() + "BOARD a) "
+				+ "mb where postno = " + board.getPostNo();
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectOne("boardspace.read", map);
+		Board back = factory.openSession().selectOne("boardspace.read", map);
+		factory.openSession().close();
+		return back;
 	}
 
 	// 수정
@@ -44,6 +49,7 @@ public class BoardDaoImpl implements BoardDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		factory.openSession().update("boardspace.update", map);
+		factory.openSession().close();
 	}
 
 	// 삭제
@@ -53,6 +59,7 @@ public class BoardDaoImpl implements BoardDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		factory.openSession().delete("boardspace.delete", map);
+		factory.openSession().close();
 	}
 
 	// 목록
@@ -61,7 +68,9 @@ public class BoardDaoImpl implements BoardDao {
 		String sql = "SELECT * FROM " + board.getBoardName() + "BOARD ORDER BY POSTNO DESC";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectList("boardspace.list", map);
+		List<Board> back = factory.openSession().selectList("boardspace.list", map);
+		factory.openSession().close();
+		return back;
 	}
 
 	// 목록 + 페이징
@@ -72,7 +81,10 @@ public class BoardDaoImpl implements BoardDao {
 				+ " and " + page.getRowEnd() + " order by postno desc";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectList("boardspace.listPage", map);
+		
+		List<Board> back = factory.openSession().selectList("boardspace.listPage", map);
+		factory.openSession().close();
+		return back;
 	}
 
 	// 게시물 총 갯수
@@ -81,13 +93,16 @@ public class BoardDaoImpl implements BoardDao {
 		String sql = "select count(postno) from " + board.getBoardName() + "board where postno > 0";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectOne("boardspace.listCount", map);
+		int back = factory.openSession().selectOne("boardspace.listCount", map);
+		factory.openSession().close();
+		return back;
 	}
 
 	// 목록 + 페이징 + 검색
 	@Override
 	public List<Board> listSearch(Board board, Page page) throws Exception {
 		String sql = "select * from (select postno, nickname, title, content, regdate, click, recommend, image, "
+				+ "(select count(*) from "+board.getBoardName()+"recommend c where c.postno=a.postno) reccnt, "
 				+ "(select count(*) from "+board.getBoardName()+"REPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) "
 				+ "as rNum from " + board.getBoardName() + "BOARD a ";
 		sql += check(page);
@@ -95,7 +110,9 @@ public class BoardDaoImpl implements BoardDao {
 				+ " order by postno desc";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectList("boardspace.listSearch", map);
+		List<Board> back = factory.openSession().selectList("boardspace.listSearch", map);
+		factory.openSession().close();
+		return back;
 	}
 
 	// 검색 게시물 총 갯수
@@ -110,7 +127,9 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectOne("boardspace.countSearch", map);
+		int back = factory.openSession().selectOne("boardspace.countSearch", map);
+		factory.openSession().close();
+		return back;
 	}
 
 	// 검색타입 체크
@@ -130,12 +149,14 @@ public class BoardDaoImpl implements BoardDao {
 		}
 	}
 
+	// 조회수
 	@Override
 	public void updateClick(Board board) throws Exception {
 		String sql = "update "+board.getBoardName()+"board set click="+board.getClick()+" where postno="+board.getPostNo();
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		factory.openSession().update("boardspace.updateClick", map);
+		factory.openSession().close();
 	}
 
 }

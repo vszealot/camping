@@ -24,7 +24,7 @@
 			<input type="hidden" id="nickName" name="nickName" value="${read.nickName}" readonly="readonly" />
 			<input type="hidden" id="image" name="image" value="${read.image}" readonly="readonly" /><br>
 			<input type="hidden" id="click" name="click" value="${read.click}" readonly="readonly" /><br> 
-			<input type="hidden" id="recommend" name="recommend" value="${read.recommend}" readonly="readonly" />
+			<input type="hidden" id="reccnt" name="reccnt" value="${read.recCnt}" readonly="readonly" />
 			<!-- 게시물 내용 -->
 			<table class="table">
 				<tr>
@@ -44,7 +44,7 @@
 				<tr><td><!-- 밑줄생기기용 --></td></tr>
 			</table>
 			<div style="text-align: center;">
-				<a role="button" class="btn btn-default" href="javascript:updateRecommend('${read.recommend}')"><span>추천<br>${read.recommend}</span></a>
+				<a role="button" class="btn btn-default" href="javascript:updateRecommend('${logOK.nickName}')"><span>추천<br>${read.recCnt}</span></a>
 			</div>
 			<div class="text-right">
 				<button class="btn btn-default" id="list_btn">목록</button>&nbsp;
@@ -181,16 +181,28 @@
 		});
 	})
 	
-/* 	// 추천 버튼 클릭
-	function updateRecommend(idx){
-		var url = "marketRecommend.do?page="+idx+"&perPageNum=10";
-		$.ajax({
-			type:"GET",
-			url:url,
-			success:function(data){
-				
-			}
-		});
-	} */
+ 	// 추천 버튼 클릭
+	function updateRecommend(id){
+		if(id==""){
+			alert("로그인 하셔야 추천할 수 있습니다.");
+		}else{
+			$.ajax({
+				type:"POST",
+				url:"marketUpdateRecommend.do",
+				data:{
+					postNo:"${read.postNo}",
+					page:"${page.page}",
+					perPageNum:"${page.perPageNum}",
+					searchType:"${page.searchType}",
+					keyword:"${page.keyword}",
+					nickName:"${logOK.nickName}"
+				},
+				success:function(data){
+					$("#body1").html(data);
+				}
+			});
+		}
+
+	}
 </script>
 </html>

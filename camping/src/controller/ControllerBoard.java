@@ -79,7 +79,7 @@ public class ControllerBoard {
 
 	// 마켓 글 업데이트====================================================
 	@RequestMapping(value = "/marketUpdate.do", method = RequestMethod.POST)
-	public ModelAndView marketUpdate(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr)
+	public ModelAndView marketUpdate(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr, Model model)
 			throws Exception {
 		board.setBoardName("market");
 		boardDao.update(board);
@@ -87,6 +87,10 @@ public class ControllerBoard {
 		rttr.addAttribute("perPageNum", page.getPerPageNum());
 		rttr.addAttribute("searchType", page.getSearchType());
 		rttr.addAttribute("keyword", page.getKeyword());
+		
+		List<Reply> repList = replyDao.readReply(board);
+		model.addAttribute("repList", repList);
+		
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
 
@@ -154,6 +158,20 @@ public class ControllerBoard {
 	public ModelAndView marketReplyDelete(Board board, Reply reply, Page page, Model model) throws Exception{
 		board.setBoardName("market");
 		replyDao.deleteReply(board, reply);
+
+		model.addAttribute("page", page);
+
+		List<Reply> repList = replyDao.readReply(board);
+		model.addAttribute("repList", repList);
+		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
+	}
+	
+	// 마켓 추천 수 갱신
+	@RequestMapping(value = "/marketUpdateRecommend.do", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView marketUpdateRecommend(Board board, Page page, Model model) throws Exception {
+		board.setBoardName("market");
+		replyDao.updateRecommend(board);
 
 		model.addAttribute("page", page);
 

@@ -18,6 +18,15 @@ public class Board {
 	private String image;
 	private String boardName;
 	private int repCnt;
+	private int recCnt;
+
+	public int getRecCnt() {
+		return recCnt;
+	}
+
+	public void setRecCnt(int recCnt) {
+		this.recCnt = recCnt;
+	}
 
 	public int getRepCnt() {
 		return repCnt;

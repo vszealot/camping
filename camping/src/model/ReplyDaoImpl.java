@@ -22,7 +22,10 @@ public class ReplyDaoImpl implements ReplyDao {
 		String sql = "select * from " + board.getBoardName() + "Reply where postNo = " + board.getPostNo() + " ORDER BY rno";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectList("replyspace.readReply", map);
+		List<Reply> back = factory.openSession().selectList("replyspace.readReply", map);
+		factory.openSession().close();
+		return back;
+		
 	}
 
 	// 댓글 작성
@@ -43,6 +46,7 @@ public class ReplyDaoImpl implements ReplyDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		factory.openSession().delete("replyspace.deleteReply", map);
+		factory.openSession().close();
 
 	}
 
@@ -52,7 +56,27 @@ public class ReplyDaoImpl implements ReplyDao {
 		String sql = "select count(postno) from "+board.getBoardName()+"Reply where postno="+ board.getPostNo();
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
-		return factory.openSession().selectOne("replyspace.replyCount", map);
+		int back = factory.openSession().selectOne("replyspace.replyCount", map);
+		factory.openSession().close();
+		return back;
+	}
+
+	// 추천 수 갱신
+	@Override
+	public void updateRecommend(Board board) throws Exception {
+		try {
+			String sql = "insert into "+board.getBoardName()+"Recommend values ("+board.getPostNo()+",'"+board.getNickName()+"')";
+			Map<String, String> map = new HashMap<>();
+			map.put("sql", sql);
+			factory.openSession().insert("replyspace.updateRecommend", map);
+			factory.openSession().close();
+		}catch (Exception e) {
+			String sql2 = "delete "+board.getBoardName()+"RECOMMEND where nickname='" + board.getNickName() + "' and postno=" + board.getPostNo();
+			Map<String, String> map = new HashMap<>();
+			map.put("sql", sql2);
+			factory.openSession().delete("replyspace.deleteRecommend", map);
+			factory.openSession().close();
+		}
 	}
 
 }

@@ -31,7 +31,7 @@
 					<td>${list.nickName}</td>
 					<td style="text-align: center;"><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
 					<td style="text-align: center;">${list.click}</td>
-					<td style="text-align: center;">${list.recommend}</td>
+					<td style="text-align: center;">${list.recCnt}</td>
 				</tr>
 			</c:forEach>
 			<!-- 목록 끝 -->

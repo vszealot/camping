@@ -39,7 +39,7 @@ select * from marketrecommend
 SELECT a.postno, nickname, title, content,regdate,click,recommend,image,(select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt 
 from marketboard a;
 
-select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a) mb 
+select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETrecommend c where c.postno=a.postno) reccnt, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a) mb 
 where rNum between 1 and 10 order by postno desc
 
 select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a where title like '%' || '╠ш' || '%') mb 
@@ -64,4 +64,12 @@ CONSTRAINT mbmcpn FOREIGN KEY(postNo) references marketBoard ON DELETE CASCADE
 CONSTRAINT uimcnn FOREIGN KEY(nickName) references userInfo ON DELETE CASCADE
 )
 
+select * from MARKETRECOMMEND where postno=248
+delete MARKETRECOMMEND where postno=248 and nickname='╢одл'
+insert into marketRecommend values (248,'╢одл');
+
+
+
+select * from marketboard where postno=248
+select * from (select postno, nickname, title, content, regdate, click, image, (select count(*) from MARKETrecommend c where c.postno=a.postno) reccnt from marketBOARD a) mb where postno=248
 
