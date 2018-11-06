@@ -118,13 +118,7 @@ th{
 	
 	<div class="topmenu">
 		<ul>
-			<li>
-			<!-- //캠핑장소 검색------------------------------------------------------------ -->
-				<form method="post"  action="searchProc.do">
-			      <input type="search" name="searchWord" id="searchWord" placeholder="Search..." />
-				  <input type="submit" value="검색" />
-				</form>
-			</li>
+			
 			<li>
 				<a href="">전체</a>
 			</li>

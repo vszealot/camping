@@ -8,13 +8,21 @@
 		<![CDATA[SELECT * FROM CAMPING_TEST]]>
 	</select>
 
-	<select id="campListPage" resultType="campinfo"
-		parameterType="page">
+	<select id="campListPage" resultType="campinfo"	parameterType="page">
 		<![CDATA[SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST)AA)WHERE RN>=#{rowStart} AND RN<=#{rowEnd}]]>
 	</select>
-
+	
+	<select id="selectedListPage" resultType="campinfo"	parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	
 	<select id="campListCount" resultType="int">
 		<![CDATA[select count(campname) from CAMPING_TEST]]>
+	</select>
+	
+	<select id="selectedListCount" parameterType="Map" resultType="int">
+		<![CDATA[${sql}]]>
 	</select>
 	
 	<select id="searchListCount" parameterType="Map" resultType="int">

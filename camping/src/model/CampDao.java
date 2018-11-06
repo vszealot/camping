@@ -33,6 +33,16 @@ public class CampDao {
 	public int campListCount() {
 		return factory.openSession().selectOne("campspace.campListCount");
 	}
+	
+	public List<CampInfo> selectedListPage(Page page) {
+		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST WHERE addr1 like '%"
+				+ page.getSearchWord() + "%' or campname like '%" + page.getSearchWord() + "%' or addr2 like '%"
+				+ page.getSearchWord() + "%')AA)WHERE RN>=" + page.getRowStart() + " AND RN<=" + page.getRowEnd();
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectList("campspace.selectedListPage", map);
+	}
 
 	// °Ë»ö¸®½ºÆ® ÃÑ °¹¼ö ==========================================================
 	public int searchListCount(Page page) {
@@ -78,6 +88,15 @@ public class CampDao {
 		map.put("sql", sql);
 		return factory.openSession().selectOne("campspace.weatherMap", map);
 	}
+	public List<weather> campWeather2(List weatherAddr) {
+		
+		//System.out.println(weatherAddr.get(0).toString());
+		String sql = "select grid_x, grid_y from weather where stage_1='"+weatherAddr.get(0).toString()+"' and stage_2='"+weatherAddr.get(1).toString()+"'";
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("sql", sql);
+		return factory.openSession().selectList("campspace.weatherMap", map);
+	}
 
 	public tour tourCategory(tour tour) {
 		String sql = "select cat1, cat2, cat3 from tourDB where catcode1='"+tour.getCatcode1()+"'and catcode2='"+tour.getCatcode2()+"'and catcode3='"+tour.getCatcode3()+"'";
@@ -89,5 +108,6 @@ public class CampDao {
 		return factory.openSession().selectOne("campspace.tourMap", map);
 		
 	}
+
 
 }
