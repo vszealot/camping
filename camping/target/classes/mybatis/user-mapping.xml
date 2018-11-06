@@ -11,7 +11,7 @@
 
 	<select id="loginUserEntity" parameterType="userinfo" resultType="userinfo">
 		<![CDATA[SELECT * FROM USERINFO WHERE USERID=#{userId} AND PASSWORD=#{password}]]>
-	</select>
+	</select> 
 	
 	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
 		<![CDATA[
