@@ -9,6 +9,7 @@
 		<typeAlias type="entity.Page" alias="page" />
 		<typeAlias type="entity.Board" alias="board" />
 		<typeAlias type="entity.Reply" alias="reply" />
+		<typeAlias type="entity.ImageFile" alias="image" />
 	</typeAliases>
 
 	<!-- 쿼리문 -->

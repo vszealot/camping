@@ -55,5 +55,30 @@
 	<update id="updateClick">
 		<![CDATA[${sql}]]>
 	</update>
+	
+	<!-- 방금 생성된 글 번호 -->
+	<select id="postNo" resultType="int">
+		<![CDATA[${sql2}]]>
+	</select>
+	
+	<!-- 작성 -->
+	<insert id="insertfile">
+		<![CDATA[${sql}]]>
+	</insert>
+	
+	<!-- 이미지 주소 조회 -->
+	<select id="readImage" resultType="image">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<!-- DEL_GB 수정 -->
+	<update id="deleteFile">
+		<![CDATA[${sql2}]]>
+	</update>
+	
+	<!-- DEL_GB 수정 -->
+	<update id="updatefile">
+		<![CDATA[${sql2}]]>
+	</update>
 
 </mapper>

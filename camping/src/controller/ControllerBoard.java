@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import entity.Board;
+import entity.ImageFile;
 import entity.Page;
 import entity.Reply;
 import model.BoardDao;
@@ -34,9 +37,10 @@ public class ControllerBoard {
 
 	// 마켓 글 쓰기 =============================================================
 	@RequestMapping(value = "/marketInsert.do", method = RequestMethod.POST)
-	public ModelAndView marketInsert(Board board, Page page, Model model) throws Exception {
+	public ModelAndView marketInsert(Board board, Page page, Model model, MultipartHttpServletRequest request) throws Exception {
 		board.setBoardName("market");
-		boardDao.write(board);
+		boardDao.write(board, request);
+		
 		List<Board> list = boardDao.listSearch(board, page);
 
 		page.setTotalCount(boardDao.countSearch(board, page));
@@ -52,6 +56,10 @@ public class ControllerBoard {
 
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
+		
+		List<ImageFile> image = boardDao.readImage(board);
+		model.addAttribute("image", image);
+		
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
 	
@@ -67,29 +75,36 @@ public class ControllerBoard {
 
 	// 마켓 글 수정 ==================================================
 	@RequestMapping(value = "/marketModify.do", method = RequestMethod.POST)
-	public ModelAndView marketModify(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr)
+	public ModelAndView marketModify(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr, Model model)
 			throws Exception {
 		board.setBoardName("market");
-		rttr.addAttribute("page", page.getPage());
-		rttr.addAttribute("perPageNum", page.getPerPageNum());
-		rttr.addAttribute("searchType", page.getSearchType());
-		rttr.addAttribute("keyword", page.getKeyword());
-		return new ModelAndView("board/marketModify", "modify", board);
-	}
-
-	// 마켓 글 업데이트====================================================
-	@RequestMapping(value = "/marketUpdate.do", method = RequestMethod.POST)
-	public ModelAndView marketUpdate(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr, Model model)
-			throws Exception {
-		board.setBoardName("market");
-		boardDao.update(board);
 		rttr.addAttribute("page", page.getPage());
 		rttr.addAttribute("perPageNum", page.getPerPageNum());
 		rttr.addAttribute("searchType", page.getSearchType());
 		rttr.addAttribute("keyword", page.getKeyword());
 		
+		List<ImageFile> image = boardDao.readImage(board);
+		model.addAttribute("image", image);
+		
+		return new ModelAndView("board/marketModify", "modify", board);
+	}
+
+	// 마켓 글 업데이트====================================================
+	@RequestMapping(value = "/marketUpdate.do", method = RequestMethod.POST)
+	public ModelAndView marketUpdate(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr,
+			Model model, MultipartHttpServletRequest request, Map<String,ImageFile> mapmap) throws Exception {
+		board.setBoardName("market");
+		boardDao.update(board, request, mapmap);
+		rttr.addAttribute("page", page.getPage());
+		rttr.addAttribute("perPageNum", page.getPerPageNum());
+		rttr.addAttribute("searchType", page.getSearchType());
+		rttr.addAttribute("keyword", page.getKeyword());
+		System.out.println(mapmap);
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
+		
+		List<ImageFile> image = boardDao.readImage(board);
+		model.addAttribute("image", image);
 		
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
@@ -150,6 +165,10 @@ public class ControllerBoard {
 
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
+		
+		List<ImageFile> image = boardDao.readImage(board);
+		model.addAttribute("image", image);
+		
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
 	
@@ -163,6 +182,10 @@ public class ControllerBoard {
 
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
+		
+		List<ImageFile> image = boardDao.readImage(board);
+		model.addAttribute("image", image);
+		
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
 	
@@ -177,6 +200,10 @@ public class ControllerBoard {
 
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
+		
+		List<ImageFile> image = boardDao.readImage(board);
+		model.addAttribute("image", image);
+		
 		return new ModelAndView("board/marketRead", "read", boardDao.read(board));
 	}
 	

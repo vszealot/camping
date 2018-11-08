@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ include file="/WEB-INF/main.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@
 	<section class="container">
 	<h2>유저 장터</h2>
 	<div style="width: 50em;margin: 0 auto;">
-		<form role="form" method="post" autocomplete="off" action="marketUpdate.do">
+		<form role="form" method="post" autocomplete="off" action="marketUpdate.do" enctype="multipart/form-data">
 			<input type="hidden" id="page" name="page" value="${page.page}" readonly="readonly"> 
 			<input type="hidden" id="perPageNum" name="perPageNum" value="${page.perPageNum}" readonly="readonly">
 			<input type="hidden" id="searchType" name="searchType" value="${page.searchType}" readonly="readonly"> 
@@ -37,28 +38,22 @@
 					<input type="text" id="nickName" name="nickName" class="form-control" value="${modify.nickName}" readonly="readonly"/>
 				</div>
 			</div>
-			<div class="form-group">
-				<!-- <label for="image" class="col-sm-2 control-label">이미지 경로</label> -->
-				<div class="col-sm-12">
-					<input type="text" id="image" name="image" class="form-control" value="${modify.image}" />
+			<div id="fileDiv">
+				<div class="form-group">
+					<label for="file" class="col-sm-12 control-label">사진 등록</label>
 				</div>
+				<c:forEach items="${image}" var="image" varStatus="i">
+					<div class="form-group">
+						<input type="hidden" id="IDX_${i.index}" name="IDX" value="${image.IDX}">${image.IDX}
+						<input type="file" id="file_${i.index}" name="file_${i.index}" class="col-sm-9"/>
+						<label class="col-sm-2">${image.ORIGINAL_FILE_NAME}</label>
+						<a href="#this" class="btn btn-default" id="delete" name="delete">삭제</a>
+					</div>
+				</c:forEach>
 			</div>
 			<div style="text-align: center;">
-				<button class="btn btn-default" type="submit">수정</button>&nbsp;<button class="btn btn-default" id="cancel_btn">취소</button>
+				<a href="#this" class="btn btn-default" id="addFile">파일 추가</a>&nbsp;<button class="btn btn-default" type="submit">수정</button>&nbsp;<button class="btn btn-default" id="cancel_btn">취소</button>
 			</div>
-<%-- 			<p>
-				<label for="title">글 제목</label><input type="text" id="title" name="title" value="${modify.title}"/>
-			</p>
-			<p>
-				<label for="content">글 내용</label>
-				<textarea id="content" name="content">${modify.content}</textarea>
-			</p>
-			<p>
-				<label for="image">이미지 경로</label><input type="text" id="image" name="image" value="${modify.image}"/>
-			</p>
-			<p>
-				<button type="submit">수정</button><button id="cancel_btn">취소</button>
-			</p> --%>
 		</form>
 	</div>
 	</section>
@@ -73,5 +68,32 @@
 		formObj.attr("method", "post");
 		formObj.submit();
 	});
+	
+	var gfv_count = '${fn:length(image)+1}';
+
+	$("#addFile").on("click", function(e){ //파일 추가 버튼
+	    e.preventDefault();
+	    fn_addFile();
+	});
+	 
+	$("a[name='delete']").on("click", function(e){ //삭제 버튼
+	    e.preventDefault();
+	    fn_deleteFile($(this));
+	});
+
+	function fn_addFile(){
+	    var str = "<div class='form-group'><input type='file' id='file' name='file_"+(gfv_count++)+"' class='col-sm-11'/>";
+	    	str += "<a href='#this' class='btn btn-default' id='delete' name='delete'>삭제</a></div>";
+
+	    $("#fileDiv").append(str);
+	    $("a[name='delete']").on("click", function(e){ //삭제 버튼
+	        e.preventDefault();
+	        fn_deleteFile($(this));
+	    });
+	}
+	 
+	function fn_deleteFile(obj){
+	    obj.parent().remove();
+	}
 </script>
 </html>

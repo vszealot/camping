@@ -1,19 +1,23 @@
 package model;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import entity.Board;
+import entity.ImageFile;
 import entity.Page;
 
 public interface BoardDao {
 	// 작성
-	public void write(Board board) throws Exception;
+	public void write(Board board, MultipartHttpServletRequest request) throws Exception;
 
 	// 조회
 	public Board read(Board board) throws Exception;
 
 	// 수정
-	public void update(Board board) throws Exception;
+	public void update(Board board, MultipartHttpServletRequest request, Map<String,ImageFile> mapmap) throws Exception;
 
 	// 삭제
 	public void delete(Board board) throws Exception;
@@ -35,4 +39,7 @@ public interface BoardDao {
 	
 	// 조회수 증가
 	public void updateClick(Board board) throws Exception;
+	
+	// 이미지 주소 조회
+	public List<ImageFile> readImage(Board board) throws Exception;
 }

@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.util.WebUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,7 +14,7 @@
 	<section class="container">
 	<h2>유저 장터</h2>
 	<table role="form"></table>
-		<form role="form" method="post" autocomplete="off" action="marketInsert.do">
+		<form role="form" method="post" autocomplete="off" action="marketInsert.do" enctype="multipart/form-data">
 			<input type="hidden" id="page" name="page" value="${page.page}" readonly="readonly"> 
 			<input type="hidden" id="perPageNum" name="perPageNum" value="${page.perPageNum}" readonly="readonly">
 			<input type="hidden" id="searchType" name="searchType" value="${page.searchType}" readonly="readonly"> 
@@ -36,10 +37,26 @@
 					<td style="text-align: center;" colspan="3"><h3>${read.title}</h3></td>
 				</tr>
 				<tr>
-					<td style="height: 200px;" colspan="3">${read.content}</td>
+					<td style="height: 200px;" colspan="3">
+						<c:forEach items="${image}" var="image">
+							<img src="storage/${image.STORED_FILE_NAME}" class="img-thumbnail"><br><br>
+						</c:forEach>
+						${read.content}
+					</td>
 				</tr>
 				<tr>
-					<td colspan="3">이미지 : ${read.image}</td>
+					<td colspan="3">
+					<div class="form-inline">
+						<div class="form-group">
+							<label for="file" class="col-sm-12 control-label">파일명 : </label>
+						</div>
+						<c:forEach items="${image}" var="image">
+							<div class="form-group">
+								<input type="text" readonly="readonly" class="form-control input-sm" value="${image.ORIGINAL_FILE_NAME}"/>
+							</div>
+						</c:forEach>
+					</div>
+					</td>
 				</tr>
 				<tr><td><!-- 밑줄생기기용 --></td></tr>
 			</table>
@@ -54,7 +71,7 @@
 				</c:if>
 				<c:if test="${logOK.nickName ne read.nickName}">
 					<button class="btn btn-default" disabled="disabled" id="modify_btn">수정</button>&nbsp;
-					<button class="btn btn-default" disabled="disabled" id="delete_btn">삭제</button>
+					<button class="btn btn-default" disabled="disabled">삭제</button>
 				</c:if>
 			</div>
 
@@ -96,7 +113,7 @@
 					<div class="form-group">
 						<input type="text" id="nickName2" name="nickName" class="col-sm-1 control-label" value="${logOK.nickName}" readonly="readonly">
 						<div class="col-sm-10">
-							<textarea placeholder="내용을 입력하세요." id="content2" name="content" class="form-control"></textarea>
+							<textarea placeholder="내용을 입력하세요." rows="1" id="content2" name="content" class="form-control"></textarea>
 						</div>
 					</div>
 					<button type="button" class="repSubmit">작성</button>
@@ -131,8 +148,11 @@
 			formObj.attr("action", "marketDelete.do");
 			formObj.attr("method", "post");
 			formObj.submit();
+		}else{
+			formObj.attr("action", "marketRead.do");
+			formObj.attr("method", "post");
+			formObj.submit();
 		}
-
 	});
 	
 	// 폼을 변수에 저장
