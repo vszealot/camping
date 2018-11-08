@@ -44,7 +44,7 @@
 				</div>
 				<c:forEach items="${image}" var="image" varStatus="i">
 					<div class="form-group">
-						<input type="hidden" id="IDX_${i.index}" name="IDX" value="${image.IDX}">${image.IDX}
+						<input type="hidden" id="IDX" name="IDX_${i.index}" value="${image.IDX}">${image.IDX}
 						<input type="file" id="file_${i.index}" name="file_${i.index}" class="col-sm-9"/>
 						<label class="col-sm-2">${image.ORIGINAL_FILE_NAME}</label>
 						<a href="#this" class="btn btn-default" id="delete" name="delete">삭제</a>

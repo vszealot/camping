@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
 import entity.Board;
-import entity.ImageFile;
 
 @Component
 public class FileUtils {
@@ -58,7 +57,7 @@ public class FileUtils {
         return list;
     }
     
-    public List<Map<String, Object>> parseUpdateFileInfo(Board board, MultipartHttpServletRequest request, Map<String,ImageFile> mapmap) throws Exception{
+    public List<Map<String, Object>> parseUpdateFileInfo(Board board, MultipartHttpServletRequest request, Map<String,String> mapmap) throws Exception{
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
          
@@ -95,7 +94,6 @@ public class FileUtils {
             else{
                 requestName = multipartFile.getName();
                 idx = "IDX_"+requestName.substring(requestName.indexOf("_")+1);
-                System.out.println(idx);
                 if(mapmap.get(idx) != null){
                     listMap = new HashMap<String,Object>();
                     listMap.put("IS_NEW", "N");

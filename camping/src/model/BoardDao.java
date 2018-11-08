@@ -17,7 +17,7 @@ public interface BoardDao {
 	public Board read(Board board) throws Exception;
 
 	// 수정
-	public void update(Board board, MultipartHttpServletRequest request, Map<String,ImageFile> mapmap) throws Exception;
+	public void update(Board board, MultipartHttpServletRequest request, Map<String,String> mapmap) throws Exception;
 
 	// 삭제
 	public void delete(Board board) throws Exception;

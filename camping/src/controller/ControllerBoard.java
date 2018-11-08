@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -92,14 +93,13 @@ public class ControllerBoard {
 	// 마켓 글 업데이트====================================================
 	@RequestMapping(value = "/marketUpdate.do", method = RequestMethod.POST)
 	public ModelAndView marketUpdate(Board board, @ModelAttribute("page") Page page, RedirectAttributes rttr,
-			Model model, MultipartHttpServletRequest request, Map<String,ImageFile> mapmap) throws Exception {
+			Model model, MultipartHttpServletRequest request, @RequestParam Map<String, String> mapmap) throws Exception {
 		board.setBoardName("market");
 		boardDao.update(board, request, mapmap);
 		rttr.addAttribute("page", page.getPage());
 		rttr.addAttribute("perPageNum", page.getPerPageNum());
 		rttr.addAttribute("searchType", page.getSearchType());
 		rttr.addAttribute("keyword", page.getKeyword());
-		System.out.println(mapmap);
 		List<Reply> repList = replyDao.readReply(board);
 		model.addAttribute("repList", repList);
 		

@@ -41,8 +41,9 @@
 				</div>
 			</div>
 			<div style="text-align: center;">
-				<a href="#this" class="btn btn-default" id="addFile">파일 추가</a>
-				<button class="btn btn-default" type="submit">작성</button>
+				<a href="#this" class="btn btn-default" id="addFile">파일 추가</a>&nbsp;
+				<button class="btn btn-default" type="submit">작성</button>&nbsp;
+				<a role="button" href="marketListSearch.do" class="btn btn-default">취소</a>
 			</div>
 		</form>
 		</div>

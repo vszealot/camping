@@ -107,6 +107,11 @@
 			}
 		});
 	};
+	
+	// 엔터키 입력
+	$("#SEARCH_KEYWORD").keyup(function(e){if(e.keyCode == 13)
+		$('#searchBtn').click();
+	});
 
 </script>
 </html>

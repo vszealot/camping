@@ -64,7 +64,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	// ¼öÁ¤
 	@Override
-	public void update(Board board, MultipartHttpServletRequest request, Map<String,ImageFile> mapmap) throws Exception {
+	public void update(Board board, MultipartHttpServletRequest request, Map<String,String> mapmap) throws Exception {
 		String sql = "update " + board.getBoardName() + "BOARD set title='" + board.getTitle() + "', content='"
 				+ board.getContent() + "', image='" + board.getImage() + "' where postno=" + board.getPostNo();
 		Map<String, String> map = new HashMap<>();
@@ -89,13 +89,14 @@ public class BoardDaoImpl implements BoardDao {
 	        			+ "values("+board.getBoardName()+"file_seq.nextval,"+board.getPostNo()+",'"+board.getNickName()+"',"
 	        			+ "'"+String.valueOf(tempMap.get("ORIGINAL_FILE_NAME"))+"','"+String.valueOf(tempMap.get("STORED_FILE_NAME"))+"',"+String.valueOf(tempMap.get("FILE_SIZE"))+")";
 	        	map2.put("sql", sql3);
+	        	
 	        	factory.openSession().insert("boardspace.insertfile", map2);
 	        	factory.openSession().close();
 	        }
 	        if(tempMap.get("IS_NEW").equals("N")){
 	        	String sql4 = "UPDATE "+board.getBoardName()+"FILE SET DEL_GB = 'N' WHERE idx=" + String.valueOf(tempMap.get("FILE_IDX"));
 	        	map2.put("sql2", sql4);
-	        	System.out.println(sql4);
+
 	        	factory.openSession().update("boardspace.updatefile", map2);
 	        	factory.openSession().close();
 	        }
