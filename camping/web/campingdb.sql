@@ -40,7 +40,7 @@ where rNum between 1 and 10 order by postno desc
 select * from (select postno, nickname, title, content, regdate, click, recommend, image, (select count(*) from MARKETREPLY b where b.postno=a.postno) repcnt,row_number() over(order by postno desc) as rNum from marketBOARD a where title like '%' || '±Û' || '%') mb 
 where rNum between 1 and 10 order by postno desc
 
-create table marketBoard (
+create table qnaBoard (
 postNo number not null,
 nickName varchar2(30) not null,
 title varchar2(30) not null,
@@ -50,29 +50,29 @@ click number default 0,
 recommend number default 0,
 image varchar2(40),
 primary key(postNo),
-CONSTRAINT uimbnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+CONSTRAINT uiqbnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
 );
 
-create table marketReply (
+create table qnaReply (
 postNo number not null,
 rNo number not null,
 content varchar2(2000) not null,
 nickName varchar2(30) not null,
 regDate date default sysdate,
 primary key(postNo, rno),
-CONSTRAINT mbmrpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
-CONSTRAINT uimrnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+CONSTRAINT mbqrpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uiqrnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
 );
 
-create table marketRecommend(
-postNo number not null;
-nickName varchar2(30) not null;
+create table qnaRecommend(
+postNo number not null,
+nickName varchar2(30) not null,
 primary key(postNo, nickName),
-CONSTRAINT mbmcpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
-CONSTRAINT uimcnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
-)
+CONSTRAINT mbqcpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uiqcnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
 
-CREATE TABLE marketFILE(
+CREATE TABLE qnaFILE(
 IDX number,
 postNo NUMBER NOT NULL,
 nickName VARCHAR2(30) NOT NULL,
@@ -82,8 +82,8 @@ FILE_SIZE NUMBER,
 regDate  DATE DEFAULT SYSDATE NOT NULL,
 DEL_GB VARCHAR2(1 BYTE) DEFAULT 'N' NOT NULL,
 PRIMARY KEY (IDX),
-CONSTRAINT mbmfpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
-CONSTRAINT uimfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+CONSTRAINT mbqfpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uiqfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
 );
 insert into MARKETFILE(idx, postNo, nickname, ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE) values(marketfile_seq.nextval,1024,'vsÁú·µ','¿À¸®Áö³Î','½ºÅä¾î',234)
 delete marketfile
@@ -97,10 +97,12 @@ select * from MARKETRECOMMEND where postno=248
 delete MARKETRECOMMEND where postno=248 and nickname='´ÏÄÌ'
 insert into marketRecommend values (248,'´ÏÄÌ');
 
-market_seq
+create sequence qnar_seq;
+create sequence qnafile_seq;
+
 marketr_seq
 marketfile_seq
-
+select * from user_sequences
 select * from marketboard where postno=248
 select * from (select postno, nickname, title, content, regdate, click, image, (select count(*) from MARKETrecommend c where c.postno=a.postno) reccnt from marketBOARD a) mb where postno=248
 

@@ -32,7 +32,7 @@ public class ReplyDaoImpl implements ReplyDao {
 	@Override
 	public void writeReply(Board board, Reply reply) throws Exception {
 		String sql = "insert into " + board.getBoardName() + "reply(postno, rno, content, nickname) values ("
-				+ reply.getPostNo() + ",marketR_seq.nextval,'" + reply.getContent() + "','" + reply.getNickName()
+				+ reply.getPostNo() + ","+board.getBoardName()+"R_seq.nextval,'" + reply.getContent() + "','" + reply.getNickName()
 				+ "')";
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
