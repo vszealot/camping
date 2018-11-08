@@ -32,7 +32,7 @@
     .loginjoin a{
     	padding: 20px;
     }
-    .login{
+    .login_page{
     	margin: 550px;
     	margin-bottom: 350px;
     	margin-top: 60px; 
@@ -45,6 +45,7 @@
     }
     .loginAPI{
     	text-align: center;
+    	padding: 10px;
     }
     .facebookBtn{
     	display: inline-block;
@@ -58,10 +59,6 @@
     	height: 50px;
     	width: 100px;
     }
-    .checkText{
-    	font-size: 15px;
-    	color: red;
-    }
 </style>
 </head>
 <body>
@@ -72,23 +69,22 @@
 </div>
 
 <!-- 로그인 페이지 -->
-<div class="login">
+<div class="login_page">
 	<form action="loginProc.do" method="post">
 		 <div class="form-group">
-		 	 <label for="userId">아이디</label><br><br>
+		 	 <label for="userId">아이디</label>
            	 <input type="text" class="form-control" name="userId" id="userId" placeholder="아이디를 입력하세요" required/>
 		 </div><br><br>
 		
 		 <div class="form-group">
 		 	 <label for="password">패스워드</label><br><br>
            	 <input type="password" class="form-control" name="password" id="password" placeholder="비밀번호를 입력하세요" required/>
-		 </div><br>
+		 </div><br><br><br>
 
-		<div id="checkText" class="checkText">일치하는 아이디나 비밀번호가 존재하지 않습니다</div><br><br>
+		<div id="checkText" class="checkText" style="color:red">일치하는 아이디나 비밀번호가 존재하지 않습니다</div><br><br>
 
 		<!-- 로그인 버튼 -->
 		<input type="submit" value="로그인" class="btn btn-primary" style= "width:226px;"/><br><br>  
-		
 		
 		<!-- 아이디/비밀번호 찾기 -->
 		<div class="searchIdPassword">
@@ -103,7 +99,9 @@
 	<fb:login-button scope="public_profile, email" onlogin="checkLoginState();" class="facebookBtn"></fb:login-button>
 	
 	<!-- 카카오 버튼 추가 -->
-	<a id="kakao-login-btn" class="kakaoBtn"></a>
+	<a id="kakao-login-btn" class="kakaoBtn">
+		<img src="image/kakaolink_btn_medium.png">
+	</a>
 	
 	<!-- 네이버 버튼 추가 -->
 	<div id="naverIdLogin" class="naverBtn"></div>
@@ -114,8 +112,8 @@
 				isPopup : false,
 				loginButton : {
 					color : "green",
-					type : 2,
-					height : 30
+					type : 1,
+					height : 68
 				},
 				callbackHandle: true
 			});

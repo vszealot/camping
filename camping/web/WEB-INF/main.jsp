@@ -16,6 +16,7 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <style>
 div#header {
 	background-color: #151515;
@@ -82,6 +83,35 @@ li {
 th{
 	text-align: center;
 }
+.dropbtn{
+	background-color: #151515;
+	padding: 0px;
+	border: 0px;
+	outline: none;
+	font-weight: bold;
+}
+/* 쪽지함 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    background-color: #f1f1f1;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+    width: 150px;
+}
+.show {display: block;}
+.dropdown a:hover {background-color: #ddd;}
+.dropdown-content a {
+    color: black;
+    padding: 8px 0px;
+    text-decoration: none;
+    display: block;
+}
 
 </style>
 </head>
@@ -102,7 +132,12 @@ th{
 				
 			</c:if>
 			<c:if test="${!empty logOK}">
-				<div class="hello"><b>${logOK.nickName}</b>님이 환영합니다</div>
+				<div class="hello">
+					<div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn">${logOK.nickName}</button>님이 환영합니다
+						
+					</div>
+				</div>
 				<a href="/camping/logout.do">로그아웃</a>
 				<a href="/camping/update.do">회원정보수정</a>
 				<!-- 마스터 계정 로그인 -->
@@ -111,6 +146,10 @@ th{
 					<a href="/camping/campEnrollWait.do">캠핑장 등록 대기</a>
 					<a href="/camping/userInfoView.do">회원목록조회</a>
 				</c:if>
+				<!-- 쪽지함 -->
+				<div id="myDropdown" class="dropdown-content">
+					<a href="/camping/noteReceiveView.do">쪽지함 보기</a>
+				</div>
 			</c:if>
 			</li>
 		</ul>
@@ -132,6 +171,26 @@ th{
 	</div>
 </div><!-- end header -->
 
+<!-- 쪽지함 -->
+<script>
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
 </body>
 </html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notenamespace">
+	<select id="noteReceiveView" parameterType="noteinfo" resultType="noteinfo">
+		<![CDATA[
+			SELECT * FROM NOTES WHERE RECV_NAME=#{name}
+		]]>
+	</select> 
+
+	<select id="noteSendView" parameterType="noteinfo" resultType="noteinfo">
+		<![CDATA[
+			SELECT * FROM NOTES WHERE SENT_NAME=#{name}
+		]]>
+	</select> 
+	
+	<insert id="sendingNoteFunc" parameterType="noteinfo">
+		<![CDATA[
+			INSERT INTO NOTES(NOTENUM,RECV_NAME,SENT_NAME,TITLE,NOTE) 
+			VALUES(NO_SEQ.NEXTVAL,#{recv_name},#{sent_name},#{title},#{note})
+		]]>
+	</insert> 
+
+</mapper>

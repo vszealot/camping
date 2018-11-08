@@ -10,6 +10,7 @@
 		<typeAlias type="entity.Board" alias="board" />
 		<typeAlias type="entity.Reply" alias="reply" />
 		<typeAlias type="entity.ImageFile" alias="image" />
+		<typeAlias type="entity.Note" alias="noteinfo" />
 	</typeAliases>
 
 	<!-- 쿼리문 -->
@@ -19,5 +20,6 @@
 		<mapper resource="mybatis/board-mapping.xml" />
 		<mapper resource="mybatis/reply-mapping.xml" />
 		<mapper resource="mybatis/master-mapping.xml" />
+		<mapper resource="mybatis/note-mapping.xml" />
 	</mappers>
 </configuration>
