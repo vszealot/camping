@@ -67,16 +67,17 @@ function realTimeWeather(x, y, z) {
 	today = year + "" + month + "" + day;
 
 	/* 좌표 */
-	var _nx = x, _ny = y, apikey = "yEFgAlg8KiTrtdiifs9DSROxSqspwOJf1TUHvYF0RPUpi%2B%2B8ivWHLwKxWYRM%2BH%2Bp41FJKJokzeAOJLAZJXCwPg%3D%3D", ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
+	var _nx = x, _ny = y, apikey = "yEFgAlg8KiTrtdiifs9DSROxSqspwOJf1TUHvYF0RPUpi%2B%2B8ivWHLwKxWYRM%2BH%2Bp41FJKJokzeAOJLAZJXCwPg%3D%3D", 
+	ForecastGribURL = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData";
 	ForecastGribURL += "?ServiceKey=" + apikey;
 	ForecastGribURL += "&base_date=" + today;
 	ForecastGribURL += "&base_time=" + hours + "00";
 	ForecastGribURL += "&nx=" + _nx + "&ny=" + _ny;
 	ForecastGribURL += "&pageNo=1&numOfRows=225";
 	ForecastGribURL += "&_type=json";
-
-	$
-			.ajax({
+	console.log(ForecastGribURL);
+	
+			$.ajax({
 				url : ForecastGribURL,
 				crossOrigin : true,
 				type : "GET",

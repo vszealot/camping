@@ -7,7 +7,203 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Hi+Melody|Jua&amp;subset=korean" rel="stylesheet">
 <style>
+
+* {
+font-family: 'Jua', sans-serif;
+font-weight : 500;
+}
+.campname{
+  font-family: 'Jua', sans-serif;
+  font-size:20px;
+  letter-spacing: 1.5px;
+}
+.distance{
+	color:#FF8224;
+	font-family: 'Jua', sans-serif;
+	font-weight: 500;
+	font-size:15px;
+	letter-spacing: 1.5px;
+}
+
+
+.addr{
+	color:#363636;
+	font-family: 'Jua', sans-serif;
+	font-weight: 100;
+	font-size:13px;
+	letter-spacing: 1.5px;
+}
+
+.phone{
+	color:#363636;
+	font-family: 'Jua', sans-serif;
+	font-weight: 100;
+	font-size:13px;
+	letter-spacing: 1.5px;
+}
+div#select_box {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 34px;
+    background: url(http://cfile1.uf.tistory.com/image/27423E43565F8EF627B215) 0 center no-repeat;
+}
+
+div#select_box label {
+  position: absolute;
+  font-size: 13px;
+  font-family: 'Jua', sans-serif;
+  color: #fff;
+  top: 9px;
+  left: 12px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+div#select_box select#color {
+  width: 100%;
+  height: 32px;
+  min-height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* IE 8 */
+}
+
+.search{
+padding-left:40px;
+padding-bottom: 5px;
+}
+/* 검색창 css */
+.green_window {
+	display: inline-block;
+	width: 366px; height: 34px;
+	border: 3px solid #212121;
+	background: white;
+}
+.input_text {
+	width: 348px; height: 21px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 21px;
+	font-size: 16px;
+	font-family: 'Jua', sans-serif;
+	outline: none;
+}
+.sch_smit2 {
+	width: 54px; height: 34px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: white;
+	color: white;
+	font-size:16px;
+	border-radius: 1px;
+	cursor: pointer;
+	font-family: 'Jua', sans-serif;
+}
+.sch_smit2:hover {
+	background: #747474;
+}
+
+.sch_smit {
+	width: 54px; height: 34px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: #212121;
+	color: white;
+	font-size:16px;
+	border-radius: 1px;
+	cursor: pointer;
+	font-family: 'Jua', sans-serif;
+}
+.sch_smit:hover {
+	background: #747474;
+}
+
+
+.button-7{
+  width:68px;
+  height:34px;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:0 0 5px 5px;
+  display:inline-grid;
+}
+.normal{
+  font-family: 'Jua', sans-serif;
+  font-size:16px;
+  color:#34495e;
+  text-decoration:none;
+  line-height:33px;
+  transition:all 1s ease;
+  z-index:2;
+  position:relative;
+}
+
+.special{
+	font-family: 'Jua', sans-serif;
+  font-size:16px;
+  text-decoration:none;
+  line-height:33px;
+  transition:all 1s ease;
+  z-index:2;
+  position:relative;
+	color:orange;
+}
+
+.eff-7{
+  width:68px;
+  height:34px;
+  border:0px solid #34495e;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+  box-sizing:border-box;
+}
+.button-7:hover .eff-7{
+  border:20px solid #6799FF;
+}
+.button-7:hover a{
+  color:#fff;
+}
+
+
+
+.camptable{
+border-bottom :1px solid gray;
+border-top:1px solid gray;
+width:100%;
+padding:0px;
+
+}
+
+.body{
+width : 1519px;
+height : 690px;
+overflow-y: hidden;
+overflow-x: hidden;
+padding:0px;
+margin:0;
+
+}
+
+/* img : 캠핑장 사진 태그 */
+.img{
+padding: 10px;
+marding: 10px;
+
+}
+.pagination{
+margin-left: auto;
+margin-right: auto;
+display:table;
+}
 .inline{
 display : inline;
 }
@@ -15,49 +211,75 @@ ul{
 list-style: none;
 }
 .left-box {
+	overflow-y: scroll;
+	padding : 0px;
+	margin : 0px;
 	display: inline-block;
-	width: 35%;
-	border: 1px solid black;
+	width: 512px;
+	height:480px;
+	border-top: 1px solid gray;
 	font-size: 12px;
+	
 }
 
 .right-box {
+	padding : 0px;
+	margin : 0px;
 	display: inline-block;
-	position : fixed;
-	width: 64%;
-	height: 550px;
-	border: 1px solid black;
+	position : absolute;
+	top:120px;
+	width: 1007px;
+	height:580px;
+	border: 1px solid white;
+}
+/* 사이드 정보 css */
+.scroll-menu{
+    top: 120px;
+    right: 780px;
+    cursor: pointer;
 }
 
-.w3-sidebar{height:800px;width:800px;background-color:#F6F6F6;position:fixed; top:21%; right:10px;z-index:1;overflow:auto};
-.w3-bar-block{
+.scroll-menu:hover{
+  opacity: 0.9;
+}
+
+.side-open{
+    top: 120px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.side-open:hover{
+  opacity: 0.5;
+}
+
+
+.sidebar{
+height:85.5%;
+width:800px;background-color:#F6F6F6;position:fixed; top:120px; right:0px;z-index:1; overflow-x : hidden; overflow-y : scroll;}
+.sideblock{
+text-align:left;
+display:block;border:none;white-space:normal;float:none;outline:0;
+
+}
+
+.sidedarkgrey{z-index: 3;color:black!important;background-color:#F6F6F6!important};
+.sideanimate{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:600px;opacity:0} to{right:0;opacity:1}}
+
+
+.sideitem{
 width:100%;
-min-width:100%;
-width:100%;text-align:left;padding:8px 16px;
+display:block;
+padding:8px 16px;
+border:none;
+white-space:normal;
+float:none;
+outline:0;
 text-align:center;
+};
 
-width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0;
+.sidelarge{font-size:18px!important}
 
-}
-
-.w3-dark-grey{color:black!important;background-color:#F6F6F6!important};
-.w3-animate-right{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:600px;opacity:0} to{right:0;opacity:1}}
-
-
-.w3-bar-item{padding:8px 16px;float:right;width:auto;border:none;display:block;outline:0;
-width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0;
-text-align:center;};
-
-.w3-button{width:100%};
-.w3-large{font-size:18px!important}
-
-
-.w3-button:hover{color:#000!important;background-color:#ccc!important}
-
-
-.w3-white{position:fixed; top:50%; right:0px;color:#000!important;background-color:#fff!important}
-
-.w3-xxlarge{font-size:20px!important}
 
 .w3-container:after,.w3-container:before{content:"";display:table;clear:both};
 .weather-temp{
@@ -71,14 +293,37 @@ text-align:center;};
 <script src="<c:url value="/js/tour.js" />"></script>
 <script src="<c:url value="/js/dust.js" />"></script>
 <script src="<c:url value="/js/distance.js" />"></script>
+<script src="<c:url value="/js/selectloc.js" />"></script>
+<script src="<c:url value="/js/seqdistn.js" />"></script>
+<script src="<c:url value="/js/inquiry.js" />"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 </head>
-<body>
-	<br>
-	<div class='left-box'>
-	<input type="button" value="거리순" onclick="javascript:seqdistn()"><input type="button" value="조회순"><input type="button" value="추천순">
-	<select id="searchWord" name="searchWord" onchange="javascript:selectloc(this)">
+<body class="body">
+	
+	<div class="button-7">
+    <div class="eff-7"></div>
+    <a class="special" href="javascript:seqdistn(1)" style="text-decoration: none;">업데이트순</a>
+  	</div>
+
+	<div class="button-7">
+    <div class="eff-7"></div>
+    <a class="normal" href="javascript:seqdistn(1)" style="text-decoration: none;"> 거리순 </a>
+  	</div>
+  	
+  	<div class="button-7">
+    <div class="eff-7"></div>
+    <a class="normal" href="javascript:inquiry()" style="text-decoration: none;"> 조회순 </a>
+  	</div>
+  	
+  	<div class="button-7">
+    <div class="eff-7"></div>
+    <a class="normal"href="javascript:" style="text-decoration: none;"> 추천순 </a>
+  	</div>
+  	
+  	<div id="select_box">
+  	<label class="label" for="color">지역을 선택하세요</label>
+	<select class="searchWord" id="color" name="searchWord" title="select color" onchange="javascript:selectloc(this)">
 	    <option value="" selected>지역별</option>
 	    <option value="서울특별시">서울특별시</option>
 	    <option value="경기도">경기도</option>
@@ -98,71 +343,87 @@ text-align:center;};
 	    <option value="전라북도">전라북도</option>
 	    <option value="제주도">제주도</option>
 	</select>
-		<form name="frm" action="javascript:selectloc()">
-				<input type="text" id="search">
-				<input type="submit" value="검색" />
+	</div>
+		<form class="search" id="search" name="frm" action="javascript:selectloc()">
+		<span class='green_window'>
+			<input type='text' id="search" class='input_text' />
+		</span>
+		<button type='submit' class='sch_smit'>검색</button>
 		</form>
-		<table id="listTable" border="1">
-			
-			<%-- <c:if test="${!empty campList}">
-
-				<c:forEach items="${campList}" var="ob"> --%>
-					<!-- <tr id = "tr"> -->
-						<%-- <td>${ob.campName}</td>
-						<td id="lat">${ob.x}</td>
-						<td id="lng">${ob.y}</td>
-						<td><a href="javascript:abcd('${ob.x}','${ob.y}','${ob.campName}','${ob.phone}','${ob.addr1}','${ob.addr2}')" onclick="w3_open()">${ob.addr1}</a></td>
-						<td>${ob.phone}</td> --%>
-					<!-- </tr> -->
-				<%-- </c:forEach>
-			</c:if> --%>
-		</table>
 		
-		<div id="paging">
+		
+		<div class='left-box'>
+		<div id="paging1">
 			<!-- 페이정 처리 시작 -->
-			<ul>
+			<ul class='pagination pagination-sm'>
 				<c:if test="${page.prev}">
-					<li class='inline'><a href="javascript:pageList('${page.startPage - 1}')">이전</a></li>
+					<li class='page-item'><a class='page-link' href="javascript:pageList('${page.startPage - 1}')">&lt;&lt;</a></li>
 				</c:if>
 
 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
-					<li class='inline'><a href="javascript:pageList('${idx}')">${idx}</a></li>
+					<li class='page-item'><a class='page-link' href="javascript:pageList('${idx}')">${idx}</a></li>
 				</c:forEach>
 
 				<c:if test="${page.next && page.endPage > 0}">
-					<li class='inline'><a href="javascript:pageList('${page.endPage + 1}')">다음</a></li>
+					<li class='page-item'><a class='page-link' href="javascript:pageList('${page.endPage + 1}')">&gt;&gt;</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<div id="listTable"></div>
+		<div id="paging2">
+			<!-- 페이정 처리 시작 -->
+			<ul class='pagination pagination-sm'>
+				<c:if test="${page.prev}">
+					<li class='page-item'><a class='page-link' href="javascript:pageList('${page.startPage - 1}')">&lt;&lt;</a></li>
+				</c:if>
+
+				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
+					<li class='page-item'><a class='page-link' href="javascript:pageList('${idx}')">${idx}</a></li>
+				</c:forEach>
+
+				<c:if test="${page.next && page.endPage > 0}">
+					<li class='page-item'><a class='page-link' href="javascript:pageList('${page.endPage + 1}')">&gt;&gt;</a></li>
 				</c:if>
 			</ul>
 		</div>
 		<!-- 페이징 처리 끝 -->
 	</div>
+	
    <div id="map" class='right-box'></div>
    
 	
 	
 	<!-- 사이드 정보 나오게 하는 곳   -->
-	<div class = scroll-menu>
-<div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-right" style="display:none" id="mySidebar">
-  <button class="w3-bar-item w3-button w3-large"
-  onclick="w3_close()">Close &times;</button>
-
+	
+<div class="sidebar sideblock sidedarkgrey sideanimate" style="display:none" id="mySidebar">
+<table style='border:1;'>
+<tr><td><div style="border: 2px solid #33333324; width:20px; padding:1px; height: 602px;position: fixed;font-family: 'Jua', sans-serif;background-color: dimgrey; text-align:left;padding-top: 275px;" class = scroll-menu>
+닫<br><br><br>기</div></td>
+<td>
 	<div class="vis-weather">
-        <h3 class="vh_hide" style='position:relative; left:40px'>날씨정보</h2>
+		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3>
+		<p style='position:relative; left:60px'>시설 이용정보</p>
+		<div class="campinfo"></div>
+        <h3 class="vh_hide" style='position:relative; left:40px'>날씨정보</h3>
         <p class="weather-date" style='position:relative; left:40px'></p>
         <ul>
             <li><div class="weather-temp" style='text-align:center;'></div></li>
         </ul>
-         <h3 class="vh_hide" style='position:relative; left:40px'>미세먼지</h2>
+         <h3 class="vh_hide" style='position:relative; left:40px'>미세먼지</h3>
         <ul>
             <li class="dust-state"></li>
         </ul>
-        <h3 class="vh_hide" style='position:relative; left:40px'>주변 관광정보</h2>
+        <h3 class="vh_hide" style='position:relative; left:40px'>주변 관광정보</h3>
         <div class="tour-info"></div>
-    </div>
+    </td>
+    </tr>
+    
+    </table>
 </div>
 
 <div>
-  <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776;</button>
+<div style="border: 2px solid #33333324; width:17.5px; padding:1px; height: 602px;position: fixed;font-family: 'Jua', sans-serif;background-color: dimgrey; text-align:left;padding-top: 275px;" class = side-open>
+열<br><br><br>기</div>
   
 </div>
 	</div>
@@ -175,17 +436,27 @@ text-align:center;};
 
 	  $(document).ready(function() {
 
-	    var scrollOffset = $('.scroll-menu').offset();
+	    var scrollOffset = $('.side-open').offset();
 
 	    $(window).scroll(function() {
 	      if ($(document).scrollTop() > scrollOffset.top) {
-	        $('.scroll-menu').addClass('scroll-fixed');
+	        $('.side-open').addClass('scroll-fixed');
 	      }
 	      else {
-	        $('.scroll-menu').removeClass('scroll-fixed');
+	        $('.side-open').removeClass('scroll-fixed');
 	      }
 	    });
 	  } );
+	  
+	  
+	  var currentPosition = parseInt($("#scroll-menu").css("top"));
+	  
+	  $(window).scroll(function() {
+		  var position = $(window).scrollTop();
+		  $("#sidebox").stop().animate({
+			  "top":position+currentPosition+"px"},1000);
+		  });
+
 
 //	});
 
@@ -205,9 +476,32 @@ function
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43a46b979e2786b9e26b07fb83133bf1&libraries=clusterer,services"></script>
 <script type="text/javascript">
-
+$("div.scroll-menu").click(
+		function()
+		{
+			w3_close();
+		});
+		
+$("div.side-open").click(
+		function()
+		{
+			w3_open();
+		});		
 //주소 클릭했을 때의 function------------------------------------------------------------
 	function abcd(x, y, name, phone, addr, addr2) {
+		
+		$.ajax({
+			type:"GET",
+			url:"inquiry.do?addr1="+addr,
+			error:function(){
+				console.log("통신실패");
+			},
+			success:function(data){
+				console.log(data);
+			}
+		})
+	
+	
 		$("#map").empty();
 		var latitude;
 		var longitude;
@@ -230,6 +524,82 @@ function
 				realTimeWeather(data.grid_x,data.grid_y);
 			}
 		
+		});
+		
+		
+		//캠핑장 정보가져오기
+		$.ajax({
+			
+			type:"GET",
+			url:"campdetail.do?addr1="+addr,
+			error:function(){
+				console.log("통신실패");
+			},
+			success:function(data){
+				var strArray = data.conv.split(' ');
+				var counting=0;
+				var campinfo = "<table><tr>"
+				for(var i=0;i<strArray.length;i++){
+					if(strArray[i]=="상하수도"||strArray[i]=="상하수시설"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/수도.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'수도시설'+"</li></ul><td>"
+						counting++;
+						
+					}
+					if(strArray[i]=="샤워장"||strArray[i]=="개수대"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/샤워장.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'샤워장'+"</li></ul><td>"
+						counting++;
+					}
+					if(strArray[i]=="취사장"||strArray[i]=="취사"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/취사장.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'취사장'+"</li></ul><td>"
+						counting++;
+					}
+					if(strArray[i]=="물놀이시설"||strArray[i]=="수영장"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/수영장.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'수영장'+"</li></ul><td>"
+						counting++;
+					}
+					if(strArray[i]=="화장실"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/화장실.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'화장실'+"</li></ul><td>"
+						counting++;
+					}
+					if(counting>5){
+						campinfo += "</tr><tr>";
+						counting = 0;
+					}
+					if(strArray[i]=="전기"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/전기.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'전기'+"</li></ul><td>"
+						counting++;
+					}
+					if(counting>5){
+						campinfo += "</tr><tr>";
+						counting = 0;
+					}
+					if(strArray[i]=="매점"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/매점.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'매점'+"</li></ul><td>"
+					}
+					if(counting>5){
+						campinfo += "</tr><tr>";
+						counting = 0;
+					}
+					if(strArray[i]=="놀이터"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/놀이터.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'놀이터'+"</li></ul><td>"
+					}
+					if(counting>5){
+						campinfo += "</tr><tr>";
+						counting = 0;
+					}
+					if(strArray[i]=="세척기"){
+						campinfo += "<td style='width:140px'><ul style='width:140px'><li style='width:140px'><img style='width: 100px; height: 100px; padding: 5px; left: 15px; position: relative;' src='/camping/image2/세탁기.png'></li><li style='left: 15px; position: relative;text-align:center'>"+'세탁기'+"</li></ul><td>"
+					}
+					if(counting>5){
+						campinfo += "</tr><tr>";
+						counting = 0;
+					}
+				}
+				
+				campinfo += "</tr></table>"
+				
+				$('.campinfo').html(campinfo);
+			}
 		});
 
 		//마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -293,6 +663,7 @@ function
 	if("${page.searchWord}"){
 		searchWord = "${page.searchWord}";
 	}
+	
 	<c:forEach items="${campListMap}" var="ob">
 	var json = new Object();
 	
@@ -304,6 +675,7 @@ function
 	json.addr2 ="${ob.addr2}";
 	json.campName ="${ob.campName}";
 	json.phone ="${ob.phone}";
+	json.image = "${ob.image}";
 	result.push(json);
 	
 	
@@ -322,14 +694,15 @@ function
 	  {
 		 latitude = position.coords.latitude;
 		 longitude = position.coords.longitude;
-		 var txt="<tr><th>이름</th><th>거리</th><th>주소</th><th>전번</th></tr>";
+		 var txt="<div class='listTable'><table class='camptable'><tbody>";
 		 <c:forEach items="${campList}" var="ob">
-			txt += "<tr><td>${ob.campName}</td>";
-			txt += "<td>" + distance("${ob.x}","${ob.y}",latitude, longitude) + "km</td>";
-			txt += "<td><a href=\"javascript:abcd(\'${ob.x}\',\'${ob.y}\',\'${ob.campName}\',\'${ob.phone}\',\'${ob.addr1}\',\'${ob.addr2}\')\" onclick=\"w3_open()\">${ob.addr1}</a></td>\r\n";
-			txt += "<td>${ob.phone}</td></tr>";
+			txt += "<tr style='border-bottom :1px solid gray;border-top:1px solid gray;'><td>\r\n<div class='img'><img src=\'${ob.image}\' width='180px'></div></td>"
+			txt += "<td style='width:320px;padding:5px;margin:5px;'><ul style='margin:0;padding:0;'><li><div class='campname'><a style='text-decoration:none;' href=\"javascript:abcd(\'${ob.x}\',\'${ob.y}\',\'${ob.campName}\',\'${ob.phone}\',\'${ob.addr1}\',\'${ob.addr2}\')\" onclick=\"w3_open()\">${ob.campName}</a><br></div></li>\r\n";
+			txt += "<li><div class='distance'>" + distance("${ob.x}","${ob.y}",latitude, longitude) + "km</div></li>\r\n";
+			txt += "<li><div class='addr'>${ob.addr1}</div></li>\r\n";
+			txt += "<li><div class='phone'>${ob.phone}</div></li></ul></td></tr>\r\n";
 			 </c:forEach>
-		
+			txt += "</tbody></table></div>\r\n";
 		$("#listTable").html(txt);
 	  }
 	  
@@ -418,122 +791,7 @@ function
 		clusterer.addMarkers(markers);
 
 	//});
-	//거리순으로 데이터 나타내기
-	function seqdistn(){
-			
-			if (!!navigator.geolocation) 
-			  {
-				navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
-			
-			  }
-			else
-			  {
-			    alert("이 브라우저는 Geolocation를 지원하지 않습니다");
-			  }
-			/* var distan = new Array();
-			var distan2 = new Array();
-			var addr = new Array();
-			var phone = new Array();
-			var cname = new Array(); */
-			var test = [];
-			function successCallback(position)
-			  {
-				 latitude = position.coords.latitude;
-				 longitude = position.coords.longitude;
-				 $(result).map(function(index, entry) {
-					 	test.push({distan:distance(entry.lat,entry.lng,latitude, longitude),
-					 		addr1:entry.addr1,phone:entry.phone,cname:entry.campName,x:entry.lat,y:entry.lng,addr2:entry.addr2});
-					 	})
-				 test.sort(function(a,b){
-					 return parseFloat(a.distan) - parseFloat(b.distan);
-
-				 });
-				 
-				 var txt = "<tr>\r\n" + 
-					"<th>이름</th>\r\n" + 
-					"<th>거리</th>\r\n" + 
-					"<th>주소</th>\r\n" + 
-					"<th>전번</th>\r\n" + 
-					"</tr>\r\n" + 
-					"\r\n";
-					
-				 $(test).map(function(index, entry) {
-					 txt += "<tr>\r\n<td>"+entry.cname+"</td>\r\n";
-					 txt += "<td>" + entry.distan + "km</td>\r\n";
-					 txt += "<td><a href=\"javascript:abcd('"+entry.x+"','"+entry.y+"','"+entry.cname+"','"+entry.phone+"','"+entry.addr1+"','"+entry.addr2+"')\" onclick=\"w3_open()\">"+entry.addr1+"</a></td>\r\n" +
-						"<td>"+entry.phone+"</td>\r\n" + 
-						"</tr>\r\n";
-				 });
-				 
-				 $("#listTable").html(txt);
-						 /* distan[index]=distance(entry.lat,entry.lng,latitude, longitude);
-						 distan2[index]=distance(entry.lat,entry.lng,latitude, longitude);
-						 addr[index]=entry.addr;
-						 phone[index]=entry.phone;
-						 cname[index]=entry.campName; */
-						 
-						 $("#map").empty();	 
-				  var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-						center : new daum.maps.LatLng(latitude, longitude), // 지도의 중심좌표 
-						level : 12
-					// 지도의 확대 레벨 
-					});
-						 
-						 var imageSrc = '/camping/image/홈.png', // 마커이미지의 주소입니다    
-						    imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
-						    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-						    
-						    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption),
-						    markerPosition = new daum.maps.LatLng(latitude, longitude); // 마커가 표시될 위치입니다
-						    
-						 // 마커를 생성합니다
-						    var marker = new daum.maps.Marker({
-						        position: markerPosition, 
-						        image: markerImage // 마커이미지 설정 
-						    });
-
-						    // 마커가 지도 위에 표시되도록 설정합니다
-						    marker.setMap(map);  
-			
-			
-				  map.setMapTypeId(daum.maps.MapTypeId.HYBRID)
-				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-				var mapTypeControl = new daum.maps.MapTypeControl();
-
-				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-				// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-				map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
-
-				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-				var zoomControl = new daum.maps.ZoomControl();
-				map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-
-				// 마커 클러스터러를 생성합니다 
-				var clusterer = new daum.maps.MarkerClusterer({
-					map : map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-					averageCenter : true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-					minLevel : 10
-				// 클러스터 할 최소 지도 레벨 
-				});
-						 
-				var markers = $(result).map(function(index, entry) {
-					
-					return new daum.maps.Marker({
-						position : new daum.maps.LatLng(entry.lat, entry.lng)
-					});
-				}); 
-
-				// 클러스터러에 마커들을 추가합니다
-				clusterer.addMarkers(markers);		 
-						 
-				
-			  }
-			  
-			  function errorCallback(error)
-			  {
-			    alert(error.message);
-			  }
-		}
+	
 	
 	
 	var latitude=0;
@@ -569,22 +827,16 @@ function
 						  {
 							 latitude = position.coords.latitude;
 							 longitude = position.coords.longitude;
-							 var txt = "<tr>\r\n" + 
-								"<th>이름</th>\r\n" + 
-								"<th>거리</th>\r\n" + 
-								"<th>주소</th>\r\n" + 
-								"<th>전번</th>\r\n" + 
-								"</tr>\r\n" + 
-								"\r\n";
+							 var txt = "<div class='listTable'><table class='camptable'><tbody>";
 							$.each(data, function(idx, val) {
-								txt += "<tr>\r\n<td>"+val.campName+"</td>\r\n";
-								txt += "<td>" + distance(val.x, val.y, latitude, longitude) + "km</td>\r\n";
-								txt += "<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"','"+val.addr2+"')\" onclick=\"w3_open()\">"+val.addr1+"</a></td>\r\n" +
-								"<td>"+val.phone+"</td>\r\n" + 
-								"</tr>\r\n";
+								txt += "<tr style='border-bottom :1px solid gray;border-top:1px solid gray;'><td>\r\n<div class='img'><img src='"+val.image+"' width='180px'></div></td>";
+								txt += "<td style='width:320px;padding:5px;margin:5px;'><ul style='margin:0;padding:0;'><li><div class='campname'><a style='text-decoration:none;' href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"','"+val.addr2+"')\" onclick=\"w3_open()\">"+val.campName+"</a><br></div></li>\r\n";
+								txt += "<li><div class='distance'>" + distance(val.x, val.y, latitude, longitude) + "km</div></li>\r\n";
+								txt += "<li><div class='addr'>"+val.addr1+"</div></li>\r\n" +
+								"<li><div class='phone'>"+val.phone+"</div></li></ul></td></tr>\r\n";
 							});
 
-							
+							txt += "</tbody></table></div>\r\n";
 							$("#listTable").html(txt);
 						  }
 						  
@@ -611,157 +863,26 @@ function
 				error:function(){
 				},
 				success:function(data){
-					var txt = "<ul>\r\n";
+					var txt = "<ul class='pagination pagination-sm'>\r\n";
 					if(data.prev){
-						txt += "<li class='inline'><a href=\"javascript:pageList('"+(data.startPage-1)+"')\">이전</a></li>\r\n";
+						txt += "<li class='page-item'><a class='page-link' href=\"javascript:pageList('"+(data.startPage-1)+"')\">&lt;&lt;</a></li>\r\n";
 					}
 					for (var idx = data.startPage; idx <= data.endPage; idx++) {
-						txt += "<li class='inline'><a href=\"javascript:pageList('"+idx+"')\">"+idx+"</a></li>\r\n";
+						txt += "<li class='page-item'><a class='page-link' href=\"javascript:pageList('"+idx+"')\">"+idx+"</a></li>\r\n";
 					}
 					if(data.next && data.endPage > 0){
-						txt += "<li class='inline'><a href=\"javascript:pageList('"+(data.endPage+1)+"')\">다음</a></li>\r\n";
+						txt += "<li class='page-item'><a class='page-link' href=\"javascript:pageList('"+(data.endPage+1)+"')\">&gt;&gt;</a></li>\r\n";
 					}
 					txt += "</ul>";
 					
-					$("#paging").html(txt);
+					$("#paging1").html(txt);
+					$("#paging2").html(txt);
 				}
 			});
 		}
 		
 		
-		function selectloc(selectedloc){
-			
-			if(frm.search.value==""){
-			selectedWord = selectedloc.value;
-			}else{
-				selectedWord = frm.search.value;
-			}
-			
-			$("#search").val("");
-			
-			console.log(frm.search.value);
-			
-			var url3="searchProc.do?searchWord="+selectedWord;
-			 $.ajax({
-			type:"GET",
-			url:url3,
-			error:function(){
-				console.log("통신실패");
-			},
-			success:function(data){
-				console.log("${page.endPage}");
-				
-				 var txt = "<tr>\r\n" + 
-					"<th>이름</th>\r\n" + 
-					"<th>거리</th>\r\n" + 
-					"<th>주소</th>\r\n" + 
-					"<th>전번</th>\r\n" + 
-					"</tr>\r\n" + 
-					"\r\n";
-				$.each(data, function(idx, val) {
-					txt += "<tr>\r\n<td>"+val.campName+"</td>\r\n";
-					txt += "<td>" + distance(val.x, val.y, latitude, longitude) + "km</td>\r\n";
-					txt += "<td><a href=\"javascript:abcd('"+val.x+"','"+val.y+"','"+val.campName+"','"+val.phone+"','"+val.addr1+"','"+val.addr2+"')\" onclick=\"w3_open()\">"+val.addr1+"</a></td>\r\n" +
-					"<td>"+val.phone+"</td>\r\n" + 
-					"</tr>\r\n";
-				});
-				
-				
-				$("#listTable").html(txt);
-				
-				$("#map").empty();
-				
-				
-				var url = 'https://dapi.kakao.com/v2/local/search/address.json?';
-				
-				url += 'query=' + selectedWord;
-
-				headerParams = {
-					'Authorization' : 'KakaoAK 3ed68aab065fe82c31c31252abc29b98'
-				};
-				$.ajax({
-					type : 'get',
-					url : url,
-					async : false,
-					headers : headerParams,
-					data : [],
-					dataType : 'json',
-					processData : false,
-					success : function(data) {
-						console.log(data);
-						lat1 = data.documents[0].y;
-						lng1 = data.documents[0].x;
-						
-						console.log(lat1);
-						console.log(lng1);
-					}
-				}); 
-				
-			 var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-					center : new daum.maps.LatLng(lat1, lng1), // 지도의 중심좌표 
-					level : 10
-				// 지도의 확대 레벨 
-				});
-			 map.setMapTypeId(daum.maps.MapTypeId.HYBRID)
-			 
-				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-				var mapTypeControl = new daum.maps.MapTypeControl();
-
-				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-				// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-				map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
-
-				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-				var zoomControl = new daum.maps.ZoomControl();
-				map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-
-				// 마커 클러스터러를 생성합니다 
-				var clusterer = new daum.maps.MarkerClusterer({
-					map : map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-					averageCenter : true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-					minLevel : 10
-				// 클러스터 할 최소 지도 레벨 
-				});
-				var markers = $(result).map(function(index, entry) {
-					
-					return new daum.maps.Marker({
-						position : new daum.maps.LatLng(entry.lat, entry.lng)
-					});
-				}); 
-				
-				clusterer.addMarkers(markers);
-			 	var pagetxt;
-				//페이지 처리...----------------------------------------------------
-					var url2 = "campListAjax2.do?page="+1+"&perPageNum=10&searchWord="+selectedWord ;
-				
-				$.ajax({
-					type:"GET",
-					url:url2,
-					error:function(){
-					},
-					success:function(data){
-						var txt = "<ul>\r\n";
-						if(data.prev){
-							txt += "<li class='inline'><a href=\"javascript:pageList('"+(data.startPage-1)+"')\">이전</a></li>\r\n";
-						}
-						for (var idx = data.startPage; idx <= data.endPage; idx++) {
-							txt += "<li class='inline'><a href=\"javascript:pageList('"+idx+"')\">"+idx+"</a></li>\r\n";
-						}
-						if(data.next && data.endPage > 0){
-							txt += "<li class='inline'><a href=\"javascript:pageList('"+(data.endPage+1)+"')\">다음</a></li>\r\n";
-						}
-						txt += "</ul>";
-						
-						$("#paging").html(txt);
-					}
-				});
-				
-			}
-			
-			})
-			
-			
-		}
+		
 		
 		
 		

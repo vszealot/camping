@@ -127,4 +127,30 @@ public class ControllerCamp {
 		return campDao.tourCategory(tour);
 	}
 	
+
+	@RequestMapping(value = "/inquiry.do", method = RequestMethod.GET)
+	@ResponseBody
+	public void inquiryUp(weather weather) {
+		campDao.inquiryUp(weather.getAddr1());
+	}
+	
+	
+	@RequestMapping(value = "/inquiryseq.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CampInfo> inquiryseq() {
+		//Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå		===============
+		Page page = new Page();
+		page.setTotalCount(campDao.inqiryCount());
+		
+		return campDao.inquirySeq(page);
+	}
+	
+	@RequestMapping(value="/campdetail.do", method=RequestMethod.GET)
+	@ResponseBody
+	public CampInfo campdetail(weather weather) {
+		System.out.println(weather.getAddr1());
+		
+		return campDao.campinfo(weather.getAddr1());
+	}
+	
 }
