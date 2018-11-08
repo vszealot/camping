@@ -224,5 +224,27 @@
 		}
 
 	}
+	
+	// 엔터키 입력
+    $("#content2").keydown(function (key) {
+        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+    		$.ajax({
+    			type:"post",
+    			url:"marketReplyWrite.do",
+    			data:{
+    				postNo:"${read.postNo}",
+    				page:"${page.page}",
+    				perPageNum:"${page.perPageNum}",
+    				searchType:"${page.searchType}",
+    				keyword:"${page.keyword}",
+    				nickName:$("#nickName2").val(),
+    				content:$("#content2").val()
+    			},
+    			success:function(data){
+    				$("#body1").html(data);
+    			}
+    		});
+        }
+    });
 </script>
 </html>

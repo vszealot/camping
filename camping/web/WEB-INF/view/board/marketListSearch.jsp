@@ -51,7 +51,7 @@
 				<div class="input-group">
 					<input type="text" name="keyword" id="keywordInput" value="${page.keyword}" class="form-control"/>
 					<span class="input-group-btn">
-						<button class="btn btn-default" id="searchBtn">검색</button>
+						<button onkeypress="JavaScript:press(this.form)" class="btn btn-default" id="searchBtn">검색</button>
 					</span>
 				</div>
 			</div>
@@ -109,9 +109,24 @@
 	};
 	
 	// 엔터키 입력
-	$("#SEARCH_KEYWORD").keyup(function(e){if(e.keyCode == 13)
-		$('#searchBtn').click();
-	});
+    $("#keywordInput").keydown(function (key) {
+ 
+        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+            search();
+        }
+    });
+	
+	// 검색
+    search = function (){
+		self.location = "marketListSearch.do"
+			+ '${page.makeQuery(1)}'
+			+ "&searchType="
+			+ $("select option:selected").val()
+			+ "&keyword="
+			+ encodeURIComponent($('#keywordInput')
+					.val());
+    };
+
 
 </script>
 </html>

@@ -12,7 +12,7 @@
 	<section class="container">
 	<h2>유저 장터</h2>
 	<div style="width: 50em;margin: 0 auto;">
-		<form role="form" method="post" autocomplete="off" action="marketInsert.do" enctype="multipart/form-data">
+		<form id="fr" name="fr" role="form" method="post" autocomplete="off" action="marketInsert.do" enctype="multipart/form-data">
 			<div class="form-group">
 				<!-- <label for="title" class="col-sm-2 control-label">글 제목</label> -->
 				<div class="col-sm-12">
@@ -42,7 +42,7 @@
 			</div>
 			<div style="text-align: center;">
 				<a href="#this" class="btn btn-default" id="addFile">파일 추가</a>&nbsp;
-				<button class="btn btn-default" type="submit">작성</button>&nbsp;
+				<button type="button" class="btn btn-default" onclick="check()">작성</button>&nbsp;
 				<a role="button" href="marketListSearch.do" class="btn btn-default">취소</a>
 			</div>
 		</form>
@@ -75,6 +75,20 @@ function fn_addFile(){
  
 function fn_deleteFile(obj){
     obj.parent().remove();
+}
+
+function check() {
+	if(title.value==''){
+		alert("제목을 입력하세요");
+		fr.title.focus();
+		return false;
+	}
+	if(content.value==''){
+		alert("내용을 입력하세요");
+		fr.content.focus();
+		return false;
+	}
+	fr.submit();
 }
 
 </script>

@@ -14,7 +14,7 @@
 	<section class="container">
 	<h2>유저 장터</h2>
 	<div style="width: 50em;margin: 0 auto;">
-		<form role="form" method="post" autocomplete="off" action="marketUpdate.do" enctype="multipart/form-data">
+		<form id="fr" name="fr" role="form" method="post" autocomplete="off" action="marketUpdate.do" enctype="multipart/form-data">
 			<input type="hidden" id="page" name="page" value="${page.page}" readonly="readonly"> 
 			<input type="hidden" id="perPageNum" name="perPageNum" value="${page.perPageNum}" readonly="readonly">
 			<input type="hidden" id="searchType" name="searchType" value="${page.searchType}" readonly="readonly"> 
@@ -44,7 +44,7 @@
 				</div>
 				<c:forEach items="${image}" var="image" varStatus="i">
 					<div class="form-group">
-						<input type="hidden" id="IDX" name="IDX_${i.index}" value="${image.IDX}">${image.IDX}
+						<input type="hidden" id="IDX" name="IDX_${i.index}" value="${image.IDX}">
 						<input type="file" id="file_${i.index}" name="file_${i.index}" class="col-sm-9"/>
 						<label class="col-sm-2">${image.ORIGINAL_FILE_NAME}</label>
 						<a href="#this" class="btn btn-default" id="delete" name="delete">삭제</a>
@@ -52,7 +52,9 @@
 				</c:forEach>
 			</div>
 			<div style="text-align: center;">
-				<a href="#this" class="btn btn-default" id="addFile">파일 추가</a>&nbsp;<button class="btn btn-default" type="submit">수정</button>&nbsp;<button class="btn btn-default" id="cancel_btn">취소</button>
+				<a href="#this" class="btn btn-default" id="addFile">파일 추가</a>&nbsp;
+				<button type="button" class="btn btn-default" onclick="check()">수정</button>&nbsp;
+				<button class="btn btn-default" id="cancel_btn">취소</button>
 			</div>
 		</form>
 	</div>
@@ -94,6 +96,20 @@
 	 
 	function fn_deleteFile(obj){
 	    obj.parent().remove();
+	}
+	
+	function check() {
+		if(title.value==''){
+			alert("제목을 입력하세요");
+			fr.title.focus();
+			return false;
+		}
+		if(content.value==''){
+			alert("내용을 입력하세요");
+			fr.content.focus();
+			return false;
+		}
+		fr.submit();
 	}
 </script>
 </html>
