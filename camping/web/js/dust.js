@@ -1,4 +1,6 @@
 function dust(addr){
+	
+	console.log(addr);
 	//날짜구하기
 	var today = new Date();
 	var year = today.getFullYear();
@@ -114,6 +116,35 @@ function dust(addr){
 					no2=parseFloat(json.response.body.items.item[i].no2Value);
 					
 					console.log(pm10+" "+pm25+" "+no2+" "+co+" "+so2);
+				}else{
+					pm10=parseInt(json.response.body.items.item[1].pm10Value);
+					pm25=parseInt(json.response.body.items.item[1].pm25Value);
+					so2=parseFloat(json.response.body.items.item[1].so2Value);
+					co=parseFloat(json.response.body.items.item[1].coValue);
+					o3=parseFloat(json.response.body.items.item[1].o3Value);
+					no2=parseFloat(json.response.body.items.item[1].no2Value);
+					if(pm10==NaN){
+						pm10="?";
+					}
+					if(pm25==NaN){
+						pm25="?";
+					}
+					
+					if(so2==NaN){
+						so2="?";
+					}
+					
+					if(co==NaN){
+						co="?";
+					}
+					
+					if(o3==NaN){
+						o3="?";
+					}
+					
+					if(no2==NaN){
+						no2="?";
+					}
 				}
 			}
 			if(pm10<=30){

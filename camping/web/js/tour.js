@@ -48,13 +48,9 @@ function tour(x,y){
 				firstimage2[i] = data.response.body.items.item[i].firstimage2;
 				tel[i] = data.response.body.items.item[i].tel;
 				title[i] = data.response.body.items.item[i].title;
-				console.log(firstimage[i]);
 			}
 			
 			
-			for(var i=0;i<num;i++){
-				console.log(cat1[i]+"  " + cat2[i] + "  " + cat3[i])
-			}
 			
 			for(var i=0;i<num;i++){
 			var url = "tour.do?catcode1="+cat1[i]+"&catcode2="+cat2[i]+"&catcode3="+cat3[i];

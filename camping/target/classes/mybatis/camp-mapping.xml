@@ -45,5 +45,21 @@
 		<![CDATA[${sql}]]>
 	</select>
 	
+	<update id="inquiry">
+		<![CDATA[${sql}]]>
+	</update>
+	
+	<select id="inquiryseq" resultType="campinfo">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="inquiryCount" resultType="int" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="campinfo" resultType="campinfo" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
 
 </mapper>

@@ -19,6 +19,34 @@ public class CampInfo {
 	private String etc;
 	private String useTime;
 	private String usePee;
+	private String image;
+	private int searchcount;
+	private int recommendcount;
+
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int getSearchcount() {
+		return searchcount;
+	}
+
+	public void setSearchcount(int searchcount) {
+		this.searchcount = searchcount;
+	}
+
+	public int getRecommendcount() {
+		return recommendcount;
+	}
+
+	public void setRecommendcount(int recommendcount) {
+		this.recommendcount = recommendcount;
+	}
 
 	public int getSeq() {
 		return seq;
