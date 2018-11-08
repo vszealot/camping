@@ -26,6 +26,7 @@ public class ReplyDaoImpl implements ReplyDao {
 		factory.openSession().close();
 		return back;
 		
+		
 	}
 
 	// ¥Ò±€ ¿€º∫
