@@ -62,6 +62,13 @@ public class NoteDao {
 		return (n>0)? true:false;
 	}
 
+	public boolean readUnread(String str) {
+		
+		int n=factory.openSession().update("notenamespace.readUnread",str);
+		
+		return (n>0)? true:false;
+	}
+
 	
 
 	

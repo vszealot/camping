@@ -42,7 +42,12 @@
 		]]>
 	</delete>
 
-
+	<update id="readUnread" parameterType="java.lang.String">
+		<![CDATA[
+			UPDATE NOTES SET RECV_READ='Y' 
+			WHERE TITLE=#{str}
+		]]>
+	</update>
 
 
 

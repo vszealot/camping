@@ -42,6 +42,22 @@ function detailView(sent_name,recv_name,title,note){
 // 	window.location.href = "http://localhost:8088/camping/noteDetail.do?sent_name=" 
 // 			+sent_name+"&recv_name="+recv_name+"&title="+title+"&note="+note;
 	
+	// DB다녀와서 자바스크립트로 css적용
+	$.ajax({
+		data : {
+			"data":title			
+		},
+		dataType : "text",
+        url : "readUnread.do",
+        error : function(){
+       	 console.log("실패");
+        },
+        success : function(data) {
+        	console.log(data);
+        }
+	});
+	
+	
 	var method="POST";
 	var params={'sent_name':sent_name,'recv_name':recv_name,'title':title,'note':note};
 	var form = document.createElement("form");
@@ -57,6 +73,7 @@ function detailView(sent_name,recv_name,title,note){
 	}
 	document.body.appendChild(form);
 	form.submit();
+	
 }
 	
 //전체 체크
@@ -119,8 +136,8 @@ function deleteCheckBox(){
 	        }
 		});
 	}
-	
 }
+
 </script>
 
 <style>
@@ -216,25 +233,27 @@ function deleteCheckBox(){
 				<th style="width: 16em;" >제목</th>
 				<th style="width: 8em;">받은 날짜</th>
 			</tr>
-				<c:if test="${!empty listNote}">
-					<c:forEach items="${listNote}" var="list">
-						<tr>
-							<td style="width: 2em;">
-								<input type="checkbox" name="chkInfo" value="${list.title }">
-							</td>
-							<td style="width: 8em;">${list.sent_name }</td>
-							<td style="width: 16em;" >
-								<a href="javascript:detailView('${list.sent_name}','${list.recv_name}','${list.title}','${list.note}')">
-									${list.title }
+			<c:forEach items="${listNote}" var="list">
+				<tr>
+					<td style="width: 2em;">
+						<input type="checkbox" name="chkInfo" value="${list.title }">
+					</td>
+					<td style="width: 8em;">${list.sent_name }</td>
+							<td style="width: 16em; " >
+								<a href="javascript:detailView('${list.sent_name}','${list.recv_name}','${list.title}','${list.note}')"
+										id="readUnread">
+									<c:set var="ob" value="${list.recv_read}"/>
+										<c:if test="${ob eq 'N'}"><img src="image/unread.png"/></c:if>
+										<c:if test="${ob eq 'Y'}"><img src="image/read.png"/></c:if>
+									 ${list.title }  
 								</a>
 							</td>
-							<td style="width: 8em;">
-								<fmt:formatDate value="${list.date_sent }" pattern="yyyy-MM-dd" />
-							</td>
-							
-						</tr>
-					</c:forEach>
-				</c:if>
+					<td style="width: 8em;">
+						<fmt:formatDate value="${list.date_sent }" pattern="yyyy-MM-dd" />
+					</td>
+					
+				</tr>
+			</c:forEach>
 		</table>
 	</div>
 		

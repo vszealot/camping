@@ -35,6 +35,9 @@ public class ControllerNote {
 		String name=session.getAttribute("logOK").toString();
 		
 		List<Note> list= noteDao.noteReceiveView(name);
+
+		
+		
 		if(!list.isEmpty()) {
 //				System.out.println("ok");
 			return new ModelAndView("note/noteReceive", "listNote", list);
@@ -56,6 +59,19 @@ public class ControllerNote {
 		return "note/noteReceive";
 	}
 	
+	//받은 쪽지 중 읽은 쪽지 처리
+	@RequestMapping(value="/readUnread.do")
+	public boolean readUnread(@ModelAttribute Note note, HttpServletRequest request) {
+		
+		String str=request.getParameter("data");
+
+		if(noteDao.readUnread(str)) {
+			System.out.println("read");
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	//==============================================================================
 	
@@ -91,7 +107,6 @@ public class ControllerNote {
 		if(noteDao.deleteSentMsg(str)) {
 			System.out.println("ok sent del");
 		}
-		
 		return "note/noteSend";
 	}
 	
