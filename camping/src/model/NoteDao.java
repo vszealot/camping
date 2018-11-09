@@ -1,8 +1,6 @@
 package model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,41 @@ public class NoteDao {
 		return factory.openSession().insert("notenamespace.sendingNoteFunc",note);
 	}
 
+	public boolean deleteRevMsg(String[] str) {
+		int n=0;
+		
+		for(int i=0; i<str.length; i++) {
+			// 보낸 사람이 지우지 않으면(sent_del='N'이면) 바꿈
+			n=factory.openSession().update("notenamespace.deleteRevMsg",str[i]);
+			
+			if(n>0) {
+				continue;
+			}else {
+				// 보낸 사람이 지웠으면 아예 지움
+				n=factory.openSession().delete("notenamespace.deleteMsg",str[i]);
+			}
+		}
+		return (n>0)? true:false;
+	}
 
+	public boolean deleteSentMsg(String[] str) {
+		int n=0;
+		
+		for(int i=0; i<str.length; i++) {
+			// 보낸 사람이 지우지 않으면(sent_del='N'이면) 바꿈
+			n=factory.openSession().update("notenamespace.deleteSentMsg",str[i]);
+			
+			if(n>0) {
+				continue;
+			}else {
+				// 보낸 사람이 지웠으면 아예 지움
+				n=factory.openSession().delete("notenamespace.deleteMsg",str[i]);
+			}
+		}
+		return (n>0)? true:false;
+	}
+
+	
 
 	
 	

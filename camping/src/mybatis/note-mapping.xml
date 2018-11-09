@@ -5,13 +5,13 @@
 <mapper namespace="notenamespace">
 	<select id="noteReceiveView" parameterType="noteinfo" resultType="noteinfo">
 		<![CDATA[
-			SELECT * FROM NOTES WHERE RECV_NAME=#{name}
+			SELECT * FROM NOTES WHERE RECV_NAME=#{name} AND RECV_DEL='N'
 		]]>
 	</select> 
 
 	<select id="noteSendView" parameterType="noteinfo" resultType="noteinfo">
 		<![CDATA[
-			SELECT * FROM NOTES WHERE SENT_NAME=#{name}
+			SELECT * FROM NOTES WHERE SENT_NAME=#{name} AND SENT_DEL='N'
 		]]>
 	</select> 
 	
@@ -21,5 +21,35 @@
 			VALUES(NO_SEQ.NEXTVAL,#{recv_name},#{sent_name},#{title},#{note})
 		]]>
 	</insert> 
+
+	<update id="deleteRevMsg" parameterType="java.lang.String">
+		<![CDATA[
+			UPDATE NOTES SET RECV_DEL='Y' 
+			WHERE TITLE=#{str} AND SENT_DEL='N'
+		]]>
+	</update>
+
+	<update id="deleteSentMsg" parameterType="java.lang.String">
+		<![CDATA[
+			UPDATE NOTES SET SENT_DEL='Y' 
+			WHERE TITLE=#{str} AND RECV_DEL='N'
+		]]>
+	</update>
+
+	<delete id="deleteMsg" parameterType="java.lang.String">
+		<![CDATA[
+			DELETE FROM NOTES WHERE TITLE=#{str}
+		]]>
+	</delete>
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

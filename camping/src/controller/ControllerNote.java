@@ -43,6 +43,18 @@ public class ControllerNote {
 		}
 	}
 	
+	//받은 쪽지 삭제하기
+	@RequestMapping(value="/deleteRevMsg.do")
+	public String deleteRevMsg(@ModelAttribute Note note, HttpServletRequest request) {
+		// 받아온 제목들을 ,로 분리해서 배열에 넣기
+		String[] str=request.getParameter("data").split(",");
+		
+		if(noteDao.deleteRevMsg(str)) {
+			System.out.println("ok recv del");
+		}
+		
+		return "note/noteReceive";
+	}
 	
 	
 	//==============================================================================
@@ -50,7 +62,7 @@ public class ControllerNote {
 	//보낸 쪽지함 View로 이동
 	@RequestMapping("/noteSend.do")
 	public String noteSend(Model model) {
-			return "note/noteSend";
+		return "note/noteSend";
 	}
 	
 	//보낸 쪽지 목록
@@ -68,6 +80,19 @@ public class ControllerNote {
 		}else {
 			return new ModelAndView("note/noteSend", "listNote", list);
 		}
+	}
+	
+	//보낸 쪽지 삭제하기
+	@RequestMapping(value="/deleteSentMsg.do")
+	public String deleteSentMsg(@ModelAttribute Note note, HttpServletRequest request) {
+		// 받아온 제목들을 ,로 분리해서 배열에 넣기
+		String[] str=request.getParameter("data").split(",");
+		
+		if(noteDao.deleteSentMsg(str)) {
+			System.out.println("ok sent del");
+		}
+		
+		return "note/noteSend";
 	}
 	
 	//==============================================================================

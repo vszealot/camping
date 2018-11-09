@@ -59,12 +59,29 @@ function detailView(sent_name,recv_name,title,note){
 	form.submit();
 }
 	
-function checkBoxAll(){
+/* function checkBoxAll(){
 	
 	if($("#checkAll").prop("checked")){
         $("input[name=chkInfo]").prop("checked",true);
     }else{
         $("input[name=chkInfo]").prop("checked",false);
+    }
+} */
+function allChk(obj){
+	var chkObj = document.getElementsByName("chkInfo");
+    var rowCnt = chkObj.length - 1;
+    var check = obj.checked;
+    if (check) {﻿
+        for (var i=0; i<=rowCnt; i++){
+	        if(chkObj[i].type == "checkbox")
+	            chkObj[i].checked = true; 
+	        }
+    } else {
+        for (var i=0; i<=rowCnt; i++) {
+	        if(chkObj[i].type == "checkbox"){
+	            chkObj[i].checked = false; 
+	        }
+        }
     }
 }
 
@@ -72,6 +89,36 @@ function sendingNote(){
 	window.location.href = "http://localhost:8088/camping/sendingNote.do";
 }
 
+//쪽지함 지우기
+function deleteCheckBox(){
+	
+	var checkRow = "";
+	
+	$("input[name='chkInfo']:checked").each(function() {
+		checkRow = checkRow + $(this).val() + ",";
+	});
+	
+	checkRow = checkRow.substring(0, checkRow.lastIndexOf(","));
+	console.log(checkRow);
+	
+	var retVal = confirm("삭제하시겠습니까?");
+	if(retVal==true){
+		$.ajax({
+			data : {
+				"data":checkRow			
+			},
+			dataType : "text",
+	        url : "deleteSentMsg.do",
+	        error : function(){
+	       	 console.log("실패");
+	        },
+	        success : function(data) {
+	        	console.log("성공");
+	        	window.location.href = "http://localhost:8088/camping/noteSendView.do";
+	        }
+		});
+	}
+}
 </script>
 
 <style>
@@ -153,7 +200,7 @@ function sendingNote(){
 			<div class="btns">
 				<button onclick="sendingNote()">쪽지 쓰기</button>
 				<button onclick="checkBoxAll()">전체 선택</button>
-				<button>삭제</button>
+				<button onclick="deleteCheckBox()">삭제</button>
 			</div>
 		</div>
 	</div><br><br>
@@ -162,7 +209,7 @@ function sendingNote(){
 		<table class="table table-bordered">
 			<tr>
 				<th style="width: 2em;">
-					체크 <input type="checkbox" id="checkAll" value="">
+					체크 <input type="checkbox" id="checkAll" value="" onclick="allChk(this);">
 				</th>
 				<th style="width: 8em;">To</th>
 				<th style="width: 16em;" >제목</th>
@@ -172,7 +219,7 @@ function sendingNote(){
 					<c:forEach items="${listNote}" var="list">
 						<tr>
 							<td style="width: 2em;">
-								<input type="checkbox" name="chkInfo" value="">
+								<input type="checkbox" name="chkInfo" value="${list.title }">
 							</td>
 							<td style="width: 8em;">${list.recv_name }</td>
 							<td style="width: 16em;" >

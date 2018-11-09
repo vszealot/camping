@@ -38,6 +38,41 @@ $(function(){
 	});
 });
 
+//ENTER 안먹게 하는것
+function preventReturnKey(e) {
+    if(e.keyCode==13 && e.srcElement.type != 'textarea')
+    return false;
+}
+
+//confirm & submit
+function submitFunc(){
+	var retVal = confirm("전송하시겠습니까?");
+	
+	if(retVal==true){
+		var inputed=$('#recv_name').val();
+		var inputed2=$('#sent_name').val();
+		var inputed3=$('#title').val();
+		var inputed4=$('#note').val();
+		
+		$.ajax({
+			type:"POST",
+			 data : {"recv_name":inputed,
+				 	 "sent_name":inputed2,
+				 	 "title":inputed3,
+				 	 "note":inputed4,
+				 	 },
+	         url : "sendingNoteFunc.do",
+	         error : function(){
+	        	 console.log("실패");
+	         },
+	         success : function(data) {
+	        	 console.log("성공");
+	        	 location.href="http://localhost:8088/camping/sendingNote.do";
+	         }//end success
+		});//end ajax	
+	}
+}
+
 </script>
 <style>
 	.wrapper{
@@ -93,6 +128,11 @@ $(function(){
 	.table table-bordered{
 		border: none;
 	}
+	.middle{
+		width: 100%;
+		text-align: center;
+	}
+	
 }
 </style>
 
@@ -118,24 +158,24 @@ $(function(){
 	</div><br><br>
 	
 	<div class="middle">
-		<form method="POST" action="sendingNoteFunc.do">
+		<form method="POST" action="sendingNoteFunc.do" onkeypress="return preventReturnKey(event)">
 			<div class="form-group">
-				<label for="recv_name">받는 사람</label>
-				<input type="text" id="recv_name" name="recv_name">
+				<label for="recv_name" style="width:150px;">받는 사람</label>
+				<input type="text" id="recv_name" name="recv_name" style="width:300px;" required>
 			</div>
 			<div class="form-group">
-				<label>보내는 사람</label>
-				<input type="text" value="${logOK.nickName }" readonly="readonly" id="sent_name" name="sent_name">
+				<label style="width:150px;">보내는 사람</label>
+				<input type="text" value="${logOK.nickName }" readonly="readonly" id="sent_name" name="sent_name" style="width:300px;" required>
 			</div>
 			<div class="form-group">
-				<label>제목</label>
-				<input type="text" id="title" name="title">
+				<label style="width:150px;">제목</label>
+				<input type="text" id="title" name="title" style="width:300px;" required>
 			</div>
-			<div class="form-group">
-				<label>내용</label>
-				<input type="text" id="note" name="note">
-			</div>
-			<input type="submit" value="전송" class="btn btn-primary"/><br><br>  
+			<div class="form-group" style="vertical-align: top;">
+				<label for="note" style="width:150px;">내용</label>
+				<textarea id="note" name="note" style="width:300px; height:150px;" required></textarea>
+			</div><br>
+			<input type="button" value="전송" onclick="submitFunc()" class="btn btn-primary" style="margin-left:300px;"/><br><br>  
 		</form>
 	</div>
 	
