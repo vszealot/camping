@@ -401,7 +401,8 @@ text-align:center;
 닫<br><br><br>기</div></td>
 <td>
 	<div class="vis-weather">
-		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3>
+		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3><input type="hidden" id="hiddenaddr" value="">
+		<a role="button" class="btn btn-default" href="javascript:updateRecommend('${logOK.nickName}')"><span>추천<br><span id="reccnt"></span></span></a>
 		<p style='position:relative; left:60px'>시설 이용정보</p>
 		<div class="campinfo"></div>
         <h3 class="vh_hide" style='position:relative; left:40px'>날씨정보</h3>
@@ -489,7 +490,15 @@ $("div.side-open").click(
 		});		
 //주소 클릭했을 때의 function------------------------------------------------------------
 	function abcd(x, y, name, phone, addr, addr2) {
-		
+		$('#hiddenaddr').val(addr);
+		$.ajax({
+			type:"GET",
+			url:"reccount.do?addr1="+addr,
+			success:function(data){
+				$('#reccnt').html(data);
+			}
+		})
+	
 		$.ajax({
 			type:"GET",
 			url:"inquiry.do?addr1="+addr,
@@ -881,10 +890,22 @@ $("div.side-open").click(
 			});
 		}
 		
-		
-		
-		
-		
-		
+	 	// 추천 버튼 클릭
+		function updateRecommend(id){
+			if(id==""){
+				alert("로그인 하셔야 추천할 수 있습니다.");
+			}else{
+				var addr = $("#hiddenaddr").val(); 
+				$.ajax({
+					type:"GET",
+					url:"campUpdateRecommend.do?addr1="+addr+"&nickName="+id,
+					success:function(data){
+						$('#reccnt').html(data);
+					}
+				});
+			}
+
+		}
+	 	
 </script>
 </html>

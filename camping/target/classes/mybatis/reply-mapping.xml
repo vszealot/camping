@@ -34,5 +34,10 @@
 		<![CDATA[${sql}]]>
 	</delete>
 	
+	<!-- 캠프 추천 수 세기 -->
+	<select id="reccount" resultType="int" >
+		<![CDATA[${sql}]]>
+	</select>
+	
 
 </mapper>

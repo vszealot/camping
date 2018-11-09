@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import entity.Board;
+import entity.CampInfo;
 import entity.Reply;
 
 @Repository
@@ -72,6 +73,35 @@ public class ReplyDaoImpl implements ReplyDao {
 			factory.openSession().close();
 		}catch (Exception e) {
 			String sql2 = "delete "+board.getBoardName()+"RECOMMEND where nickname='" + board.getNickName() + "' and postno=" + board.getPostNo();
+			Map<String, String> map = new HashMap<>();
+			map.put("sql", sql2);
+			factory.openSession().delete("replyspace.deleteRecommend", map);
+			factory.openSession().close();
+		}
+	}
+
+	// 캠프 추천 수 세기
+	@Override
+	public int reccount(CampInfo campInfo) throws Exception {
+		String sql = "select count(nickName) from camprecommend where addr1 = '" + campInfo.getAddr1() + "'";
+		Map<String, String> map = new HashMap<>();
+		map.put("sql", sql);
+		int n = factory.openSession().selectOne("replyspace.reccount", map);
+		factory.openSession().close();
+		return n;
+	}
+
+	// 캠프 추천 수 갱신
+	@Override
+	public void campUpdateRecommend(CampInfo campInfo, Board board) throws Exception {
+		try {
+			String sql = "insert into "+board.getBoardName()+"Recommend values ('"+campInfo.getAddr1()+"','"+board.getNickName()+"')";
+			Map<String, String> map = new HashMap<>();
+			map.put("sql", sql);
+			factory.openSession().insert("replyspace.updateRecommend", map);
+			factory.openSession().close();
+		}catch (Exception e) {
+			String sql2 = "delete "+board.getBoardName()+"RECOMMEND where nickname='" + board.getNickName() + "' and addr1='" + campInfo.getAddr1()+"'";
 			Map<String, String> map = new HashMap<>();
 			map.put("sql", sql2);
 			factory.openSession().delete("replyspace.deleteRecommend", map);

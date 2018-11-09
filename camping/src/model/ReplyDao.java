@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import entity.Board;
+import entity.CampInfo;
 import entity.Reply;
 
 public interface ReplyDao {
@@ -21,5 +22,11 @@ public interface ReplyDao {
 
 	// 추천 수 갱신
 	public void updateRecommend(Board board) throws Exception;
+	
+	// 캠프 추천 수 세기
+	public int reccount(CampInfo campInfo) throws Exception;
+
+	// 캠프 추천 수 갱신
+	public void campUpdateRecommend(CampInfo campInfo, Board board) throws Exception;
 	
 }

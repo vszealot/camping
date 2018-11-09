@@ -72,6 +72,15 @@ CONSTRAINT mbqcpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE C
 CONSTRAINT uiqcnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
 );
 
+create table campRecommend(
+addr1 varchar2(4000) not null,
+nickName varchar2(30) not null,
+primary key(addr1, nickName),
+CONSTRAINT ctccad FOREIGN KEY(addr1) references camping_test(addr1) ON DELETE CASCADE,
+CONSTRAINT uiccnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+select count(nickName) from camprecommend where addr1 = '대전광역시 중구 침산동 산 34번지 뿌리공원';
+select * from camping_test
 CREATE TABLE qnaFILE(
 IDX number,
 postNo NUMBER NOT NULL,

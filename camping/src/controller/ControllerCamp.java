@@ -1,28 +1,31 @@
 package controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import entity.Board;
 import entity.CampInfo;
+import entity.ImageFile;
 import entity.Page;
+import entity.Reply;
 import entity.tour;
 import entity.weather;
 import model.CampDao;
+import model.ReplyDao;
 
 @Controller
 public class ControllerCamp {
 	@Autowired
 	CampDao campDao;
+	@Autowired
+	ReplyDao replyDao;
 	
 /*	//		캠프리스트	==========================================================================
 	@RequestMapping(value = "/campList.do")
@@ -153,4 +156,22 @@ public class ControllerCamp {
 		return campDao.campinfo(weather.getAddr1());
 	}
 	
+	// 캠프 추천 수 갱신
+	@RequestMapping(value = "/campUpdateRecommend.do", method = RequestMethod.GET)
+	@ResponseBody
+	public int campUpdateRecommend(CampInfo campInfo, Board board, Model model) throws Exception {
+		board.setBoardName("camp");
+		replyDao.campUpdateRecommend(campInfo, board);
+		
+		int n = replyDao.reccount(campInfo);
+		return n;
+	}
+	
+	// 캠프 추천 수 세기
+	@RequestMapping(value = "/reccount.do", method = RequestMethod.GET)
+	@ResponseBody
+	public int reccount(CampInfo campInfo) throws Exception{
+		int n = replyDao.reccount(campInfo);
+		return n;
+	}
 }
