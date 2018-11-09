@@ -12,9 +12,9 @@
 </head>
 <body id="body1">
 	<section class="container">
-	<h2>유저 장터</h2>
+	<h2>공지</h2>
 	<table role="form"></table>
-		<form role="form" method="post" autocomplete="off" action="marketInsert.do" enctype="multipart/form-data">
+		<form role="form" method="post" autocomplete="off" action="noticeInsert.do" enctype="multipart/form-data">
 			<input type="hidden" id="page" name="page" value="${page.page}" readonly="readonly"> 
 			<input type="hidden" id="perPageNum" name="perPageNum" value="${page.perPageNum}" readonly="readonly">
 			<input type="hidden" id="searchType" name="searchType" value="${page.searchType}" readonly="readonly"> 
@@ -129,14 +129,14 @@
 
 	// 목록 버튼 클릭
 	$("#list_btn").click(function() {
-		formObj.attr("action", "marketListSearch.do");
+		formObj.attr("action", "noticeListSearch.do");
 		formObj.attr("method", "post");
 		formObj.submit();
 	});
 
 	// 수정 버튼 클릭
 	$("#modify_btn").click(function() {
-		formObj.attr("action", "marketModify.do");
+		formObj.attr("action", "noticeModify.do");
 		formObj.attr("method", "post");
 		formObj.submit();
 
@@ -145,11 +145,11 @@
 	// 삭제 버튼 클릭
 	$("#delete_btn").click(function() {
 		if (confirm("삭제하시겠습니까?")) {
-			formObj.attr("action", "marketDelete.do");
+			formObj.attr("action", "noticeDelete.do");
 			formObj.attr("method", "post");
 			formObj.submit();
 		}else{
-			formObj.attr("action", "marketRead.do");
+			formObj.attr("action", "noticeRead.do");
 			formObj.attr("method", "post");
 			formObj.submit();
 		}
@@ -163,7 +163,7 @@
 		if (confirm("삭제하시겠습니까?")) {
 			$.ajax({
 				type:"post",
-				url:"marketReplyDelete.do",
+				url:"noticeReplyDelete.do",
 				data:{
 					postNo:"${read.postNo}",
 					page:"${page.page}",
@@ -185,7 +185,7 @@
 	$(".repSubmit").click(function(){
 		$.ajax({
 			type:"post",
-			url:"marketReplyWrite.do",
+			url:"noticeReplyWrite.do",
 			data:{
 				postNo:"${read.postNo}",
 				page:"${page.page}",
@@ -208,7 +208,7 @@
 		}else{
 			$.ajax({
 				type:"POST",
-				url:"marketUpdateRecommend.do",
+				url:"noticeUpdateRecommend.do",
 				data:{
 					postNo:"${read.postNo}",
 					page:"${page.page}",
@@ -230,7 +230,7 @@
         if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
     		$.ajax({
     			type:"post",
-    			url:"marketReplyWrite.do",
+    			url:"noticeReplyWrite.do",
     			data:{
     				postNo:"${read.postNo}",
     				page:"${page.page}",

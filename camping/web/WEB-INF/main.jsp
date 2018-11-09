@@ -165,8 +165,8 @@ th{
 				<a href="">글램핑/카라반</a>
 			</li>
 			<li><a href="marketListSearch.do">유저 장터</a></li>
-			<li><a href="">후기 게시판</a></li>
-			<li><a href="">질문 게시판</a></li>
+			<li><a href="reviewListSearch.do">후기 게시판</a></li>
+			<li><a href="qnaListSearch.do">질문 게시판</a></li>
 		</ul>
 	</div>
 </div><!-- end header -->
