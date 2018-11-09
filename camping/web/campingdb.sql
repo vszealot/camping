@@ -9,7 +9,7 @@ select * from (select rownum rn, aa.* from (select *from CAMPING_TEST where addr
 
 select count(campname) from CAMPING_TEST;
 
-select * from camping_test;
+select * from CAMPING_TEST order by searchcount desc;
 commit;
 
 insert into USERINFO values ('11','asdf@asdf.asdf','관리','11','운영자');
@@ -21,7 +21,9 @@ create table userInfo(
 userId varchar2(30) primary key,
 userEmail varchar2(50),
 nickName varchar2(30),
-password varchar2(20));
+password varchar2(20),
+grade varchar2(20) default '일반회원',
+);
 
 select * from marketboard;
 select * from QNABOARD;
@@ -72,15 +74,6 @@ CONSTRAINT mbqcpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE C
 CONSTRAINT uiqcnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
 );
 
-create table campRecommend(
-addr1 varchar2(4000) not null,
-nickName varchar2(30) not null,
-primary key(addr1, nickName),
-CONSTRAINT ctccad FOREIGN KEY(addr1) references camping_test(addr1) ON DELETE CASCADE,
-CONSTRAINT uiccnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
-);
-select count(nickName) from camprecommend where addr1 = '대전광역시 중구 침산동 산 34번지 뿌리공원';
-select * from camping_test
 CREATE TABLE qnaFILE(
 IDX number,
 postNo NUMBER NOT NULL,
@@ -94,6 +87,17 @@ PRIMARY KEY (IDX),
 CONSTRAINT mbqfpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
 CONSTRAINT uiqfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
 );
+
+create table campRecommend(
+addr1 varchar2(4000) not null,
+nickName varchar2(30) not null,
+primary key(addr1, nickName),
+CONSTRAINT ctccad FOREIGN KEY(addr1) references camping_test(addr1) ON DELETE CASCADE,
+CONSTRAINT uiccnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+select count(nickName) from camprecommend where addr1 = '대전광역시 중구 침산동 산 34번지 뿌리공원';
+select * from camping_test
+
 insert into MARKETFILE(idx, postNo, nickname, ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE) values(marketfile_seq.nextval,1024,'vs질럿','오리지널','스토어',234)
 delete marketfile
 select * from marketfile where postNo=1028
