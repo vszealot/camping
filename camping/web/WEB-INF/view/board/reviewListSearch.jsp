@@ -24,6 +24,16 @@
 			</tr>
 
 			<!-- 목록 시작 -->
+			<c:forEach items="${notice}" var="notice">
+				<tr>
+					<td style="text-align: center;">공지</td>
+					<td><a href="javascript:updateClick2('${notice.click}','${notice.postNo}')">${notice.title} <span style="font-size: 0.85em">[${notice.repCnt}]</span></a></td>
+					<td>${notice.nickName}</td>
+					<td style="text-align: center;"><fmt:formatDate value="${notice.regDate}" pattern="yyyy-MM-dd" /></td>
+					<td style="text-align: center;">${notice.click}</td>
+					<td style="text-align: center;">${notice.recCnt}</td>
+				</tr>
+			</c:forEach>
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td style="text-align: center;">${list.postNo}</td>
@@ -103,6 +113,18 @@
 			url:"reviewUpdateClick.do?click="+ idx1 +"&postNo=" + idx2,
 			success:function(data){
 				location.href = "reviewRead.do?postNo="+ idx2 +"&page=${page.page}&perPageNum=${page.perPageNum}&"
+								+"searchType=${page.searchType}&keyword=${page.keyword}";
+			}
+		});
+	};
+	
+	// 조회 수 증가 + 조회
+	function updateClick2(idx1,idx2){
+ 		$.ajax({
+			type:"GET",
+			url:"noticeUpdateClick.do?click="+ idx1 +"&postNo=" + idx2,
+			success:function(data){
+				location.href = "noticeRead.do?postNo="+ idx2 +"&page=${page.page}&perPageNum=${page.perPageNum}&"
 								+"searchType=${page.searchType}&keyword=${page.keyword}";
 			}
 		});

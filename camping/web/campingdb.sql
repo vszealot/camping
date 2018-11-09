@@ -12,7 +12,7 @@ select count(campname) from CAMPING_TEST;
 select * from camping_test;
 commit;
 
-
+insert into USERINFO values ('11','asdf@asdf.asdf','관리','11','운영자');
 select * from userInfo;
 delete userInfo;
 drop table userInfo;

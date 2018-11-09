@@ -146,8 +146,10 @@ public class ControllerBoard {
 		board.setBoardName("market");
 		List<Board> list = boardDao.listSearch(board, page);
 
-		replyDao.replyCount(board);
-		
+		Board board2 = new Board();
+		board2.setBoardName("notice");
+		List<Board> notice = boardDao.listSearch(board2, new Page());
+		model.addAttribute("notice", notice);
 		
 		page.setTotalCount(boardDao.countSearch(board, page));
 		model.addAttribute("page", page);
@@ -316,9 +318,11 @@ public class ControllerBoard {
 	public ModelAndView reviewListSearch(Board board, Page page, Model model) throws Exception {
 		board.setBoardName("review");
 		List<Board> list = boardDao.listSearch(board, page);
-
-		replyDao.replyCount(board);
 		
+		Board board2 = new Board();
+		board2.setBoardName("notice");
+		List<Board> notice = boardDao.listSearch(board2, new Page());
+		model.addAttribute("notice", notice);
 		
 		page.setTotalCount(boardDao.countSearch(board, page));
 		model.addAttribute("page", page);
@@ -487,9 +491,11 @@ public class ControllerBoard {
 	public ModelAndView qnaListSearch(Board board, Page page, Model model) throws Exception {
 		board.setBoardName("qna");
 		List<Board> list = boardDao.listSearch(board, page);
-
-		replyDao.replyCount(board);
 		
+		Board board2 = new Board();
+		board2.setBoardName("notice");
+		List<Board> notice = boardDao.listSearch(board2, new Page());
+		model.addAttribute("notice", notice);
 		
 		page.setTotalCount(boardDao.countSearch(board, page));
 		model.addAttribute("page", page);
@@ -658,9 +664,11 @@ public class ControllerBoard {
 	public ModelAndView noticeListSearch(Board board, Page page, Model model) throws Exception {
 		board.setBoardName("notice");
 		List<Board> list = boardDao.listSearch(board, page);
-
-		replyDao.replyCount(board);
 		
+		Board board2 = new Board();
+		board2.setBoardName("notice");
+		List<Board> notice = boardDao.listSearch(board2, new Page());
+		model.addAttribute("notice", notice);
 		
 		page.setTotalCount(boardDao.countSearch(board, page));
 		model.addAttribute("page", page);
