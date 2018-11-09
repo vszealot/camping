@@ -295,9 +295,9 @@ text-align:center;
 <script src="<c:url value="/js/tour.js" />"></script>
 <script src="<c:url value="/js/dust.js" />"></script>
 <script src="<c:url value="/js/distance.js" />"></script>
-<script src="<c:url value="/js/selectloc.js" />"></script>
-<script src="<c:url value="/js/seqdistn.js" />"></script>
-<script src="<c:url value="/js/inquiry.js" />"></script>
+<script src="<c:url value="/js_carvan/selectloc_carvan.js" />"></script>
+<script src="<c:url value="/js_carvan/seqdistn_carvan.js" />"></script>
+<script src="<c:url value="/js_carvan/inquiry_carvan.js" />"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 </head>
@@ -310,12 +310,12 @@ text-align:center;
 
 	<div class="button-7">
     <div class="eff-7"></div>
-    <a class="normal" href="javascript:seqdistn(1)" style="text-decoration: none;"> 거리순 </a>
+    <a class="normal" href="javascript:seqdistn_carvan(1)" style="text-decoration: none;"> 거리순 </a>
   	</div>
   	
   	<div class="button-7">
     <div class="eff-7"></div>
-    <a class="normal" href="javascript:inquiryseq()" style="text-decoration: none;"> 조회순 </a>
+    <a class="normal" href="javascript:inquiry_carvan()" style="text-decoration: none;"> 조회순 </a>
   	</div>
   	
   	<div class="button-7">
@@ -325,7 +325,7 @@ text-align:center;
   	
   	<div id="select_box">
   	<label class="label" for="color">지역을 선택하세요</label>
-	<select class="searchWord" id="color" name="searchWord" title="select color" onchange="javascript:selectloc(this)">
+	<select class="searchWord" id="color" name="searchWord" title="select color" onchange="javascript:selectloc_carvan(this)">
 	    <option value="" selected>지역별</option>
 	    <option value="서울특별시">서울특별시</option>
 	    <option value="경기도">경기도</option>
@@ -346,7 +346,7 @@ text-align:center;
 	    <option value="제주도">제주도</option>
 	</select>
 	</div>
-		<form class="search" name="frm" action="javascript:selectloc(1)">
+		<form class="search" id="search" name="frm" action="javascript:selectloc_carvan()">
 		<span class='green_window'>
 			<input type='text' id="search" class='input_text' />
 		</span>
@@ -403,8 +403,8 @@ text-align:center;
 닫<br><br><br>기</div></td>
 <td>
 	<div class="vis-weather">
-		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3><input type="hidden" id="hiddenaddr" value="">
-		<a role="button" class="btn btn-default" href="javascript:updateRecommend('${logOK.nickName}')"><span>추천<br><span id="reccnt"></span></span></a>
+		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3>
+		
 		<p style='position:relative; left:60px'>시설 이용정보</p>
 		<div class="campfacility"></div>
 		<br>
@@ -496,16 +496,6 @@ $("div.side-open").click(
 		});		
 //주소 클릭했을 때의 function------------------------------------------------------------
 	function abcd(x, y, name, phone, addr, addr2) {
-		$('#hiddenaddr').val(addr);
-		$.ajax({
-			type:"GET",
-			url:"reccount.do?addr1="+addr,
-			success:function(data){
-				$('#reccnt').html(data);
-			}
-		})
-		
-		
 		
 		$.ajax({
 			type:"GET",
@@ -699,7 +689,7 @@ $("div.side-open").click(
 		searchWord = "${page.searchWord}";
 	}
 	
-	<c:forEach items="${campListMap}" var="ob">
+	<c:forEach items="${carvanListMap}" var="ob">
 	var json = new Object();
 	
 	json.lat = "${ob.x}";
@@ -732,7 +722,7 @@ $("div.side-open").click(
 		 longitude = position.coords.longitude;
 		 var txt="<div class='listTable'><table class='camptable'><tbody>";
 		 var camptype;
-		 <c:forEach items="${campList}" var="ob">
+		 <c:forEach items="${carvanList}" var="ob">
 				txt += "<tr style='border-bottom :1px solid gray;border-top:1px solid gray;'><td>\r\n<div class='img'><img src=\'${ob.image}\' width='180px'></div></td>"
 			if("${ob.campType}"=="야영장"){
 				txt += "<td style='width:320px;padding:5px;margin:5px;'><ul style='margin:0;padding:0;'><li><div style='background-color:#87003A;color:white;text-align:center;font-size: 15px; padding-bottom: 5px; padding-top: 5px; width: 80px;' class='camptype'>"+"야영장"+"</div></li>\r\n";
@@ -844,9 +834,9 @@ $("div.side-open").click(
 			console.log(idx+"!!!!!!!!!!!!!!!!!!!!!!1")			
 		
 			if(selectedWord==null){
-				var url = "campListAjax.do?page="+idx+"&perPageNum=10";
+				var url = "carvanListAjax.do?page="+idx+"&perPageNum=10";
 			}else{
-				var url = "campListAjax.do?page="+idx+"&perPageNum=10&searchWord="+selectedWord ;
+				var url = "carvanListAjax.do?page="+idx+"&perPageNum=10&searchWord="+selectedWord ;
 			}
 				
 			
@@ -899,9 +889,9 @@ $("div.side-open").click(
 		function pageList2(idx){
 			
 			if(selectedWord==null){
-				var url2 = "campListAjax2.do?page="+idx+"&perPageNum=10";
+				var url2 = "carvanListAjax2.do?page="+idx+"&perPageNum=10";
 			}else{
-				var url2 = "campListAjax2.do?page="+idx+"&perPageNum=10&searchWord="+selectedWord ;
+				var url2 = "carvanListAjax2.do?page="+idx+"&perPageNum=10&searchWord="+selectedWord ;
 			}
 			
 			$.ajax({
@@ -928,21 +918,7 @@ $("div.side-open").click(
 			});
 		}
 		
-		function updateRecommend(id){
-			if(id==""){
-				alert("로그인 하셔야 추천할 수 있습니다.");
-			}else{
-				var addr = $("#hiddenaddr").val(); 
-				$.ajax({
-					type:"GET",
-					url:"campUpdateRecommend.do?addr1="+addr+"&nickName="+id,
-					success:function(data){
-						$('#reccnt').html(data);
-					}
-				});
-			}
-
-		}
+		
 		
 		
 		

@@ -1,5 +1,5 @@
 //거리순으로 데이터 나타내기
-	function seqdistn(z){
+	function seqdistn_carvan(z){
 			
 			if (!!navigator.geolocation) 
 			  {
@@ -31,7 +31,7 @@
 				 var txt = new Array();
 				 var txt2 = new Array();
 					
-					for(var i=1;i<160;i++){
+					for(var i=1;i<25;i++){
 						txt[i] = "<div class='listTable'><table class='camptable'><tbody>"
 					for(var j=(i-1)*(10)+1;j<10*(i)+1;j++){
 						 txt[i] += "<tr style='border-bottom :1px solid gray;border-top:1px solid gray;'><td>\r\n<div class='img'><img src='"+test[j-1].image+"' width='180px'></div></td>"
@@ -56,85 +56,31 @@
 					console.log(txt[z]);
 						txt2[1] = "<ul class='pagination pagination-sm' style='margin-left: auto; margin-right:auto;'>\r\n";
 						for(var i=1;i<11;i++){
-						txt2[1] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
+						txt2[1] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn_carvan('"+i+"')\">"+i+"</a></li>\r\n";
 						}
-						txt2[1] += "<li class='page-item '><a class='page-link' href=\"javascript:seqdistn('"+11+"')\">"+">>"+"</a></li>\r\n";
+						txt2[1] += "<li class='page-item '><a class='page-link' href=\"javascript:seqdistn_carvan('"+11+"')\">"+">>"+"</a></li>\r\n";
 						
 						txt2[1] +=  "</ul>\r\n";
 						
 						
 						txt2[2] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[2] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+10+"')\">"+"<<"+"</a></li>\r\n";
+						txt2[2] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn_carvan('"+10+"')\">"+"<<"+"</a></li>\r\n";
 						for(var i=11;i<21;i++){
-						txt2[2] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
+						txt2[2] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn_carvan('"+i+"')\">"+i+"</a></li>\r\n";
 						}
-						txt2[2] += "<li class='inline'><a class='page-link' href=\"javascript:seqdistn('"+21+"')\">"+">>"+"</a></li>\r\n";
+						txt2[2] += "<li class='inline'><a class='page-link' href=\"javascript:seqdistn_carvan('"+21+"')\">"+">>"+"</a></li>\r\n";
 						
 						txt2[1] +=  "</ul>\r\n";
 						
 						
 						txt2[3] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[3] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+20+"')\">"+"이전"+"</a></li>\r\n";
-						for(var i=21;i<31;i++){
-						txt2[3] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
+						txt2[3] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn_carvan('"+20+"')\">"+"이전"+"</a></li>\r\n";
+						for(var i=21;i<25;i++){
+						txt2[3] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn_carvan('"+i+"')\">"+i+"</a></li>\r\n";
 						}
-						txt2[3] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+41+"')\">"+"다음"+"</a></li>\r\n";
+						txt2[3] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn_carvan('"+41+"')\">"+"다음"+"</a></li>\r\n";
 						
 						txt2[3] +=  "</ul>\r\n";
-						
-						
-						txt2[4] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[4] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+30+"')\">"+"이전"+"</a></li>\r\n";
-						for(var i=31;i<41;i++){
-						txt2[4] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
-						}
-						txt2[4] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+51+"')\">"+"다음"+"</a></li>\r\n";
-						
-						txt2[4] +=  "</ul>\r\n";
-						
-						
-						txt2[5] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[5] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+40+"')\">"+"이전"+"</a></li>\r\n";
-						for(var i=41;i<51;i++){
-						txt2[5] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
-						}
-						txt2[5] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+61+"')\">"+"다음"+"</a></li>\r\n";
-						
-						txt2[5] +=  "</ul>\r\n";
-						
-						
-						txt2[6] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[6] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+50+"')\">"+"이전"+"</a></li>\r\n";
-						for(var i=51;i<61;i++){
-						txt2[6] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
-						}
-						txt2[6] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+71+"')\">"+"다음"+"</a></li>\r\n";
-						
-						txt2[6] +=  "</ul>\r\n";
-						
-						
-						
-						txt2[7] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[7] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+60+"')\">"+"이전"+"</a></li>\r\n";
-						for(var i=61;i<71;i++){
-						txt2[7] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
-						}
-						txt2[7] += "<li class='page-item'><a href=\"javascript:seqdistn('"+81+"')\">"+"다음"+"</a></li>\r\n";
-						
-						txt2[7] +=  "</ul>\r\n";
-						
-						
-						
-						txt2[8] = "<ul class='pagination pagination-sm'>\r\n";
-						txt2[8] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+70+"')\">"+"이전"+"</a></li>\r\n";
-						for(var i=71;i<81;i++){
-						txt2[8] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+i+"')\">"+i+"</a></li>\r\n";
-						}
-						txt2[8] += "<li class='page-item'><a class='page-link' href=\"javascript:seqdistn('"+91+"')\">"+"다음"+"</a></li>\r\n";
-						
-						txt2[8] +=  "</ul>\r\n";
-						
-						
 						
 						
 					
@@ -147,29 +93,9 @@
 						}else if(10<z<=20){
 							$("#paging1").html(txt2[2]);	
 							$("#paging2").html(txt2[2]);	
-						}else if(20<z<=30){
+						}else if(20<z<=25){
 							$("#paging1").html(txt2[3]);	
 							$("#paging2").html(txt2[3]);	
-						}
-						else if(30<z<=40){
-							$("#paging1").html(txt2[4]);	
-							$("#paging2").html(txt2[4]);	
-						}
-						else if(40<z<=50){
-							$("#paging1").html(txt2[5]);	
-							$("#paging2").html(txt2[5]);	
-						}
-						else if(50<z<=60){
-							$("#paging1").html(txt2[6]);	
-							$("#paging2").html(txt2[6]);	
-						}
-						else if(60<z<=70){
-							$("#paging1").html(txt2[7]);	
-							$("#paging2").html(txt2[7]);	
-						}
-						else if(70<z<=80){
-							$("#paging1").html(txt2[8]);	
-							$("#paging2").html(txt2[8]);	
 						}
 						
 					}

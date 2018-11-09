@@ -23,15 +23,30 @@ public class CampDao {
 	public List<CampInfo> campList() {
 		return factory.openSession().selectList("campspace.campList");
 	}
+	
+	// 카라반리스트 =================================================================
+		public List<CampInfo> carvanList() {
+			return factory.openSession().selectList("campspace.carvanList");
+		}
 
 	// 캠프리스트 + 페이징 =========================================================
 	public List<CampInfo> campListPage(Page page) {
 		return factory.openSession().selectList("campspace.campListPage", page);
 	}
 
+	// 카라반리스트 + 페이징 =========================================================
+	public List<CampInfo> carvanListPage(Page page) {
+		return factory.openSession().selectList("campspace.carvanListPage", page);
+	}
+
 	// 캠프리스트 총 갯수 ==========================================================
 	public int campListCount() {
 		return factory.openSession().selectOne("campspace.campListCount");
+	}
+
+	// 카라반리스트 총 갯수 ==========================================================
+	public int carvanListCount() {
+		return factory.openSession().selectOne("campspace.carvanListCount");
 	}
 
 	public List<CampInfo> selectedListPage(Page page) {
@@ -42,6 +57,17 @@ public class CampDao {
 
 		map.put("sql", sql);
 		return factory.openSession().selectList("campspace.selectedListPage", map);
+	}
+	
+	
+	public List<CampInfo> selected_carvanListPage(Page page) {
+		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM (select * from CAMPING_TEST where camptype='자동차야영장') WHERE addr1 like '%"
+				+ page.getSearchWord() + "%' or campname like '%" + page.getSearchWord() + "%' or addr2 like '%"
+				+ page.getSearchWord() + "%')AA)WHERE RN>=" + page.getRowStart() + " AND RN<=" + page.getRowEnd();
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectList("campspace.selected_carvanListPage", map);
 	}
 
 	// 검색리스트 총 갯수 ==========================================================
@@ -54,7 +80,20 @@ public class CampDao {
 		map.put("sql", sql);
 		return factory.openSession().selectOne("campspace.searchListCount", map);
 	}
+	
+	// 카라반 검색리스트 총 갯수 ==========================================================
+		public int search_carvanListCount(Page page) {
+			String sql = "select count(campname) from (select * from CAMPING_TEST where camptype='자동차야영장') where campname like '%" + page.getSearchWord()
+					+ "%' or addr1 like '%" + page.getSearchWord() + "%' or addr2 like '%" + page.getSearchWord() + "%'";
 
+			Map<String, String> map = new HashMap<>();
+
+			map.put("sql", sql);
+			return factory.openSession().selectOne("campspace.search_carvanListCount", map);
+		}
+	
+	
+	
 	// 검색리스트 + 페이징 ==========================================================
 	public List<CampInfo> searchListPage(Page page) {
 
@@ -66,6 +105,19 @@ public class CampDao {
 		map.put("sql", sql);
 		return factory.openSession().selectList("campspace.searchListPage", map);
 	}
+	
+	
+	// 카라반 검색리스트 + 페이징 ==========================================================
+		public List<CampInfo> search_carvanListPage(Page page) {
+
+			String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM (select * from CAMPING_TEST where camptype='자동차야영장')  WHERE CAMPNAME like '%"
+					+ page.getSearchWord() + "%' OR ADDR1 like '%" + page.getSearchWord() + "%' OR ADDR2 like '%"
+					+ page.getSearchWord() + "%')AA)WHERE RN>=" + page.getRowStart() + "AND RN<=" + page.getRowEnd();
+			Map<String, String> map = new HashMap<>();
+
+			map.put("sql", sql);
+			return factory.openSession().selectList("campspace.search_carvanListPage", map);
+		}
 
 	public List<CampInfo> searchListMap(Page page) {
 		String sql = "select * from CAMPING_TEST where campname like '%" + page.getSearchWord() + "%' or addr1 like '%"
@@ -113,6 +165,7 @@ public class CampDao {
 	}
 
 	public void inquiryUp(String addr) {
+		System.out.println(addr);
 		String sql = "update camping_test set searchcount = searchcount+1 where addr1='" + addr + "'";
 
 		Map<String, String> map = new HashMap<>();
@@ -123,33 +176,57 @@ public class CampDao {
 	}
 
 	public List<CampInfo> inquirySeq(Page page) {
-		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (select * from camping_TEST order by searchcount desc)AA)WHERE RN>=" + page.getRowStart() + " AND RN<=" + page.getRowEnd();
-				
-				System.out.println(sql);
+		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (select * from camping_TEST order by searchcount desc)AA)WHERE RN>="
+				+ page.getRowStart() + " AND RN<=" + page.getRowEnd();
+
+		System.out.println(sql);
 		Map<String, String> map = new HashMap<>();
 
 		map.put("sql", sql);
 		return factory.openSession().selectList("campspace.inquiryseq", map);
 
 	}
+	
+	//카라반 조회순
+	public List<CampInfo> inquiry_carvanSeq(Page page) {
+		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (select * from (select * from camping_TEST where camptype='자동차야영장') order by searchcount desc)AA)WHERE RN>="
+				+ page.getRowStart() + " AND RN<=" + page.getRowEnd();
+
+		System.out.println(sql);
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectList("campspace.inquiry_carvanseq", map);
+
+	}
 
 	public int inqiryCount() {
-		String sql = "select count(campname) from CAMPING_TEST order by searchcount desc";
+		String sql = "select count(campname) from camping_TEST order by searchcount desc";
 
 		Map<String, String> map = new HashMap<>();
 
 		map.put("sql", sql);
 		return factory.openSession().selectOne("campspace.inquiryCount", map);
 	}
+	
+	public int inqiry_carvanCount() {
+		String sql = "select count(campname) from (select * from camping_TEST where camptype='자동차야영장') order by searchcount desc";
 
-	public  CampInfo campinfo(String addr1) {
-		String sql = "select * from CAMPING_TEST where addr1='"+addr1+"'";
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectOne("campspace.inquiry_carvanCount", map);
+	}
+
+
+	public CampInfo campinfo(String addr1) {
+		String sql = "select * from CAMPING_TEST where addr1='" + addr1 + "'";
 
 		Map<String, String> map = new HashMap<>();
 
 		map.put("sql", sql);
 		return factory.openSession().selectOne("campspace.campinfo", map);
-		
+
 	}
 
 }

@@ -7,12 +7,24 @@
 	<select id="campList" resultType="campinfo">
 		<![CDATA[SELECT * FROM CAMPING_TEST]]>
 	</select>
+	
+	<select id="carvanList" resultType="campinfo">
+		<![CDATA[SELECT * FROM CAMPING_TEST where camptype='자동차야영장']]>
+	</select>
 
 	<select id="campListPage" resultType="campinfo"	parameterType="page">
 		<![CDATA[SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST)AA)WHERE RN>=#{rowStart} AND RN<=#{rowEnd}]]>
 	</select>
 	
+	<select id="carvanListPage" resultType="campinfo"	parameterType="page">
+		<![CDATA[SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (SELECT *FROM CAMPING_TEST where camptype='자동차야영장')AA)WHERE RN>=#{rowStart} AND RN<=#{rowEnd}]]>
+	</select>
+	
 	<select id="selectedListPage" resultType="campinfo"	parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="selected_carvanListPage" resultType="campinfo"	parameterType="Map">
 		<![CDATA[${sql}]]>
 	</select>
 	
@@ -21,15 +33,28 @@
 		<![CDATA[select count(campname) from CAMPING_TEST]]>
 	</select>
 	
+	<select id="carvanListCount" resultType="int">
+		<![CDATA[select count(campname) from CAMPING_TEST where camptype='자동차야영장']]>
+	</select>
+	
 	<select id="selectedListCount" parameterType="Map" resultType="int">
 		<![CDATA[${sql}]]>
 	</select>
+	
 	
 	<select id="searchListCount" parameterType="Map" resultType="int">
 		<![CDATA[${sql}]]>
 	</select> 
 	
+	<select id="search_carvanListCount" parameterType="Map" resultType="int">
+		<![CDATA[${sql}]]>
+	</select> 
+	
 	<select id="searchListPage" resultType="campinfo" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="search_carvanListPage" resultType="campinfo" parameterType="Map">
 		<![CDATA[${sql}]]>
 	</select>
 	
@@ -53,7 +78,15 @@
 		<![CDATA[${sql}]]>
 	</select>
 	
+	<select id="inquiry_carvanseq" resultType="campinfo">
+		<![CDATA[${sql}]]>
+	</select>
+	
 	<select id="inquiryCount" resultType="int" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="inquiry_carvanCount" resultType="int" parameterType="Map">
 		<![CDATA[${sql}]]>
 	</select>
 	

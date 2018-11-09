@@ -18,6 +18,313 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style>
+/* 따봉! */
+.thumbsup{
+	position: absolute;
+    top: 0px;
+    right: 150px;
+}
+.recommendbutton{
+background-image: url("/camping/image2/주먹.png");
+	width: 64px;
+    height: 64px;
+    position: absolute;
+    top: 50px;
+    right: 350px;
+}
+
+.recommendbutton:hover{
+background-image: url("/camping/image2/따봉.png");
+}
+
+.recommendcount{
+	position: absolute;
+    top: 115px;
+    right: 375px;
+    font-size: large;
+    color: orange;
+}
+
+
+* {
+font-family: 'Jua', sans-serif;
+font-weight : 500;
+letter-spacing: 1.5px;
+}
+.campname{
+	padding-top : 6px;
+  font-family: 'Jua', sans-serif;
+  font-size:20px;
+  letter-spacing: 1.5px;
+}
+.distance{
+	color:#FF8224;
+	font-family: 'Jua', sans-serif;
+	font-weight: 500;
+	font-size:15px;
+	letter-spacing: 1.5px;
+}
+
+
+.addr{
+	color:#363636;
+	font-family: 'Jua', sans-serif;
+	font-weight: 100;
+	font-size:13px;
+	letter-spacing: 1.5px;
+}
+
+.phone{
+	color:#363636;
+	font-family: 'Jua', sans-serif;
+	font-weight: 100;
+	font-size:13px;
+	letter-spacing: 1.5px;
+}
+div#select_box {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 34px;
+    background: url(http://cfile1.uf.tistory.com/image/27423E43565F8EF627B215) 0 center no-repeat;
+}
+
+div#select_box label {
+  position: absolute;
+  font-size: 13px;
+  font-family: 'Jua', sans-serif;
+  color: #fff;
+  top: 9px;
+  left: 12px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+div#select_box select#color {
+  width: 100%;
+  height: 32px;
+  min-height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* IE 8 */
+}
+
+.search{
+padding-left:40px;
+padding-bottom: 5px;
+}
+/* 검색창 css */
+.green_window {
+	display: inline-block;
+	width: 366px; height: 34px;
+	border: 3px solid #212121;
+	background: white;
+}
+.input_text {
+	width: 348px; height: 21px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 21px;
+	font-size: 16px;
+	font-family: 'Jua', sans-serif;
+	outline: none;
+}
+.sch_smit2 {
+	width: 54px; height: 34px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: white;
+	color: white;
+	font-size:16px;
+	border-radius: 1px;
+	cursor: pointer;
+	font-family: 'Jua', sans-serif;
+}
+.sch_smit2:hover {
+	background: #747474;
+}
+
+.sch_smit {
+	width: 54px; height: 34px;
+	margin: 0; border: 0;
+	vertical-align: top;
+	background: #212121;
+	color: white;
+	font-size:16px;
+	border-radius: 1px;
+	cursor: pointer;
+	font-family: 'Jua', sans-serif;
+}
+.sch_smit:hover {
+	background: #747474;
+}
+
+
+.button-7{
+  width:68px;
+  height:34px;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:0 0 5px 5px;
+  display:inline-grid;
+}
+.normal{
+  font-family: 'Jua', sans-serif;
+  font-size:16px;
+  color:#34495e;
+  text-decoration:none;
+  line-height:33px;
+  transition:all 1s ease;
+  z-index:2;
+  position:relative;
+}
+
+.special{
+	font-family: 'Jua', sans-serif;
+  font-size:16px;
+  text-decoration:none;
+  line-height:33px;
+  transition:all 1s ease;
+  z-index:2;
+  position:relative;
+	color:orange;
+}
+
+.eff-7{
+  width:68px;
+  height:34px;
+  border:0px solid #34495e;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+  box-sizing:border-box;
+}
+.button-7:hover .eff-7{
+  border:20px solid #6799FF;
+}
+.button-7:hover a{
+  color:#fff;
+}
+
+
+
+.camptable{
+border-bottom :1px solid gray;
+border-top:1px solid gray;
+width:100%;
+padding:0px;
+
+}
+
+.body{
+width : 1519px;
+height : 690px;
+overflow-y: hidden;
+overflow-x: hidden;
+padding:0px;
+margin:0;
+
+}
+
+/* img : 캠핑장 사진 태그 */
+.img{
+padding: 10px;
+marding: 10px;
+
+}
+.pagination{
+margin-left: auto;
+margin-right: auto;
+display:table;
+}
+.inline{
+display : inline;
+}
+ul{
+list-style: none;
+}
+.left-box {
+	overflow-y: scroll;
+	padding : 0px;
+	margin : 0px;
+	display: inline-block;
+	width: 512px;
+	height:520px;
+	border-top: 1px solid gray;
+	font-size: 12px;
+	
+}
+
+.right-box {
+	padding : 0px;
+	margin : 0px;
+	display: inline-block;
+	position : absolute;
+	top:120px;
+	width: 1007px;
+	height:600px;
+	border: 1px solid white;
+}
+/* 사이드 정보 css */
+.scroll-menu{
+    top: 120px;
+    right: 780px;
+    cursor: pointer;
+}
+
+.scroll-menu:hover{
+  opacity: 0.9;
+}
+
+.side-open{
+    top: 120px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.side-open:hover{
+  opacity: 0.5;
+}
+
+
+.sidebar{
+height:85.5%;
+width:800px;background-color:#F6F6F6;position:fixed; top:120px; right:0px;z-index:1; overflow-x : hidden; overflow-y : scroll;}
+.sideblock{
+text-align:left;
+display:block;border:none;white-space:normal;float:none;outline:0;
+
+}
+
+.sidedarkgrey{z-index: 3;color:black!important;background-color:#F6F6F6!important};
+.sideanimate{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:600px;opacity:0} to{right:0;opacity:1}}
+
+
+.sideitem{
+width:100%;
+display:block;
+padding:8px 16px;
+border:none;
+white-space:normal;
+float:none;
+outline:0;
+text-align:center;
+};
+
+.sidelarge{font-size:18px!important}
+
+
+.w3-container:after,.w3-container:before{content:"";display:table;clear:both};
+.weather-temp{
+	overflow:scroll;
+	/* overflow-x:hidden;
+	overflow-y:hidden; */
+}
 div#header {
 	background-color: #151515;
 	height: 120px;
@@ -50,9 +357,10 @@ li {
 	position: absolute;
 	bottom: 10px;
 	font-size: 20px;
-	font-family: "나눔고딕";
-	font-weight: bold;
 	color: black;
+	font-family: 'Jua', sans-serif;
+	font-weight : 500;
+	letter-spacing: 1.5px;
 }
 
 .topmenu li {
@@ -159,10 +467,10 @@ th{
 		<ul>
 			
 			<li>
-				<a href="">전체</a>
+				<a href="campList.do">전체</a>
 			</li>
 			<li>
-				<a href="">글램핑/카라반</a>
+				<a href="carvanList.do">글램핑/카라반</a>
 			</li>
 			<li><a href="marketListSearch.do">유저 장터</a></li>
 			<li><a href="reviewListSearch.do">후기 게시판</a></li>

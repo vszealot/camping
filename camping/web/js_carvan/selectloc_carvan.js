@@ -1,16 +1,17 @@
-function selectloc(selectedloc){
-			if(selectedloc==1){
-				selectedWord = frm.search.value;
-				
-			}else{
-				selectedWord = selectedloc.value;
-				$("#search").val("");
-			}
+function selectloc_carvan(selectedloc){
 	
+	
+			if(frm.search.value==""){
+			selectedWord = selectedloc.value;
+			$("label").html(selectedloc.value);
+			}else{
+				selectedWord = frm.search.value;
+			}
+			
+			$("#search").val("");
 			
 			
-			
-			var url3="searchProc.do?searchWord="+selectedWord;
+			var url3="searchProc_carvan.do?searchWord="+selectedWord;
 			 $.ajax({
 			type:"GET",
 			url:url3,
@@ -96,7 +97,7 @@ function selectloc(selectedloc){
 				clusterer.addMarkers(markers);
 			 	var pagetxt;
 				//페이지 처리...----------------------------------------------------
-					var url2 = "campListAjax2.do?page="+1+"&perPageNum=10&searchWord="+selectedWord ;
+					var url2 = "carvanListAjax2.do?page="+1+"&perPageNum=10&searchWord="+selectedWord ;
 				
 				$.ajax({
 					type:"GET",
