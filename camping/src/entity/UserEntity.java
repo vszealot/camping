@@ -6,6 +6,8 @@ public class UserEntity {
 	private String nickName;
 	private String password;
 	private String grade;
+	//쪽지 수
+	private int noteCnt;
 
 	public String getUserId() {
 		return userId;
@@ -50,6 +52,13 @@ public class UserEntity {
 	@Override
 	public String toString() {
 		return nickName;
+	}
+	//쪽지 수
+	public int getNoteCnt() {
+		return noteCnt;
+	}
+	public void setNoteCnt(int noteCnt) {
+		this.noteCnt = noteCnt;
 	}
 	
 	

@@ -421,6 +421,7 @@ th{
     display: block;
 }
 
+
 </style>
 </head>
 <body>
@@ -442,6 +443,9 @@ th{
 			<c:if test="${!empty logOK}">
 				<div class="hello">
 					<div class="dropdown">
+					<div id="noteCnt" style="background-color:red; border-radius:1em; height:15px;width:15px; text-align:center;vertical-align:middle; ">
+						${logOK.noteCnt}
+					</div>
 					<button onclick="myFunction()" class="dropbtn">${logOK.nickName}</button>님이 환영합니다
 						
 					</div>

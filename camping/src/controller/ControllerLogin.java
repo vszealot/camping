@@ -21,13 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 import email.Email;
 import email.EmailSender;
 import entity.UserEntity;
+import model.NoteDao;
 import model.UserDao;
 
 @SessionAttributes
 @Controller
 public class ControllerLogin {
+	@Autowired
 	UserDao userDao;
 	@Autowired
+	NoteDao noteDao;
+	
 	public ControllerLogin(UserDao userDao) {
 		super();
 		this.userDao = userDao;
@@ -61,12 +65,18 @@ public class ControllerLogin {
 	public String logProc(@ModelAttribute UserEntity userEntity, HttpServletRequest request) throws IOException {
 
 		UserEntity entity=userDao.loginUser(userEntity);
-		
 		//로그인 세션 관리
 		if(entity!=null) {
 //			System.out.println(entity.getNickName());
 			HttpSession session= request.getSession();
 			session.setAttribute("logOK", entity);
+			
+			//로그인 시 쪽지 개수 출력
+			String name=session.getAttribute("logOK").toString();
+			int cnt=noteDao.cntRecv(name);
+			System.out.println(cnt);
+			entity.setNoteCnt(cnt);
+			
 			return "../../index";
 		}else {
 			

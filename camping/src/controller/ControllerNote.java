@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import entity.Note;
+import entity.UserEntity;
 import model.NoteDao;
 
 @Controller
@@ -36,8 +37,6 @@ public class ControllerNote {
 		
 		List<Note> list= noteDao.noteReceiveView(name);
 
-		
-		
 		if(!list.isEmpty()) {
 //				System.out.println("ok");
 			return new ModelAndView("note/noteReceive", "listNote", list);
@@ -61,17 +60,37 @@ public class ControllerNote {
 	
 	//받은 쪽지 중 읽은 쪽지 처리
 	@RequestMapping(value="/readUnread.do")
-	public boolean readUnread(@ModelAttribute Note note, HttpServletRequest request) {
+	public String readUnread(@ModelAttribute Note note, @ModelAttribute UserEntity userEntity,HttpServletRequest request) {
 		
 		String str=request.getParameter("data");
 
 		if(noteDao.readUnread(str)) {
-			System.out.println("read");
-			return true;
-		}else {
-			return false;
+			int n=noteDao.cntRecv(request.getParameter("data2"));
+			System.out.println(n);
+			
+			HttpSession session= request.getSession();
+			userEntity=(UserEntity) session.getAttribute("logOK");
+//			System.out.println(userEntity.getNickName());
+//			System.out.println(userEntity.getNoteCnt());
+			userEntity.setNoteCnt(n);
+//			System.out.println(userEntity.getNoteCnt());
 		}
+		return "../main";
 	}
+	
+	/*//받은 쪽지 개수 main.jsp에 출력
+	@RequestMapping(value="/cntRecv.do")
+	public ModelAndView cntRecv(@ModelAttribute Note note, HttpServletRequest request) {
+		HttpSession session= request.getSession();
+		session.getAttribute("logOK");
+		
+		String name=session.getAttribute("logOK").toString();
+		
+		int cnt=noteDao.cntRecv(name);
+		System.out.println(cnt);
+		return new ModelAndView("../main", "cntRecv", cnt);
+	}*/
+	
 	
 	//==============================================================================
 	

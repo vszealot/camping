@@ -45,9 +45,9 @@ function detailView(sent_name,recv_name,title,note){
 	// DB다녀와서 자바스크립트로 css적용
 	$.ajax({
 		data : {
-			"data":title			
+			"data":title,	
+			"data2":recv_name
 		},
-		dataType : "text",
         url : "readUnread.do",
         error : function(){
        	 console.log("실패");

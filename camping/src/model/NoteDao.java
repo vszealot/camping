@@ -69,9 +69,11 @@ public class NoteDao {
 		return (n>0)? true:false;
 	}
 
-	
+	public int cntRecv(String name) {
+		
+		return factory.openSession().selectOne("notenamespace.cntRecv",name);
+	}
 
-	
 	
 	
 	
