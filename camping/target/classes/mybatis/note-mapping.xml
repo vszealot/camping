@@ -56,7 +56,17 @@
 		]]>
 	</select>
 
+	<!--페이징 처리 목록  -->
+	<select id="noteReceiveView2" resultType="noteinfo">
+		<![CDATA[
+			${sql}
+		]]>
+	</select> 
 
-
-
+	<!-- 쪽지의 총 갯수 -->
+	<select id="listCount" resultType="int">
+		<![CDATA[
+			${sql}
+		]]>
+	</select>
 </mapper>

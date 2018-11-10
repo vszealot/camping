@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import entity.Note;
+import entity.Page;
 import entity.UserEntity;
 import model.NoteDao;
 
@@ -29,14 +30,20 @@ public class ControllerNote {
 	
 	// 罐篮 率瘤 格废
 	@RequestMapping(value = "/noteReceiveView.do")
-	public ModelAndView noteReceiveView(@ModelAttribute Note note, HttpServletRequest request){
+	public ModelAndView noteReceiveView(@ModelAttribute Note note, Page page, HttpServletRequest request, Model model){
 		HttpSession session= request.getSession();
 		session.getAttribute("logOK");
 		
 		String name=session.getAttribute("logOK").toString();
 		
-		List<Note> list= noteDao.noteReceiveView(name);
-
+//		List<Note> list= noteDao.noteReceiveView(name);
+		
+		//-----其捞瘤 贸府------------------------------------------------------------
+		List<Note> list= noteDao.noteReceiveView2(name, page);
+		page.setTotalCount(noteDao.listCount2(name));
+		model.addAttribute("page", page);
+		//-----其捞瘤 贸府------------------------------------------------------------
+		
 		if(!list.isEmpty()) {
 //				System.out.println("ok");
 			return new ModelAndView("note/noteReceive", "listNote", list);
