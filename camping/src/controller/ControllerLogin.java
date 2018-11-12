@@ -173,7 +173,7 @@ public class ControllerLogin {
     public String updateProc(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) {
 //    	System.out.println(request.getParameter("userEmail"));
 //    	System.out.println(request.getParameter("nickName"));
-    	
+    	System.out.println("ok");
     	String password=request.getParameter("password");
     	String newPassword=request.getParameter("newPassword");
     	
@@ -185,7 +185,8 @@ public class ControllerLogin {
     	}
     	
     	if(userDao.updateUser(entity)) {
-			return "login/login";
+    		System.out.println("ok");
+			return "../../index";
 		}else {
 			return "login/update";
 		}
@@ -202,10 +203,13 @@ public class ControllerLogin {
     
     //È¸¿ø Å»Åð
     @RequestMapping("/deleteProc.do")
-    public String deleteProc(@ModelAttribute UserEntity entity, Model model, HttpServletRequest request) {
+    public String deleteProc(Model model, HttpServletRequest request) {
+    	HttpSession session= request.getSession();
+    	UserEntity entity= (UserEntity)session.getAttribute("logOK");
     	
     	if(userDao.deleteUser(entity)) {
-			return "login/login";
+    		session.removeAttribute("logOK");
+			return "../../index";
 		}else {
 			return "login/update";
 		}

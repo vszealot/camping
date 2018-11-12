@@ -67,14 +67,13 @@
 		</div><br><br>	
 		
 		<input type="button" value="회원정보 수정" id="update_btn" class="btn btn-primary"/>
-		
 		<div class="updateTop">
 			회원탈퇴
 		</div><br><br>
 
 		<div class="form-group">
 				<label for="Password2">비밀번호</label><br><br>
-				<input type="password" id="Password2" name="Password" placeholder="새 비밀번호를 입력하세요" oninput="checkpassword2()" class="form-control" required>
+				<input type="password" id="Password2" name="Password" placeholder="비밀번호를 입력하세요" oninput="checkpassword2()" class="form-control" required>
 				<div id="checkText4"></div>
 		</div>
 		<div class="form-group">

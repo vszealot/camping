@@ -12,6 +12,8 @@ select count(campname) from CAMPING_TEST;
 select * from CAMPING_TEST order by searchcount desc;
 commit;
 
+insert into USERINFO values ('master','jungsub506@naver.com','包府磊','master123','款康磊');
+
 insert into USERINFO values ('11','asdf@asdf.asdf','包府','11','款康磊');
 select * from userInfo;
 delete userInfo;

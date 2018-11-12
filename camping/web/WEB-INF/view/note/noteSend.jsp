@@ -207,7 +207,6 @@ function deleteCheckBox(){
 			<h1 class="title">보낸 쪽지함</h1>
 			<div class="btns">
 				<button onclick="sendingNote()">쪽지 쓰기</button>
-				<button onclick="checkBoxAll()">전체 선택</button>
 				<button onclick="deleteCheckBox()">삭제</button>
 			</div>
 		</div>

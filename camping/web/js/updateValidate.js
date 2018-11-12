@@ -92,7 +92,7 @@
 				    
 			
 				if(retVal==true){
-					document.regForm.action="${path}/camping/updateProc.do";
+					document.regForm.action="updateProc.do";
 					document.regForm.submit();
 				}
 			}
@@ -103,7 +103,7 @@
 		$("#delete_btn").click(function(){
 			var retVal = confirm("탈퇴하시겠습니까?");
 			if(retVal==true){
-				document.regForm.action="${path}/camping/deleteProc.do";
+				document.regForm.action="deleteProc.do";
 				document.regForm.submit();
 			}
 		});
