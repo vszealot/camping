@@ -67,7 +67,7 @@ function submitFunc(){
 	         },
 	         success : function(data) {
 	        	 console.log("성공");
-	        	 location.href="http://localhost:8088/camping/sendingNote.do";
+	        	 location.href="http://localhost:8088/camping/noteSendView.do";
 	         }//end success
 		});//end ajax	
 	}
