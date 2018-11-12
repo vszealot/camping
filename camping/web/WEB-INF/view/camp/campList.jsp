@@ -8,289 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Hi+Melody|Jua&amp;subset=korean" rel="stylesheet">
-<style>
 
-* {
-font-family: 'Jua', sans-serif;
-font-weight : 500;
-letter-spacing: 1.5px;
-}
-.campname{
-	padding-top : 6px;
-  font-family: 'Jua', sans-serif;
-  font-size:20px;
-  letter-spacing: 1.5px;
-}
-.distance{
-	color:#FF8224;
-	font-family: 'Jua', sans-serif;
-	font-weight: 500;
-	font-size:15px;
-	letter-spacing: 1.5px;
-}
-
-
-.addr{
-	color:#363636;
-	font-family: 'Jua', sans-serif;
-	font-weight: 100;
-	font-size:13px;
-	letter-spacing: 1.5px;
-}
-
-.phone{
-	color:#363636;
-	font-family: 'Jua', sans-serif;
-	font-weight: 100;
-	font-size:13px;
-	letter-spacing: 1.5px;
-}
-div#select_box {
-    position: relative;
-    display: inline-block;
-    width: 200px;
-    height: 34px;
-    background: url(http://cfile1.uf.tistory.com/image/27423E43565F8EF627B215) 0 center no-repeat;
-}
-
-div#select_box label {
-  position: absolute;
-  font-size: 13px;
-  font-family: 'Jua', sans-serif;
-  color: #fff;
-  top: 9px;
-  left: 12px;
-  letter-spacing: 2px;
-  font-weight: 500;
-}
-
-div#select_box select#color {
-  width: 100%;
-  height: 32px;
-  min-height: 32px;
-  line-height: 32px;
-  padding: 0 10px;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  /* IE 8 */
-}
-
-.search{
-padding-left:40px;
-padding-bottom: 5px;
-}
-/* 검색창 css */
-.green_window {
-	display: inline-block;
-	width: 366px; height: 34px;
-	border: 3px solid #212121;
-	background: white;
-}
-.input_text {
-	width: 348px; height: 21px;
-	margin: 6px 0 0 9px;
-	border: 0;
-	line-height: 21px;
-	font-size: 16px;
-	font-family: 'Jua', sans-serif;
-	outline: none;
-}
-.sch_smit2 {
-	width: 54px; height: 34px;
-	margin: 0; border: 0;
-	vertical-align: top;
-	background: white;
-	color: white;
-	font-size:16px;
-	border-radius: 1px;
-	cursor: pointer;
-	font-family: 'Jua', sans-serif;
-}
-.sch_smit2:hover {
-	background: #747474;
-}
-
-.sch_smit {
-	width: 54px; height: 34px;
-	margin: 0; border: 0;
-	vertical-align: top;
-	background: #212121;
-	color: white;
-	font-size:16px;
-	border-radius: 1px;
-	cursor: pointer;
-	font-family: 'Jua', sans-serif;
-}
-.sch_smit:hover {
-	background: #747474;
-}
-
-
-.button-7{
-  width:68px;
-  height:34px;
-  text-align:center;
-  cursor:pointer;
-  position:relative;
-  box-sizing:border-box;
-  overflow:hidden;
-  margin:0 0 5px 5px;
-  display:inline-grid;
-}
-.normal{
-  font-family: 'Jua', sans-serif;
-  font-size:16px;
-  color:#34495e;
-  text-decoration:none;
-  line-height:33px;
-  transition:all 1s ease;
-  z-index:2;
-  position:relative;
-}
-
-.special{
-	font-family: 'Jua', sans-serif;
-  font-size:16px;
-  text-decoration:none;
-  line-height:33px;
-  transition:all 1s ease;
-  z-index:2;
-  position:relative;
-	color:orange;
-}
-
-.eff-7{
-  width:68px;
-  height:34px;
-  border:0px solid #34495e;
-  position:absolute;
-  transition:all .5s ease;
-  z-index:1;
-  box-sizing:border-box;
-}
-.button-7:hover .eff-7{
-  border:20px solid #6799FF;
-}
-.button-7:hover a{
-  color:#fff;
-}
-
-
-
-.camptable{
-border-bottom :1px solid gray;
-border-top:1px solid gray;
-width:100%;
-padding:0px;
-
-}
-
-.body{
-width : 1519px;
-height : 690px;
-overflow-y: hidden;
-overflow-x: hidden;
-padding:0px;
-margin:0;
-
-}
-
-/* img : 캠핑장 사진 태그 */
-.img{
-padding: 10px;
-marding: 10px;
-
-}
-.pagination{
-margin-left: auto;
-margin-right: auto;
-display:table;
-}
-.inline{
-display : inline;
-}
-ul{
-list-style: none;
-}
-.left-box {
-	overflow-y: scroll;
-	padding : 0px;
-	margin : 0px;
-	display: inline-block;
-	width: 512px;
-	height:520px;
-	border-top: 1px solid gray;
-	font-size: 12px;
-	
-}
-
-.right-box {
-	padding : 0px;
-	margin : 0px;
-	display: inline-block;
-	position : absolute;
-	top:120px;
-	width: 1007px;
-	height:600px;
-	border: 1px solid white;
-}
-/* 사이드 정보 css */
-.scroll-menu{
-    top: 120px;
-    right: 780px;
-    cursor: pointer;
-}
-
-.scroll-menu:hover{
-  opacity: 0.9;
-}
-
-.side-open{
-    top: 120px;
-    right: 0px;
-    cursor: pointer;
-}
-
-.side-open:hover{
-  opacity: 0.5;
-}
-
-
-.sidebar{
-height:85.5%;
-width:800px;background-color:#F6F6F6;position:fixed; top:120px; right:0px;z-index:1; overflow-x : hidden; overflow-y : scroll;}
-.sideblock{
-text-align:left;
-display:block;border:none;white-space:normal;float:none;outline:0;
-
-}
-
-.sidedarkgrey{z-index: 3;color:black!important;background-color:#F6F6F6!important};
-.sideanimate{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:600px;opacity:0} to{right:0;opacity:1}}
-
-
-.sideitem{
-width:100%;
-display:block;
-padding:8px 16px;
-border:none;
-white-space:normal;
-float:none;
-outline:0;
-text-align:center;
-};
-
-.sidelarge{font-size:18px!important}
-
-
-.w3-container:after,.w3-container:before{content:"";display:table;clear:both};
-.weather-temp{
-	overflow:scroll;
-	/* overflow-x:hidden;
-	overflow-y:hidden; */
-}
-
-</style>
 <script src="<c:url value="/js/weather.js" />"></script>
 <script src="<c:url value="/js/tour.js" />"></script>
 <script src="<c:url value="/js/dust.js" />"></script>
@@ -298,6 +16,8 @@ text-align:center;
 <script src="<c:url value="/js/selectloc.js" />"></script>
 <script src="<c:url value="/js/seqdistn.js" />"></script>
 <script src="<c:url value="/js/inquiry.js" />"></script>
+<script src="<c:url value="/js/update.js"/>"></script>
+<script src="<c:url value="/js/seqrecommend().js"/>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 </head>
@@ -305,7 +25,7 @@ text-align:center;
 	
 	<div class="button-7">
     <div class="eff-7"></div>
-    <a class="special" href="javascript:seqdistn(1)" style="text-decoration: none;">업데이트순</a>
+    <a class="special" href="javascript:updateId('${logOK.nickName}')" style="text-decoration: none;">업데이트순</a>
   	</div>
 
 	<div class="button-7">
@@ -320,7 +40,7 @@ text-align:center;
   	
   	<div class="button-7">
     <div class="eff-7"></div>
-    <a class="normal"href="javascript:" style="text-decoration: none;"> 추천순 </a>
+    <a class="normal"href="javascript:seqrecommend():" style="text-decoration: none;"> 추천순 </a>
   	</div>
   	
   	<div id="select_box">
@@ -403,14 +123,22 @@ text-align:center;
 닫<br><br><br>기</div></td>
 <td>
 	<div class="vis-weather">
-		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3><input type="hidden" id="hiddenaddr" value="">
-		<a role="button" class="btn btn-default" href="javascript:updateRecommend('${logOK.nickName}')"><span>추천<br><span id="reccnt"></span></span></a>
+	<br><br><br><br><br><br>
+		<h3 class="vh_hide" style='position:relative; left:40px'>캠핑장 정보</h3>
+		<h3 class="thumbsup">이 캠핑장이 마음에 드신다면 '따봉'해주세요!!</h3>
+		<input type="hidden" id="hiddenaddr" value="">
+		<a role="button" class="recommendbutton" href="javascript:updateRecommend('${logOK.nickName}')"></a>
+		<span class = "recommendcount" id="reccnt"></span>
+		
 		<p style='position:relative; left:60px'>시설 이용정보</p>
 		<div class="campfacility"></div>
 		<br>
 		<div class="campsitenum" style='position:relative; left:60px;'></div>
 		<br>
 		<div class="usingfee" style='position:relative; left:60px;'></div>
+		<br>
+		<div class="usingtime" style='position:relative; left:60px;'></div>
+		<br>
         <h3 class="vh_hide" style='position:relative; left:40px'>날씨정보</h3>
         <p class="weather-date" style='position:relative; left:40px'></p>
         <ul>
@@ -617,7 +345,8 @@ $("div.side-open").click(
 				campinfo += "</tr></table>"
 				
 				$('.campfacility').html(campinfo);
-					console.log(data.siteNum +"!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+				
 				if(data.siteNum){
 					var campsitenum = "<span style='color:orange'><span style='color:black'>설치 가능한 사이트 수 : </span>"+data.siteNum+"동 설치 가능</span>";
 				}else{
@@ -633,6 +362,14 @@ $("div.side-open").click(
 					var usingfee = "<span style='color:orange'>정보 없음</span>";
 				}
 				$('.usingfee').html(usingfee);
+				
+				
+				if(data.useTime){
+					var usingtime = "<span style='color:orange'><span style='color:black'>이용가능 시간 : </span>"+data.useTime+"</span>";
+				}else{
+					var usingtime = "<span style='color:orange'>정보 없음</span>";
+				}
+				$('.usingtime').html(usingtime);
 				
 			}
 		});
@@ -677,13 +414,33 @@ $("div.side-open").click(
 		// 마커에 클릭이벤트를 등록합니다
 		daum.maps.event.addListener(marker, 'click', function() {
 			// 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+			if (!!navigator.geolocation) 
+	  {
+	navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+	
+	  }
+	else
+	  {
+	    alert("이 브라우저는 Geolocation를 지원하지 않습니다");
+	  }
+	function successCallback(position)
+	  {
+		
+		latitude = position.coords.latitude;
+		longitude = position.coords.longitude;
 			infowindow.setContent('<div class="placeinfo">'
-					+ '<span class="title2">' + name + '</span>' + '<br>'
-					+ '<span title="' + addr + '">' + addr + '</span>' + '<br>'
-					+ '<span class="tel">' + phone + '</span>' + '<br>'
-					+ '<span class="dis"></span>' + '<br>'
-					+ '</div>' + '<div class="after"></div>');
+					+ "<div class='infocampname'><a style='text-decoration:none;' href=\"javascript:abcd(\'"+x+"\',\'"+y+"\',\'"+name+"\',\'"+phone+"',\'"+addr+"\',\'"+addr2+"')\" onclick=\"w3_open()\">"+name+"</a><br></div>"
+					+ "<div class='infodistance'>" + distance(x,y,latitude, longitude) + "km</div>"
+					+ "<div class='infoaddr'>"+addr+"</div>"
+					+ "<div class='infophone'>"+phone+"</div>");
 			infowindow.open(map, marker);
+			
+	  }
+		  
+	  function errorCallback(error)
+	  {
+	    alert(error.message);
+	  }
 		});
 
 	}

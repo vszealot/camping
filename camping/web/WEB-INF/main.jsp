@@ -326,9 +326,9 @@ text-align:center;
 	overflow-y:hidden; */
 }
 div#header {
-	background-color: #151515;
+	background-color: #060914;
 	height: 120px;
-	weight: 100%;
+	width: 1536px;
 	position: relative;
 }
 
@@ -428,7 +428,7 @@ th{
 <div id="header">
 	<div class="logo">
 		<a href="./">
-			<img src="image/campingLogo_213x120_수정.jpg" alt="캠핑가즈아(로고)">
+			<img style = 'width: 300px;height:120px' src="image/메인메인.png" alt="캠핑가즈아(로고)">
 		</a>
 	</div>
 	

@@ -94,5 +94,24 @@
 		<![CDATA[${sql}]]>
 	</select>
 	
+	<insert id="insertcamp" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</insert>
+	
+	<select id="recommendCount" resultType="int" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="recommendseq" resultType="campinfo">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="recommendcarvanCount" resultType="int" parameterType="Map">
+		<![CDATA[${sql}]]>
+	</select>
+	
+	<select id="recommendcarvanseq" resultType="campinfo">
+		<![CDATA[${sql}]]>
+	</select>
 
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -254,6 +255,39 @@ public class ControllerCamp {
 		public int reccount(CampInfo campInfo) throws Exception{
 			int n = replyDao.reccount(campInfo);
 			return n;
+		}
+		
+		
+		
+		@RequestMapping(value = "/insertcamp.do", method = RequestMethod.GET)
+		@ResponseBody
+		public int insertcamp(@ModelAttribute CampInfo campInfo) throws Exception {
+			
+			
+			return campDao.campinsert(campInfo);
+		}
+		
+		
+		
+		@RequestMapping(value = "/recommendseq.do", method = RequestMethod.GET)
+		@ResponseBody
+		public List<CampInfo> recommendseq() {
+			// Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå ===============
+			Page page = new Page();
+			page.setTotalCount(campDao.recommendCount());
+
+			return campDao.recommendSeq(page);
+		}
+		
+		
+		@RequestMapping(value = "/recommendseqcarvan.do", method = RequestMethod.GET)
+		@ResponseBody
+		public List<CampInfo> recommendseqcarvan() {
+			// Ä·ÇÁ¸®½ºÆ® ÃÑ °¹¼ö ±¸ÇÏ´Â ÄÚµå ===============
+			Page page = new Page();
+			page.setTotalCount(campDao.recommendcarvanCount());
+
+			return campDao.recommendcarvanSeq(page);
 		}
 
 }

@@ -228,5 +228,56 @@ public class CampDao {
 		return factory.openSession().selectOne("campspace.campinfo", map);
 
 	}
+	
+	
+	public int campinsert(CampInfo campInfo) {
+		String sql = "insert into camping_TEST (campName,campType,x,y,addr1,phone,siteNum,conv,useTime,usePee,image,searchcount,recommendcount) "
+				+ "values('"+campInfo.getCampName()+"','"+campInfo.getCampType()+"',"+campInfo.getX()+","+campInfo.getY()+",'"+campInfo.getAddr1()+"','"+campInfo.getPhone()+"',"+campInfo.getSiteNum()+",'"+campInfo.getConv()+"','"+campInfo.getUseTime()+"','"+campInfo.getUsePee()+"','"+campInfo.getImage()+"',"+campInfo.getSearchcount()+","+campInfo.getRecommendcount()+")";
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().insert("campspace.insertcamp", map);
+	}
+
+	public int recommendCount() {
+		String sql = "select count(campname) from camping_TEST order by recommendcount desc";
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectOne("campspace.recommendCount", map);
+	}
+
+	public List<CampInfo> recommendSeq(Page page) {
+		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (select * from camping_TEST order by recommendcount desc)AA)WHERE RN>="
+				+ page.getRowStart() + " AND RN<=" + page.getRowEnd();
+
+		System.out.println(sql);
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectList("campspace.recommendseq", map);
+	}
+
+	public int recommendcarvanCount() {
+		String sql = "select count(campname) from (select * from camping_TEST where camptype='자동차야영장') order by recommendcount desc";
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectOne("campspace.recommendcarvanCount", map);
+	}
+
+	public List<CampInfo> recommendcarvanSeq(Page page) {
+		String sql = "SELECT * FROM (SELECT ROWNUM RN, AA.* FROM (select * from (select * from camping_TEST where camptype='자동차야영장') order by recommendcount desc)AA)WHERE RN>="
+				+ page.getRowStart() + " AND RN<=" + page.getRowEnd();
+
+		System.out.println(sql);
+		Map<String, String> map = new HashMap<>();
+
+		map.put("sql", sql);
+		return factory.openSession().selectList("campspace.recommendcarvanseq", map);
+	}
 
 }
