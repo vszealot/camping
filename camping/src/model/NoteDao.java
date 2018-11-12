@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import entity.Board;
 import entity.Note;
 import entity.Page;
 
@@ -100,6 +99,30 @@ public class NoteDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("sql", sql);
 		int back = factory.openSession().selectOne("notenamespace.listCount", map);
+		factory.openSession().close();
+		return back;
+	}
+	
+	//보낸 쪽지함 페이지 처리View
+	public List<Note> noteSentView2(String name, Page page) {
+		String sql="select * from (select notenum,recv_name,sent_name,title,note,date_sent,date_read,recv_read,recv_del,sent_del,row_number()"
+				+ " over(order by notenum desc) as rNum from notes where sent_name='"+name+"' AND sent_del='N') mb "
+						+ "where rNum between "+page.getRowStart()+" and "+page.getRowEnd()+" order by noteNum desc";
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("sql", sql);
+		
+		List<Note> back = factory.openSession().selectList("notenamespace.noteSentView2", map);
+		factory.openSession().close();
+		return back;
+	}
+
+	public int listCount3(String name) {
+		String sql="SELECT COUNT(NOTENUM) FROM NOTES WHERE NOTENUM > 0 AND SENT_NAME='"+name+"' AND SENT_DEL='N'";
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("sql", sql);
+		int back = factory.openSession().selectOne("notenamespace.listCount3", map);
 		factory.openSession().close();
 		return back;
 	}

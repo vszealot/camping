@@ -175,6 +175,14 @@ function deleteCheckBox(){
 	.middle{
 		
 	}
+	.footer li{
+		display: inline-block;
+		padding: 8px;
+		font-size: 15px;
+	}
+	.footer ul{
+		text-align: center;
+	}
 }
 
 </style>
@@ -238,8 +246,23 @@ function deleteCheckBox(){
 	</div>
 		
 	<div class="footer">
-		
-	</div>
+		<!-- 페이징 처리 -->
+		<div>
+			<ul>
+				<c:if test="${page.prev}">
+					<li><a href="noteSendView.do${page.makeQuery(page.startPage - 1)}">이전</a></li>
+				</c:if>
+
+				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
+					<li><a href="noteSendView.do${page.makeQuery(idx)}">${idx}</a></li>
+				</c:forEach>
+
+				<c:if test="${page.next && page.endPage > 0}">
+					<li><a href="noteSendView.do${page.makeQuery(page.endPage + 1)}">다음</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div><br><br>
 
 </div>
 </body>

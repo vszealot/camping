@@ -109,13 +109,17 @@ public class ControllerNote {
 	
 	//焊辰 率瘤 格废
 	@RequestMapping(value = "/noteSendView.do")
-	public ModelAndView noteSendView(@ModelAttribute Note note, HttpServletRequest request){
+	public ModelAndView noteSendView(@ModelAttribute Note note, HttpServletRequest request, Page page, Model model){
 		HttpSession session= request.getSession();
 		session.getAttribute("logOK");
 		
 		String name=session.getAttribute("logOK").toString();
 		
-		List<Note> list= noteDao.noteSendView(name);
+		//-----其捞瘤 贸府------------------------------------------------------------
+		List<Note> list= noteDao.noteSentView2(name, page);
+		page.setTotalCount(noteDao.listCount3(name));
+		model.addAttribute("page", page);
+				//-----其捞瘤 贸府------------------------------------------------------------
 		if(!list.isEmpty()) {
 //				System.out.println("ok");
 			return new ModelAndView("note/noteSend", "listNote", list);

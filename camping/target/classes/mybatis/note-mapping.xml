@@ -69,4 +69,19 @@
 			${sql}
 		]]>
 	</select>
+	
+	<!-- 보낸쪽지함 -->
+	<!--페이징 처리 목록  -->
+	<select id="noteSentView2" resultType="noteinfo">
+		<![CDATA[
+			${sql}
+		]]>
+	</select> 
+
+	<!-- 쪽지의 총 갯수 -->
+	<select id="listCount3" resultType="int">
+		<![CDATA[
+			${sql}
+		]]>
+	</select>
 </mapper>
