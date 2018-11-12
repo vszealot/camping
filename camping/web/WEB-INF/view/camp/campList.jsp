@@ -17,7 +17,7 @@
 <script src="<c:url value="/js/seqdistn.js" />"></script>
 <script src="<c:url value="/js/inquiry.js" />"></script>
 <script src="<c:url value="/js/update.js"/>"></script>
-<script src="<c:url value="/js/seqrecommend().js"/>"></script>
+<script src="<c:url value="/js/seqrecommend.js"/>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 </head>
@@ -40,7 +40,7 @@
   	
   	<div class="button-7">
     <div class="eff-7"></div>
-    <a class="normal"href="javascript:seqrecommend():" style="text-decoration: none;"> 추천순 </a>
+    <a class="normal"href="javascript:seqrecommend()" style="text-decoration: none;"> 추천순 </a>
   	</div>
   	
   	<div id="select_box">
