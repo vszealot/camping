@@ -457,7 +457,6 @@ th{
 				<!-- 마스터 계정 로그인 -->
 				<c:if test="${logOK.grade eq '운영자'}">
 					<a href="/camping/noticeListSearch.do">공지사항 등록</a>
-					<a href="/camping/campEnrollWait.do">캠핑장 등록 대기</a>
 					<a href="/camping/userInfoView.do">회원목록조회</a>
 				</c:if>
 				<!-- 쪽지함 -->
