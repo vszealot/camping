@@ -1,0 +1,5 @@
+ DC    WEATHER    STAGE_1     NULL
+ DC    WEATHER    STAGE_2     NULL
+ DC    WEATHER    STAGE_3     NULL
+ DC    WEATHER    GRID_X      NULL
+ DC    WEATHER    GRID_Y      NULL

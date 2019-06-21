@@ -1,0 +1,224 @@
+create table userInfo(
+userId varchar2(30) primary key,
+userEmail varchar2(50),
+nickName varchar2(30),
+password varchar2(20),
+grade varchar2(20) default '일반회원'
+);
+
+create table qnaBoard (
+postNo number primary key,
+nickName varchar2(30) not null,
+title varchar2(30) not null,
+content varchar2(2000) not null,
+regDate date default sysdate,
+click number default 0,
+recommend number default 0,
+image varchar2(40),
+CONSTRAINT uiqbnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table qnaReply (
+postNo number not null,
+rNo number not null,
+content varchar2(2000) not null,
+nickName varchar2(30) not null,
+regDate date default sysdate,
+primary key(postNo, rno),
+CONSTRAINT qbqrpn FOREIGN KEY(postNo) references qnaBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uiqrnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table qnaRecommend(
+postNo number not null,
+nickName varchar2(30) not null,
+primary key(postNo, nickName),
+CONSTRAINT qbqcpn FOREIGN KEY(postNo) references qnaBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uiqcnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+CREATE TABLE qnaFILE(
+IDX number,
+postNo NUMBER NOT NULL,
+nickName VARCHAR2(30) NOT NULL,
+ORIGINAL_FILE_NAME VARCHAR2(260) NOT NULL,
+STORED_FILE_NAME VARCHAR2(40) NOT NULL,
+FILE_SIZE NUMBER,
+regDate  DATE DEFAULT SYSDATE NOT NULL,
+DEL_GB VARCHAR2(1 BYTE) DEFAULT 'N' NOT NULL,
+PRIMARY KEY (IDX),
+CONSTRAINT qbqfpn FOREIGN KEY(postNo) references qnaBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uiqfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table marketBoard (
+postNo number primary key,
+nickName varchar2(30) not null,
+title varchar2(30) not null,
+content varchar2(2000) not null,
+regDate date default sysdate,
+click number default 0,
+recommend number default 0,
+image varchar2(40),
+CONSTRAINT uimbnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table marketReply (
+postNo number not null,
+rNo number not null,
+content varchar2(2000) not null,
+nickName varchar2(30) not null,
+regDate date default sysdate,
+primary key(postNo, rno),
+CONSTRAINT mbmrpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uimrnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table marketRecommend(
+postNo number not null,
+nickName varchar2(30) not null,
+primary key(postNo, nickName),
+CONSTRAINT mbmcpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uimcnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+CREATE TABLE marketFILE(
+IDX number,
+postNo NUMBER NOT NULL,
+nickName VARCHAR2(30) NOT NULL,
+ORIGINAL_FILE_NAME VARCHAR2(260) NOT NULL,
+STORED_FILE_NAME VARCHAR2(40) NOT NULL,
+FILE_SIZE NUMBER,
+regDate  DATE DEFAULT SYSDATE NOT NULL,
+DEL_GB VARCHAR2(1 BYTE) DEFAULT 'N' NOT NULL,
+PRIMARY KEY (IDX),
+CONSTRAINT mbmfpn FOREIGN KEY(postNo) references marketBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uimfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table NOTICEBoard (
+postNo number primary key,
+nickName varchar2(30) not null,
+title varchar2(30) not null,
+content varchar2(2000) not null,
+regDate date default sysdate,
+click number default 0,
+recommend number default 0,
+image varchar2(40),
+CONSTRAINT uinbnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table NOTICEReply (
+postNo number not null,
+rNo number not null,
+content varchar2(2000) not null,
+nickName varchar2(30) not null,
+regDate date default sysdate,
+primary key(postNo, rno),
+CONSTRAINT nbnrpn FOREIGN KEY(postNo) references NOTICEBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uinrnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table NOTICERecommend(
+postNo number not null,
+nickName varchar2(30) not null,
+primary key(postNo, nickName),
+CONSTRAINT nbncpn FOREIGN KEY(postNo) references NOTICEBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uincnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+CREATE TABLE NOTICEFILE(
+IDX number,
+postNo NUMBER NOT NULL,
+nickName VARCHAR2(30) NOT NULL,
+ORIGINAL_FILE_NAME VARCHAR2(260) NOT NULL,
+STORED_FILE_NAME VARCHAR2(40) NOT NULL,
+FILE_SIZE NUMBER,
+regDate  DATE DEFAULT SYSDATE NOT NULL,
+DEL_GB VARCHAR2(1 BYTE) DEFAULT 'N' NOT NULL,
+PRIMARY KEY (IDX),
+CONSTRAINT nbnfpn FOREIGN KEY(postNo) references NOTICEBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uinfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table REVIEWBoard (
+postNo number primary key,
+nickName varchar2(30) not null,
+title varchar2(30) not null,
+content varchar2(2000) not null,
+regDate date default sysdate,
+click number default 0,
+recommend number default 0,
+image varchar2(40),
+CONSTRAINT uirbnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table REVIEWReply (
+postNo number not null,
+rNo number not null,
+content varchar2(2000) not null,
+nickName varchar2(30) not null,
+regDate date default sysdate,
+primary key(postNo, rno),
+CONSTRAINT rbrrpn FOREIGN KEY(postNo) references REVIEWBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uirrnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table REVIEWRecommend(
+postNo number not null,
+nickName varchar2(30) not null,
+primary key(postNo, nickName),
+CONSTRAINT rbrcpn FOREIGN KEY(postNo) references REVIEWBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uircnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+CREATE TABLE REVIEWFILE(
+IDX number,
+postNo NUMBER NOT NULL,
+nickName VARCHAR2(30) NOT NULL,
+ORIGINAL_FILE_NAME VARCHAR2(260) NOT NULL,
+STORED_FILE_NAME VARCHAR2(40) NOT NULL,
+FILE_SIZE NUMBER,
+regDate  DATE DEFAULT SYSDATE NOT NULL,
+DEL_GB VARCHAR2(1 BYTE) DEFAULT 'N' NOT NULL,
+PRIMARY KEY (IDX),
+CONSTRAINT rbrfpn FOREIGN KEY(postNo) references REVIEWBoard(postNo) ON DELETE CASCADE,
+CONSTRAINT uirfnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table campRecommend(
+addr1 varchar2(4000) not null,
+nickName varchar2(30) not null,
+primary key(addr1, nickName),
+CONSTRAINT ctccad FOREIGN KEY(addr1) references camping_test(addr1) ON DELETE CASCADE,
+CONSTRAINT uiccnn FOREIGN KEY(nickName) references userInfo(nickName) ON DELETE CASCADE
+);
+
+create table notes(
+noteNum      number(5) primary key,
+recv_name    varchar2(20) not null,
+sent_name    varchar2(20) not null,
+title      varchar2(255) not null,
+note       varchar2(2000) not null,
+date_sent  date default sysdate,
+date_read  date default sysdate,
+recv_read  char(1) default 'N' constraint recv_read_check check(recv_read in('N','Y')),
+recv_del   char(1) default 'N' constraint recv_del_check check(recv_del in('N','Y')),
+sent_del   char(1) default 'N' constraint sent_del_check check(sent_del in('N','Y')),
+CONSTRAINT recvCon FOREIGN KEY(recv_name) references userinfo(nickName) ON DELETE CASCADE,
+CONSTRAINT sentCon FOREIGN KEY(sent_name) references userinfo(nickName) ON DELETE CASCADE
+);
+
+create sequence no_seq;
+create sequence MARKETFILE_SEQ;
+create sequence MARKETR_SEQ;
+create sequence MARKET_SEQ;
+create sequence reviewFILE_SEQ;
+create sequence reviewR_SEQ;
+create sequence review_SEQ;
+create sequence qnaFILE_SEQ;
+create sequence qnaR_SEQ;
+create sequence qna_SEQ;
+create sequence noticeFILE_SEQ;
+create sequence noticeR_SEQ;
+create sequence notice_SEQ;

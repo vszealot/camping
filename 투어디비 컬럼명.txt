@@ -1,0 +1,6 @@
+ DC    TOURDB     CATCODE1    NULL
+ DC    TOURDB     CATCODE2    NULL
+ DC    TOURDB     CATCODE3    NULL
+ DC    TOURDB     CAT1        NULL
+ DC    TOURDB     CAT2        NULL
+ DC    TOURDB     CAT3        NULL

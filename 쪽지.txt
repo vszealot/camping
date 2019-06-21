@@ -1,0 +1,66 @@
+select * from tab;
+select * from camping_test;
+commit;
+
+desc userinfo;
+
+select * from userInfo;
+delete userInfo;
+delete from userInfo where userId='jungsub506';
+update userinfo set userid='vszealott' where nickname='vs질럿'
+drop table userInfo;
+commit;
+create table userInfo(
+userId varchar2(30) primary key,
+userEmail varchar2(50) not null,
+nickName varchar2(30) not null unique,
+password varchar2(20) not null);
+
+
+--쪽지함 번호 시퀀스
+create sequence no_seq start with 1 increment BY 1
+select * from notes;
+drop table notes;
+
+insert into 
+notes(noteNum,recv_name,sent_name,title,note)
+values(no_seq.nextval,'에이비','관리자','안녕하세요','인사하기');
+
+insert into 
+notes(noteNum,recv_name,sent_name,title,note)
+values(no_seq.nextval,'에이비','관리자','가입인사','가입을 축하합니다!!!');
+
+insert into 
+notes(noteNum,recv_name,sent_name,title,note)
+values(no_seq.nextval,'관리자','에이비','답장2','열심히');
+
+select * from notes;
+UPDATE NOTES SET RECV_DEL='N' 
+WHERE TITLE in('답장','답장2') AND SENT_DEL='N';
+
+update notes set recv_read='N';
+commit;
+
+--쪽지함 table
+create table notes(
+   noteNum      number(5) primary key,
+   recv_name    varchar2(20) not null,
+   sent_name    varchar2(20) not null,
+   title      varchar2(255) not null,
+   note       varchar2(2000) not null,
+   date_sent  date default sysdate,
+   date_read  date default sysdate,
+   recv_read  char(1) default 'N' constraint recv_read_check check(recv_read in('N','Y')),
+   recv_del   char(1) default 'N' constraint recv_del_check check(recv_del in('N','Y')),
+   sent_del   char(1) default 'N' constraint sent_del_check check(sent_del in('N','Y')),
+   CONSTRAINT recvCon FOREIGN KEY(recv_name) references userinfo(nickName) ON DELETE CASCADE,
+   CONSTRAINT sentCon FOREIGN KEY(sent_name) references userinfo(nickName) ON DELETE CASCADE
+);
+
+select notenum,recv_name,sent_name,title,note,date_sent,date_read,recv_read,recv_del,sent_del
+from (
+    select notenum,recv_name,sent_name,title,note,date_sent,date_read,recv_read,recv_del,sent_del,
+        row_number() over (order by notenum desc) as rNum
+    from notes WHERE RECV_NAME='관리자' AND RECV_DEL='N') mb
+where rNum between 11 and 20
+order by noteNum desc;
